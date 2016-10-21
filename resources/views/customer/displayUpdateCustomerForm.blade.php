@@ -72,8 +72,13 @@
                             <label for="radEditCustomerBanned" class="col-sm-3 control-label">Banned?</label>
 
                             <div class="col-sm-6">
-                                <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned">Yes<br>
-                                <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned" checked>No<br>
+                                @if ($customer->fldBanned)
+                                    <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned" checked>Yes<br>
+                                    <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned">No<br>
+                                @else
+                                    <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned">Yes<br>
+                                    <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned" checked>No<br>
+                                @endif
                             </div>
                         </div>
 

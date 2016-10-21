@@ -102,7 +102,7 @@ class CustomerController extends Controller
         $cust->fldMobile = $request->editCustomerMobile;
         $cust->fldBanned = $request->radEditCustomerBanned; // get value of Banned radio button
 
-        // set updated at to current date and time
+        // set updated_at to current date and time
         $cust->updated_at = $dateTimeNow;
 
         $cust->save();
