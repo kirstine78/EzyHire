@@ -13,7 +13,17 @@ class CreateVehiclesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('vehicles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->mediumInteger('fldLocationId')->nullable();
+            $table->string('fldRegoNo', 6)->unique();
+            $table->string('fldBrand', 15);
+            $table->tinyInteger('fldSeating');
+            $table->double('fldHirePriceCurrent', 6, 2);
+            $table->boolean('fldDamaged');
+            $table->boolean('fldRetired');
+        });
     }
 
     /**
@@ -23,6 +33,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('vehicles');
     }
 }
