@@ -102,7 +102,7 @@
 
                     @endif
 
-                    <form action="customer/add" method="GET">
+                    <form action="customer" method="GET">
                         {{ csrf_field() }}
 
                         <button type="submit" class="btn btn-success">

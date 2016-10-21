@@ -22,8 +22,21 @@ Route::get('suburbs','GeneralController@getSuburbs' );
 Route::get('brands','GeneralController@getBrands' );
 
 // CustomerController
-Route::get('customer','CustomerController@allCustomers' );
-Route::get('customer/add','CustomerController@addCustomer' );
+Route::get('customers','CustomerController@allCustomers' );
+
+/**
+ * to add a Customer we display a form
+ * then the form submits the data
+ */
+
+/* First we display a view with a Form on it */
+Route::get('/customer', 'CustomerController@displayAddCustomerForm');
+
+/* then the form calls the ROUTE to save the data */
+Route::post('customer/add','CustomerController@addCustomer' );
+
+
+
 Route::get('customer/update','CustomerController@updateCustomer' );
 Route::get('customer/delete','CustomerController@deleteCustomer' );
 

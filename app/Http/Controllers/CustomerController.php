@@ -13,6 +13,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 
@@ -28,8 +29,52 @@ class CustomerController extends Controller
         return View('customer.allCustomers', ['customers' => $cust]);
     }
 
-    public function addCustomer(){
-        return View('customer.addCustomer');
+    /**
+     * when you click 'add new customer' button is clicked
+     * the form is displayed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function displayAddCustomerForm(){
+        return View('customer.displayAddCustomerForm');
+    }
+
+    /**
+     * when "add customer' button is clickec
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function addCustomer(Request $request){
+        // get date time
+        $dateTimeNow = Carbon::now();
+
+        $cust = new Customer();
+        // get someValue from the name="someValue"  key/value pair
+        $cust->fldEmail = $request->addCustomerEmail;
+        $cust->fldFirstName = $request->addCustomerFirstName;
+        $cust->fldLastName = $request->addCustomerLastName;
+        $cust->fldLicenceNo = $request->addCustomerLicenceNo;
+        $cust->fldMobile = $request->addCustomerMobile;
+
+        // check Banned radio buttons
+        $isBanned = $request->radBanned;
+
+        $cust->fldBanned = $isBanned;
+
+        // check Deleted radio buttons
+//        $isDeleted = $request->radDeleted;
+
+        // hardcode every new customer to be not deleted
+        $cust->fldDeleted = 0;
+
+        // set created at to current date and time
+        $cust->created_at = $dateTimeNow;
+
+        // set updated at to current date and time
+        $cust->updated_at = $dateTimeNow;
+
+        $cust->save();
+
+        return redirect('customers');
     }
 
 

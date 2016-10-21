@@ -50,8 +50,8 @@
 					<li class="nav_buttons"><a href="{{ url('/') }}" style="color:black;">Home</a></li>
 					<li class="nav_buttons"><a href="{{ url('suburbs') }}"  style="color:black;">Suburbs</a></li>
 					<li class="nav_buttons"><a href="{{ url('brands') }}"  style="color:black;">Brands</a></li>
-					<li class="nav_buttons"><a href="{{ url('customer') }}" style="color:black;">Customer</a></li>
-					<li class="nav_buttons"><a href="{{ url('vehicle') }}" style="color:black;">Vehicle</a></li>
+					<li class="nav_buttons"><a href="{{ url('customers') }}" style="color:black;">Customers</a></li>
+					<li class="nav_buttons"><a href="{{ url('vehicle') }}" style="color:black;">Vehicles</a></li>
 
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">Report
