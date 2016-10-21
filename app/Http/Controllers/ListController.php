@@ -46,18 +46,8 @@ class ListController extends Controller
         $joinTable = DB::table('bookings')->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
             ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-            ->where('customers.id', '=', $customerIdDropDown)->get();
-
-
-//        ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-//            ->select(   'movies.id as m_id',
-//                'movies.created_at as created_at',
-//                'movies.updated_at as updated_at',
-//                'movies.title as title',
-//                'movies.hire_price as hire_price',
-//                'movies.quantity as quantity',
-//                'categories.name as name',
-//                'categories.id as c_id')->get();
+            ->where('customers.id', '=', $customerIdDropDown)
+            ->orderBy('bookings.fldStartDate', 'desc')->get();
 
 //        -- List Bookings by Customer
 //        SELECT 	b.fldBookingNo, b.fldStartDate, b.fldReturnDate, ca.fldRegoNo, ca.fldBrand, d.fldDamageId
