@@ -3,7 +3,7 @@
     Student id:      100527988
     Date:            18.10.2016
     Assignment:      EzyHire
-    Version:         Prototype
+    Version:         1.0
     File:            listBookingsByCustomer.blade.php
 -->
 
