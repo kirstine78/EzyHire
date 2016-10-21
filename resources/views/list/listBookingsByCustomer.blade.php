@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading"><h2>List Bookings by Customer</h2></div>
+                <div class="panel-heading"><h2>List Bookings by Customer</h2>(Excluding archived Bookings)</div>
 
                 <div class="panel-body">
                     <!--  form -->
@@ -43,6 +43,7 @@
                                 <th>Rego no</th>
                                 <th>Brand</th>
                                 <th>Hire $</th>
+                                <th>Damage</th>
                                 <th>&nbsp;</th>
                                 </thead>
 
@@ -79,6 +80,16 @@
                                             <td class="table-text">
                                                 <div>{{ $j->fldHirePricePerDay }}</div>
                                             </td>
+
+                                            <!-- Booking damage? -->
+                                            <td class="table-text">
+                                                @if($j->fldDamageType != null)
+                                                    <div>Yes</div>
+                                                @else
+                                                    <div>No</div>
+                                                @endif
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

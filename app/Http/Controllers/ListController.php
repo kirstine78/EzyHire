@@ -45,6 +45,7 @@ class ListController extends Controller
         // create a Collection based on a join of 4 tables
         $joinTable = DB::table('bookings')->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
+            ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
             ->where('customers.id', '=', $customerIdDropDown)->get();
 
 
