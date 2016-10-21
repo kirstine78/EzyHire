@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Student name:    Kirstine Brørup Nielsen
+ * Student id:      100527988
+ * Date:            18.10.2016
+ * Assignment:      EzyHire
+ * Version:         1.0
+ * File:            web.php
+ */
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +52,24 @@ Route::post('customer/update', 'CustomerController@updateCustomer' );
 Route::delete('customer/{customer}', 'CustomerController@deleteCustomer' );
 
 
+// ********** ListController **********
+Route::get('list/bookings', 'ListController@listBookingsByCustomerForm' );
+Route::post('list/bookings', 'ListController@listBookingsByCustomer');
+
+
+Route::get('list/damages', 'ListController@listDamagesByCustomer' );
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,10 +89,6 @@ Route::get('vehicle/rateupdate', 'VehicleController@updateHireRate' );
 // ********** ReportController **********
 Route::get('report/damage', 'ReportController@showDamagesReport' );
 Route::get('report/fault', 'ReportController@showFaultsReport' );
-
-// ********** ListController **********
-Route::get('list/bookings', 'ListController@listBookingsByCustomer' );
-Route::get('list/damages', 'ListController@listDamagesByCustomer' );
 
 // ********** ArchiveController **********
 Route::get('archive', 'ArchiveController@index' );

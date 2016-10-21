@@ -14,7 +14,6 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
 use App\Http\Requests;
 
 /**
