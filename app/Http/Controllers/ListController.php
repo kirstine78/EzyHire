@@ -28,9 +28,13 @@ class ListController extends Controller
         // fetch all customers that are not flagged deleted from db
         $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
 
+        // make sure to pass empty $joinTable
         $joinTable = [];
 
-        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable]);
+        // make sure to pass in null for $customerIdDropDownSelected
+        $customerIdDropDownSelected = null;
+
+        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
     }
 
 
@@ -40,13 +44,13 @@ class ListController extends Controller
         // fetch all customers that are not flagged deleted from db
         $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
 
-        $customerIdDropDown = $request->customer_id;
+        $customerIdDropDownSelected = $request->customer_id;
 
         // create a Collection based on a join of 4 tables
         $joinTable = DB::table('bookings')->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
             ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-            ->where('customers.id', '=', $customerIdDropDown)
+            ->where('customers.id', '=', $customerIdDropDownSelected)
             ->orderBy('bookings.fldStartDate', 'desc')->get();
 
 //        -- List Bookings by Customer
@@ -57,7 +61,7 @@ class ListController extends Controller
 //                left outer join tblDamage d on (b.fldBookingNo=d.fldBookingNo)
 //        WHERE cu.fldLicenceNo='222234561';
 
-        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable]);
+        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
     }
 
 
