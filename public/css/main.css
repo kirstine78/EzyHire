@@ -1,0 +1,31 @@
+/**
+ * Student name:    Kirstine Brørup Nielsen
+ * Student id:      100527988
+ * Date:            18.10.2016
+ * Assignment:      EzyHire
+ * Version:         1.0
+ * File:            main.css
+ */
+
+.title {
+	font-size: 50px;
+	padding-left: 50px;
+	padding-top: 30px;
+	text-align: left;
+}
+
+
+/******** logo image shall NOT appear ********/
+@media only screen and (max-width: 992px) {
+	#logoCar {
+		display: none;
+	}
+
+	.title {
+		font-size: 24px;
+		padding-left: 0px;
+		padding-top: 0px;
+		text-align: left;
+	}
+
+}
