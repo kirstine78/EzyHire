@@ -11,6 +11,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,8 +22,10 @@ use App\Http\Requests;
  */
 class CustomerController extends Controller
 {
-    public function index(){
-        return View('customer.index');
+    public function allCustomers(){
+        // fetch all customers that are not flagged deleted from db
+        $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
+        return View('customer.allCustomers', ['customers' => $cust]);
     }
 
     public function addCustomer(){

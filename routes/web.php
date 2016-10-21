@@ -22,7 +22,7 @@ Route::get('suburbs','GeneralController@getSuburbs' );
 Route::get('brands','GeneralController@getBrands' );
 
 // CustomerController
-Route::get('customer','CustomerController@index' );
+Route::get('customer','CustomerController@allCustomers' );
 Route::get('customer/add','CustomerController@addCustomer' );
 Route::get('customer/update','CustomerController@updateCustomer' );
 Route::get('customer/delete','CustomerController@deleteCustomer' );
