@@ -37,9 +37,12 @@
                             <table class="table table-striped task-table">
                                 <!-- Table Headings -->
                                 <thead>
-                                <th>pick up </th>
-                                <th>drop off</th>
-                                <th>car id</th>
+                                <th>Pick up </th>
+                                <th>Return</th>
+                                <th>Actual drop off</th>
+                                <th>Rego no</th>
+                                <th>Brand</th>
+                                <th>Hire $</th>
                                 <th>&nbsp;</th>
                                 </thead>
 
@@ -57,9 +60,24 @@
                                                 <div>{{ $j->fldReturnDate }}</div>
                                             </td>
 
-                                            <!-- Booking car id -->
+                                            <!-- Booking actual drop off date -->
                                             <td class="table-text">
-                                                <div>{{ $j->fldCarId }}</div>
+                                                <div>{{ $j->fldActualReturnDate }}</div>
+                                            </td>
+
+                                            <!-- Booking car rego no -->
+                                            <td class="table-text">
+                                                <div>{{ $j->fldRegoNo }}</div>
+                                            </td>
+
+                                            <!-- Booking car brand -->
+                                            <td class="table-text">
+                                                <div>{{ $j->fldBrand }}</div>
+                                            </td>
+
+                                            <!-- Booking hire -->
+                                            <td class="table-text">
+                                                <div>{{ $j->fldHirePricePerDay }}</div>
                                             </td>
                                         </tr>
                                     @endforeach

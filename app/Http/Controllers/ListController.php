@@ -43,7 +43,12 @@ class ListController extends Controller
         $customerIdDropDown = $request->customer_id;
 
         // create a Collection based on a join of 4 tables
-        $joinTable = DB::table('bookings')->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')->where('customers.id', '=', $customerIdDropDown)->get();
+        $joinTable = DB::table('bookings')->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
+            ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
+            ->where('customers.id', '=', $customerIdDropDown)->get();
+
+
+//        ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
 //            ->select(   'movies.id as m_id',
 //                'movies.created_at as created_at',
 //                'movies.updated_at as updated_at',
