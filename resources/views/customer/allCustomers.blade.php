@@ -70,9 +70,9 @@
                                     @endif
                                     </td>
 
-                                    <!-- Task Update Button -->
+                                    <!-- Customer Update Button -->
                                     <td>
-                                        <form action="customer/update" method="GET">
+                                        <form action="customer/{{ $cust->id }}" method="GET">
                                             {{ csrf_field() }}
                                             {{ method_field('UPDATE') }}
 
@@ -82,9 +82,9 @@
                                         </form>
                                     </td>
 
-                                    <!-- Task Delete Button -->
+                                    <!-- Customer Delete Button -->
                                     <td>
-                                        <form action="customer/delete" method="GET">
+                                        <form action="customer/{{ $cust->id }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
 

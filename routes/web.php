@@ -18,46 +18,59 @@
 
 // GeneralController
 Route::get('/','GeneralController@index' );
-Route::get('suburbs','GeneralController@getSuburbs' );
-Route::get('brands','GeneralController@getBrands' );
+Route::get('suburbs', 'GeneralController@getSuburbs' );
+Route::get('brands', 'GeneralController@getBrands' );
 
-// CustomerController
-Route::get('customers','CustomerController@allCustomers' );
 
-/**
- * to add a Customer we display a form
- * then the form submits the data
- */
+// ********** CustomerController **********
+Route::get('customers', 'CustomerController@allCustomers' );
 
-/* First we display a view with a Form on it */
+// To add a Customer we display a form then the form submits the data
+// First we display a view with a Form on it
 Route::get('/customer', 'CustomerController@displayAddCustomerForm');
 
-/* then the form calls the ROUTE to save the data */
-Route::post('customer/add','CustomerController@addCustomer' );
+// then the form calls the ROUTE to save the data
+Route::post('customer/add', 'CustomerController@addCustomer' );
+
+// To update a Customer we display a form then the form submits the data
+// First we display a view with a update Form on it
+Route::get('customer/{customer}', 'CustomerController@displayUpdateCustomerForm' );
+
+// Then the FORM calls the ROUTE to EDIT the Customer
+Route::post('customer/update', 'CustomerController@updateCustomer' );
+
+// Delete Customer
+Route::delete('customer/{customer}', 'CustomerController@deleteCustomer' );
 
 
 
-Route::get('customer/update','CustomerController@updateCustomer' );
-Route::get('customer/delete','CustomerController@deleteCustomer' );
 
-// VehicleController
-Route::get('vehicle','VehicleController@index' );
-Route::get('vehicle/add','VehicleController@addVehicle' );
-Route::get('vehicle/retire','VehicleController@retireVehicle' );
-Route::get('vehicle/rateupdate','VehicleController@updateHireRate' );
 
-// ReportController
-Route::get('report/damage','ReportController@showDamagesReport' );
-Route::get('report/fault','ReportController@showFaultsReport' );
 
-// ListController
-Route::get('list/bookings','ListController@listBookingsByCustomer' );
-Route::get('list/damages','ListController@listDamagesByCustomer' );
 
-// ArchiveController
-Route::get('archive','ArchiveController@index' );
 
-// StaffController
-Route::get('register','StaffController@registerStaffMember' );
-Route::get('login','StaffController@login' );
-Route::get('logout','StaffController@logout' );
+
+
+
+
+// ********** VehicleController **********
+Route::get('vehicle', 'VehicleController@index' );
+Route::get('vehicle/add', 'VehicleController@addVehicle' );
+Route::get('vehicle/retire', 'VehicleController@retireVehicle' );
+Route::get('vehicle/rateupdate', 'VehicleController@updateHireRate' );
+
+// ********** ReportController **********
+Route::get('report/damage', 'ReportController@showDamagesReport' );
+Route::get('report/fault', 'ReportController@showFaultsReport' );
+
+// ********** ListController **********
+Route::get('list/bookings', 'ListController@listBookingsByCustomer' );
+Route::get('list/damages', 'ListController@listDamagesByCustomer' );
+
+// ********** ArchiveController **********
+Route::get('archive', 'ArchiveController@index' );
+
+// ********** StaffController **********
+Route::get('register', 'StaffController@registerStaffMember' );
+Route::get('login', 'StaffController@login' );
+Route::get('logout', 'StaffController@logout' );

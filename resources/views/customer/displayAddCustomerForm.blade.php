@@ -86,16 +86,6 @@
                             {{--</div>--}}
                         {{--</div>--}}
 
-
-                        <!-- movie record created at date time and updated at date time-->
-                        {{--<div class="form-group">--}}
-
-                            {{--<div >--}}
-                                {{--<input type="text" name="currentDateTime" class="form-control" value="{{ $dateTimeNow  }}" />--}}
-
-                            {{--</div>--}}
-                        {{--</div>--}}
-
                         <!-- Add customer button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">

@@ -78,13 +78,55 @@ class CustomerController extends Controller
     }
 
 
-    public function updateCustomer(){
-        return View('customer.updateCustomer');
+    /**
+     * Update a Customer
+     */
+    public function displayUpdateCustomerForm(Customer $customer){
+        return View('customer.displayUpdateCustomerForm')->with('customer', $customer);
     }
 
 
-    public function deleteCustomer(){
-        return View('customer.deleteCustomer');
+    /**
+     * Then the FORM calls the ROUTE to EDIT the Customer
+     */
+    public function updateCustomer(Request $request) {
+        // get current time
+        $dateTimeNow = Carbon::now();
+
+        $cust = Customer::find($request->edit_customer_id);
+
+        $cust->fldEmail = $request->editCustomerEmail;
+        $cust->fldFirstName = $request->editCustomerFirstName;
+        $cust->fldLastName = $request->editCustomerLastName;
+        $cust->fldLicenceNo = $request->editCustomerLicenceNo;
+        $cust->fldMobile = $request->editCustomerMobile;
+        $cust->fldBanned = $request->radEditCustomerBanned; // get value of Banned radio button
+
+        // set updated at to current date and time
+        $cust->updated_at = $dateTimeNow;
+
+        $cust->save();
+
+        return redirect('customers');
+    }
+
+
+    public function deleteCustomer($id){
+        // TODO confirmation box before deleting
+
+        // we don't delete record, instead we just flag as 'deleted'
+
+        // get current time
+        $dateTimeNow = Carbon::now();
+
+        // get the correct record
+        $cust = Customer::find($id);
+        // flag as deleted 1 = true
+        $cust->fldDeleted = 1;
+        $cust->updated_at = $dateTimeNow;
+        $cust->save();
+
+        return redirect('customers');
     }
 
 
