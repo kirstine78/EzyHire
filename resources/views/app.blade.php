@@ -89,7 +89,7 @@
 	@yield('content')
 
 
-	<div class="panel-footer"  style="position: fixed; bottom: 0px">
+	<div class="panel-footer">
 		<div class="container">
 			Kirstine Brørup Nielsen 100527988
 		</div>

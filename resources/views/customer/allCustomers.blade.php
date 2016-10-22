@@ -17,6 +17,12 @@
                 <div class="panel-heading"><h2>Customers</h2></div>
 
                 <div class="panel-body">
+                    <form action="customer" method="GET" class="marginTopBottom">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-btn fa-trash">Add new Customer</i>
+                        </button>
+                    </form>
 
                     @if (count($customers) > 0)
 
@@ -101,14 +107,6 @@
                         <div>There are currently no customers in the system</div>
 
                     @endif
-
-                    <form action="customer" method="GET">
-                        {{ csrf_field() }}
-
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-btn fa-trash">Add new Customer</i>
-                        </button>
-                    </form>
 
                 </div>
             </div>

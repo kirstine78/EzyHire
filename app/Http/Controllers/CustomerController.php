@@ -127,16 +127,6 @@ class CustomerController extends Controller
     }
 
 
-//    public function listBookingsByCustomer(){
-//        return View('customer.listBookingsByCustomer');
-//    }
-//
-//
-//    public function listDamageByCustomer(){
-//        return View('customer.listDamageByCustomer');
-//    }
-
-
     /**
      * fetch all customers from database that are not flagged deleted
      * @return mixed
