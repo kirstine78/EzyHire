@@ -119,6 +119,7 @@ class CustomerController extends Controller
 
         // get the correct record
         $cust = Customer::find($id);
+
         // flag as deleted 1 = true
         $cust->fldDeleted = 1;
         $cust->updated_at = $dateTimeNow;

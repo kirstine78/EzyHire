@@ -41,7 +41,7 @@ class VehicleController extends Controller
 
 
     /**
-     * when "add customer' button is clicked
+     * when "add vehicle' button is clicked
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -76,13 +76,28 @@ class VehicleController extends Controller
     }
 
 
-    public function retireVehicle(){
-        return View('vehicle.retireVehicle');
+    public function updateHireRate(){
+        return View('vehicle.updateHireRate');
     }
 
 
-    public function updateHireRate(){
-        return View('vehicle.updateHireRate');
+    public function retireVehicle($id){
+        // TODO confirmation box before deleting
+
+        // we just flag as 'retired'
+
+        // get current time
+        $dateTimeNow = Carbon::now();
+
+        // get the correct record
+        $vehi = Vehicle::find($id);
+
+        // flag as retired 1 = true
+        $vehi->fldRetired = 1;
+        $vehi->updated_at = $dateTimeNow;
+        $vehi->save();
+
+        return redirect('vehicles');
     }
 
 

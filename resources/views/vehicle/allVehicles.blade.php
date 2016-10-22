@@ -85,9 +85,9 @@
 
                                     <!-- Vehicle Retire Button -->
                                     <td>
-                                        <form action="vehicle/retire" method="GET">
+                                        <form action="vehicle/{{ $vehi->id }}" method="POST">
                                             {{ csrf_field() }}
-                                            {{ method_field('UPDATE') }}
+                                            {{ method_field('DELETE') }}
 
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash">Retire</i>

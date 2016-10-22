@@ -76,9 +76,10 @@ Route::post('vehicle/add', 'VehicleController@addVehicle' );
 
 
 
-Route::get('vehicle/retire', 'VehicleController@retireVehicle' );
 Route::get('vehicle/rateupdate', 'VehicleController@updateHireRate' );
 
+// Delete Vehicle
+Route::delete('vehicle/{vehicle}', 'VehicleController@retireVehicle' );
 
 
 
