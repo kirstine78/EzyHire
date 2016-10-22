@@ -76,8 +76,33 @@ class VehicleController extends Controller
     }
 
 
-    public function updateHireRate(){
-        return View('vehicle.updateHireRate');
+    /**
+     * Update Hire Rate for a vehicle - display form
+     */
+    public function displayUpdateHireRateForm(Vehicle $vehicle){
+        return View('vehicle.displayUpdateHireRateForm')->with('vehicle', $vehicle);
+    }
+
+
+    /**
+     * Then the FORM calls the ROUTE to EDIT the Vehicle
+     */
+    public function updateHireRate(Request $request){
+        // get current time
+        $dateTimeNow = Carbon::now();
+
+        // fetch correct Vehicle
+        $vehi = Vehicle::find($request->edit_vehicle_id);
+
+        // only hire price and updated_at are updated
+        $vehi->fldHirePriceCurrent = $request->editVehicleHirePrice;
+
+        // set updated_at to current date and time
+        $vehi->updated_at = $dateTimeNow;
+
+        $vehi->save();
+
+        return redirect('vehicles');
     }
 
 

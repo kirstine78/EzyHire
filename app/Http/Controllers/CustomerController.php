@@ -91,6 +91,7 @@ class CustomerController extends Controller
         // get current time
         $dateTimeNow = Carbon::now();
 
+        // fetch correct Customer
         $cust = Customer::find($request->edit_customer_id);
 
         $cust->fldEmail = $request->editCustomerEmail;

@@ -21,7 +21,7 @@
                     <form action="{{ url('vehicle/add') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
 
-                    <!-- vehicle rego no -->
+                        <!-- vehicle rego no -->
                         <div class="form-group">
                             <label for="addVehicleRegoNo" class="col-sm-3 control-label">Rego no</label>
 

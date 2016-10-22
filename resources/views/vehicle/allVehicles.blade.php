@@ -71,9 +71,9 @@
                                         @endif
                                     </td>
 
-                                    <!-- Vehicle Update Button -->
+                                    <!-- Vehicle Update Hire Rate Button -->
                                     <td>
-                                        <form action="vehicle/rateupdate" method="GET">
+                                        <form action="vehicle/{{ $vehi->id }}" method="GET">
                                             {{ csrf_field() }}
                                             {{ method_field('UPDATE') }}
 
