@@ -56,6 +56,8 @@ class ReportController extends Controller
                 'archiveddamages.fldDamageDescription as damageDescription',
                 'archiveddamages.fldFixed as fixed')
             ->union($joinTableNonArchivedBookingVehicleDamage)
+            ->orderBy('regoNo', 'asc')
+            ->orderBy('damageDate', 'desc')
             ->get();
 
 //        UNION
