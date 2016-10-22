@@ -55,7 +55,6 @@
                                 <th>Damage type</th>
                                 <th>Description</th>
                                 <th>Fixed</th>
-                                <th>&nbsp;</th>
                                 </thead>
 
                                 <!-- Table Body -->

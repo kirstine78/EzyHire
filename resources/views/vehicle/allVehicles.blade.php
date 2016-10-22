@@ -36,6 +36,7 @@
                             <th>Current hire $</th>
                             <th>Damaged</th>
                             <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                             </thead>
 
                             <!-- Table Body -->

@@ -36,6 +36,7 @@
                             <th>Mobile</th>
                             <th>Banned</th>
                             <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                             </thead>
 
                             <!-- Table Body -->

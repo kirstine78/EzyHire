@@ -39,7 +39,6 @@
                             <th>Type</th>
                             <th>Description</th>
                             <th>Fixed</th>
-                            <th>&nbsp;</th>
                             </thead>
 
                             <!-- Table Body -->

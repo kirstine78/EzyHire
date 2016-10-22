@@ -56,7 +56,6 @@
                                 <th>Brand</th>
                                 <th>Hire $</th>
                                 <th>Damage</th>
-                                <th>&nbsp;</th>
                                 </thead>
 
                                 <!-- Table Body -->
