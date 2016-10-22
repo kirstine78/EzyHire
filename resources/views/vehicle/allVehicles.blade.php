@@ -4,7 +4,7 @@
     Date:            18.10.2016
     Assignment:      EzyHire
     Version:         1.0
-    File:            vehicle.allCustomers.blade.php
+    File:            allVehicles.blade.php
 -->
 
 @extends('app')
@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">Vehicles</div>
+                <div class="panel-heading"><h2>Vehicles</h2></div>
 
                 <div class="panel-body">
                     Vehicles Page Under Construction!!!

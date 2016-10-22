@@ -27,7 +27,7 @@ class ListController extends Controller
 
         // the form will need a Customer DROP DOWN list
         // fetch all customers that are not flagged deleted from db
-        $cust = $this->getAllNotDeletedCustomers();
+        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
         // make sure to pass empty $joinTable
         $joinTable = [];
@@ -43,7 +43,7 @@ class ListController extends Controller
 
         // the form will need a Customer DROP DOWN list
         // fetch all customers that are not flagged deleted from db
-        $cust = $this->getAllNotDeletedCustomers();
+        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
         $customerIdDropDownSelected = $request->customer_id;
 
@@ -63,7 +63,7 @@ class ListController extends Controller
 
         // the form will need a Customer DROP DOWN list
         // fetch all customers that are not flagged deleted from db
-        $cust = $this->getAllNotDeletedCustomers();
+        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
         // make sure to pass empty $joinTable
         $joinTable = [];
@@ -79,7 +79,7 @@ class ListController extends Controller
 
         // the form will need a Customer DROP DOWN list
         // fetch all customers that are not flagged deleted from db
-        $cust = $this->getAllNotDeletedCustomers();
+        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
         $customerIdDropDownSelected = $request->customer_id;
 
@@ -92,16 +92,5 @@ class ListController extends Controller
             ->orderBy('damages.fldDamageDate', 'desc')->get();
 
         return View('list.listDamagesByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
-    }
-
-
-    /**
-     * fetch all customers from database that are not flagged deleted
-     * @return mixed
-     */
-    public function getAllNotDeletedCustomers() {
-        // fetch all customers that are not flagged deleted from db
-        $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
-        return $cust;
     }
 }

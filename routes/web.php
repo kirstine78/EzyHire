@@ -64,18 +64,20 @@ Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
 Route::post('list/damages', 'ListController@listDamagesByCustomer' );
 
 
-
-
-
-
-
-
-
 // ********** VehicleController **********
-Route::get('vehicle', 'VehicleController@index' );
+Route::get('vehicles', 'VehicleController@allVehicles' );
+
 Route::get('vehicle/add', 'VehicleController@addVehicle' );
 Route::get('vehicle/retire', 'VehicleController@retireVehicle' );
 Route::get('vehicle/rateupdate', 'VehicleController@updateHireRate' );
+
+
+
+
+
+
+
+
 
 // ********** ReportController **********
 Route::get('report/damage', 'ReportController@showDamagesReport' );

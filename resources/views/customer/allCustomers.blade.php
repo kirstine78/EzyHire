@@ -4,7 +4,7 @@
     Date:            18.10.2016
     Assignment:      EzyHire
     Version:         1.0
-    File:            customer.allCustomers.blade.php
+    File:            allCustomers.blade.php
 -->
 
 @extends('app')

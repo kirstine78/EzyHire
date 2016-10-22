@@ -21,8 +21,8 @@ use App\Http\Requests;
  */
 class VehicleController extends Controller
 {
-    public function index(){
-        return View('vehicle.index');
+    public function allVehicles(){
+        return View('vehicle.allVehicles');
     }
 
     public function addVehicle(){

@@ -24,7 +24,8 @@ class CustomerController extends Controller
 {
     public function allCustomers(){
         // fetch all customers that are not flagged deleted from db
-        $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
+        $cust = $this->getAllNotDeletedCustomers();
+
         return View('customer.allCustomers', ['customers' => $cust]);
     }
 
@@ -59,9 +60,6 @@ class CustomerController extends Controller
 
         $cust->fldBanned = $isBanned;
 
-        // check Deleted radio buttons
-//        $isDeleted = $request->radDeleted;
-
         // hardcode every new customer to be not deleted
         $cust->fldDeleted = 0;
 
@@ -78,7 +76,7 @@ class CustomerController extends Controller
 
 
     /**
-     * Update a Customer
+     * Update a Customer - display form
      */
     public function displayUpdateCustomerForm(Customer $customer){
         return View('customer.displayUpdateCustomerForm')->with('customer', $customer);
@@ -129,12 +127,23 @@ class CustomerController extends Controller
     }
 
 
-    public function listBookingsByCustomer(){
-        return View('customer.listBookingsByCustomer');
-    }
+//    public function listBookingsByCustomer(){
+//        return View('customer.listBookingsByCustomer');
+//    }
+//
+//
+//    public function listDamageByCustomer(){
+//        return View('customer.listDamageByCustomer');
+//    }
 
 
-    public function listDamageByCustomer(){
-        return View('customer.listDamageByCustomer');
+    /**
+     * fetch all customers from database that are not flagged deleted
+     * @return mixed
+     */
+    public function getAllNotDeletedCustomers() {
+        // fetch all customers that are not flagged deleted from db
+        $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
+        return $cust;
     }
 }
