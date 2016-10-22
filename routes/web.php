@@ -53,24 +53,15 @@ Route::delete('customer/{customer}', 'CustomerController@deleteCustomer' );
 
 
 // ********** ListController **********
+// display form with drop down for customer
 Route::get('list/bookings', 'ListController@listBookingsByCustomerForm' );
+// display the list of bookings for the chosen customer
 Route::post('list/bookings', 'ListController@listBookingsByCustomer');
 
-
-Route::get('list/damages', 'ListController@listDamagesByCustomer' );
-
-
-
-
-
-
-
-
-
-
-
-
-
+// display form with drop down for customer
+Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
+// display the list of damages for the chosen customer
+Route::post('list/damages', 'ListController@listDamagesByCustomer' );
 
 
 

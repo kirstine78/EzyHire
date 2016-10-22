@@ -47,26 +47,49 @@ class ListController extends Controller
         $customerIdDropDownSelected = $request->customer_id;
 
         // create a Collection based on a join of 4 tables
-        $joinTable = DB::table('bookings')->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
+        $joinTable = DB::table('bookings')
+            ->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
             ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
             ->where('customers.id', '=', $customerIdDropDownSelected)
             ->orderBy('bookings.fldStartDate', 'desc')->get();
 
-//        -- List Bookings by Customer
-//        SELECT 	b.fldBookingNo, b.fldStartDate, b.fldReturnDate, ca.fldRegoNo, ca.fldBrand, d.fldDamageId
-//        FROM 	tblBooking b
-//                join tblCustomer cu on (b.fldCustomerId=cu.fldCustomerId)
-//                join tblCar ca on (ca.fldCarId=b.fldCarId)
-//                left outer join tblDamage d on (b.fldBookingNo=d.fldBookingNo)
-//        WHERE cu.fldLicenceNo='222234561';
-
         return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
     }
 
 
+    public function listDamagesByCustomerForm(){
 
-    public function listDamagesByCustomer(){
-        return View('list.listDamagesByCustomer');
+        // the form will need a Customer DROP DOWN list
+        // fetch all customers that are not flagged deleted from db
+        $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
+
+        // make sure to pass empty $joinTable
+        $joinTable = [];
+
+        // make sure to pass in null for $customerIdDropDownSelected
+        $customerIdDropDownSelected = null;
+
+        return View('list.listDamagesByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
+    }
+
+
+    public function listDamagesByCustomer(Request $request){
+
+        // the form will need a Customer DROP DOWN list
+        // fetch all customers that are not flagged deleted from db
+        $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
+
+        $customerIdDropDownSelected = $request->customer_id;
+
+        // create a Collection based on a join of 4 tables
+        $joinTable = DB::table('bookings')
+            ->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
+            ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
+            ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
+            ->where('customers.id', '=', $customerIdDropDownSelected)
+            ->orderBy('damages.fldDamageDate', 'desc')->get();
+
+        return View('list.listDamagesByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
     }
 }
