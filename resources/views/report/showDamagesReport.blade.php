@@ -18,14 +18,13 @@
 
                 <div class="panel-body">
                     <!--  form -->
-                    <form action="{{ url('#') }}" method="POST" class="form-horizontal">
-                        {!! csrf_field() !!}
+                    <form action="{{ url('#') }}" method="GET" class="form-horizontal">
 
                         <div class="form-group">
                             <label for="radFilterDamages" class="col-sm-3 control-label">Filter</label>
                             <div class="col-sm-6">
-                                <input type="radio" name="radFilterDamages" value="all" id="customerBanned" checked>Show all<br>
-                                <input type="radio" name="radFilterDamages" value="onlyUnFixed" id="customerNotBanned" >Show only un-fixed<br>
+                                <input type="radio" name="radFilterDamages" value="fixedAndUnFixed" id="fixedAndUnFixed" >Show fixed and un-fixed<br>
+                                <input type="radio" name="radFilterDamages" value="onlyUnFixed" id="onlyUnFixed" >Show only un-fixed<br>
                             </div>
                         </div>
                     </form>
@@ -87,4 +86,21 @@
         </div>
     </div>
 
+@endsection
+
+@section('page-script')
+    <script type="text/javascript">
+        var select1 = document.getElementById('fixedAndUnFixed');
+        select1.onchange = function(){
+            this.form.submit();
+        };
+
+        var select2 = document.getElementById('onlyUnFixed');
+        select2.onchange = function(){
+            this.form.submit();
+        };
+
+        document.getElementById('{{ $filterOption }}').checked=true;
+
+    </script>
 @endsection

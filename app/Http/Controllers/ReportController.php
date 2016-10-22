@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
  */
 class ReportController extends Controller
 {
-    public function showDamagesReport(){
+    public function showDamagesReport(Request $request){
 
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
@@ -50,7 +50,16 @@ class ReportController extends Controller
             ->orderBy('damageDate', 'desc')
             ->get();
 
-        return View('report.showDamagesReport', ['unionTableArchivedAndNonArchived' => $unionTable]);
+        if ($request->radFilterDamages == null)
+        {
+            $filterOption = "fixedAndUnFixed";
+        }
+        else
+        {
+            $filterOption = $request->radFilterDamages;
+        }
+
+        return View('report.showDamagesReport', ['unionTableArchivedAndNonArchived' => $unionTable, 'filterOption' => $filterOption]);
     }
 
     public function showFaultsReport(){

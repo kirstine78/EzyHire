@@ -88,6 +88,8 @@
 
 	@yield('content')
 
+	@yield('page-script')
+
 
 	<div class="panel-footer">
 		<div class="container">
