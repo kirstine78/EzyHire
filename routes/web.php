@@ -85,15 +85,15 @@ Route::post('vehicle/update', 'VehicleController@updateHireRate' );
 Route::delete('vehicle/{vehicle}', 'VehicleController@retireVehicle' );
 
 
-
-
-
-
-
-
 // ********** ReportController **********
 Route::get('report/damage', 'ReportController@showDamagesReport' );
 Route::get('report/fault', 'ReportController@showFaultsReport' );
+
+
+
+
+
+
 
 // ********** ArchiveController **********
 Route::get('archive', 'ArchiveController@index' );

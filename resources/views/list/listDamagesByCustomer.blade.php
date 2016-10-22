@@ -21,7 +21,7 @@
                     <form action="{{ url('#') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
 
-                    <!-- DROP DOWN containing all Customers (deleted excluded) -->
+                        <!-- DROP DOWN containing all Customers (deleted excluded) -->
                         <div class="form-group">
                             <label for="id" class="col-sm-3 control-label">Customer ~ Licence no</label>
                             <div class="col-sm-4">
