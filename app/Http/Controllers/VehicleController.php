@@ -13,7 +13,7 @@ namespace App\Http\Controllers;
 
 use App\Vehicle;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\Http\Requests;
 
 /**
@@ -29,8 +29,50 @@ class VehicleController extends Controller
         return View('vehicle.allVehicles', ['vehicles' => $vehi]);
     }
 
-    public function addVehicle(){
-        return View('vehicle.addVehicle');  // view folder - vehicle folder - addVehicle.blade.php file
+
+    /**
+     * when you click 'add new vehicle' button
+     * the form is displayed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function displayAddVehicleForm(){
+        return View('vehicle.displayAddVehicleForm');
+    }
+
+
+    /**
+     * when "add customer' button is clicked
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function addVehicle(Request $request){
+        // get date time
+        $dateTimeNow = Carbon::now();
+
+        $vehi = new Vehicle();
+
+        // get someValue from the name="someValue"  key/value pair
+        $vehi->fldRegoNo = $request->addVehicleRegoNo;
+        $vehi->fldBrand = $request->addVehicleBrand;
+        $vehi->fldSeating = $request->addVehicleSeating;
+        $vehi->fldHirePriceCurrent = $request->addVehicleHirePrice;
+
+        // assuming every new vehicle added is not damaged nor retired, so hardcode these values
+        $vehi->fldDamaged = 0;
+        $vehi->fldRetired = 0;
+
+        // set created_at to current date and time
+        $vehi->created_at = $dateTimeNow;
+
+        // set updated_at to current date and time
+        $vehi->updated_at = $dateTimeNow;
+
+        // set fldLocationId to null since we don't implement location/suburb in this assignment
+        $vehi->fldLocationId = null;
+
+        $vehi->save();
+
+        return redirect('vehicles');
     }
 
 

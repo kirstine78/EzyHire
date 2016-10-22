@@ -30,7 +30,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * when you click 'add new customer' button is clicked
+     * when you click 'add new customer' button
      * the form is displayed
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -39,7 +39,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * when "add customer' button is clickec
+     * when "add customer' button is clicked
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -48,6 +48,7 @@ class CustomerController extends Controller
         $dateTimeNow = Carbon::now();
 
         $cust = new Customer();
+
         // get someValue from the name="someValue"  key/value pair
         $cust->fldEmail = $request->addCustomerEmail;
         $cust->fldFirstName = $request->addCustomerFirstName;

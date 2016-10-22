@@ -18,7 +18,7 @@
 
                 <div class="panel-body">
 
-                    <form action="vehicle/add" method="GET" class="marginTopBottom">
+                    <form action="vehicle" method="GET" class="marginTopBottom">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-btn fa-trash">Add new Vehicle</i>

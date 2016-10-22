@@ -76,16 +76,6 @@
                             </div>
                         </div>
 
-                        <!-- customer deleted? -->
-                        {{--<div class="form-group">--}}
-                            {{--<label for="radDeleted" class="col-sm-3 control-label">Deleted?</label>--}}
-
-                            {{--<div class="col-sm-6">--}}
-                                {{--<input type="radio" name="radDeleted" value="1" id="customerDeleted">Yes<br>--}}
-                                {{--<input type="radio" name="radDeleted" value="0" id="customerNotDeleted" checked>No<br>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
                         <!-- Add customer button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
@@ -95,7 +85,6 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
