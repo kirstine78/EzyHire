@@ -35,16 +35,6 @@ class ReportController extends Controller
                 'damages.fldDamageDescription as damageDescription',
                 'damages.fldFixed as fixed');
 
-//            ->orderBy('bookings.fldStartDate', 'desc')->get();
-
-
-//        SELECT 	v.fldRegoNo as regoNo, d.fldDamageDate as damageDate, d.fldDamageType as damageType, d.fldDamageDescription as damageDescription, d.fldFixed as fixed
-//        FROM 	bookings b
-//                join vehicles v on (v.id=b.fldCarId)
-//                join damages d on (b.id=d.fldBookingNo)
-//        WHERE 	v.fldRetired=0
-
-
         // get all damages belonging to archived bookings, and car details, and union it with $joinTableNonArchivedBookingVehicleDamage
         $unionTable = DB::table('archivedbookings')
             ->join('vehicles', 'vehicles.id', '=', 'archivedbookings.fldCarId')
@@ -59,15 +49,6 @@ class ReportController extends Controller
             ->orderBy('regoNo', 'asc')
             ->orderBy('damageDate', 'desc')
             ->get();
-
-//        UNION
-//
-//        SELECT 	v.fldRegoNo as regoNo, ad.fldDamageDate as damageDate, ad.fldDamageType as damageType, ad.fldDamageDescription as damageDescription, ad.fldFixed as fixed
-//        FROM 	archivedbookings ab
-//                join vehicles v on (v.id=ab.fldCarId)
-//                join archiveddamages ad on (ab.id=ad.fldArchiveBookingNo)
-//        WHERE 	v.fldRetired=0
-//        ORDER BY regoNo asc, damageDate desc;
 
         return View('report.showDamagesReport', ['unionTableArchivedAndNonArchived' => $unionTable]);
     }

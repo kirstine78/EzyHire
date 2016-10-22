@@ -69,7 +69,11 @@
 
                                     <!-- Fixed -->
                                     <td class="table-text">
-                                        <div>{{ $u->fixed }}</div>
+                                        @if($u->fixed)
+                                            <div>Yes</div>
+                                        @else
+                                            <div>No</div>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
