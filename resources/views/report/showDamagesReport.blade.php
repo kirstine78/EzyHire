@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">Report of Damages</div>
+                <div class="panel-heading"><h2>Report of Damages</h2></div>
 
                 <div class="panel-body">
                     Report of Damages Page Under Construction!!!

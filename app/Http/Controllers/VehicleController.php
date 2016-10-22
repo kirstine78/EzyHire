@@ -107,7 +107,7 @@ class VehicleController extends Controller
 
 
     public function retireVehicle($id){
-        // TODO confirmation box before deleting
+        // TODO confirmation box before retiring
 
         // we just flag as 'retired'
 
