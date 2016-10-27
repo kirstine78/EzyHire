@@ -72,10 +72,10 @@
 
                         <!-- customer mobile -->
                         <div class="form-group">
-                            <label for="addCustomerMobile" class="col-sm-3 control-label">Mobile (10 digits)</label>
+                            <label for="fldMobile" class="col-sm-3 control-label">Mobile (10 digits)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="addCustomerMobile" id="addCustomerMobile" class="form-control" maxlength="10"/>
+                                <input type="text" name="fldMobile" id="fldMobile" class="form-control" maxlength="10"/>
                             </div>
                         </div>
 

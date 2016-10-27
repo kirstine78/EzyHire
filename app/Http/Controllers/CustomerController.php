@@ -55,8 +55,10 @@ class CustomerController extends Controller
             'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
             'fldLastName' => 'Required|Min:2|Max:40|Alpha',
             'fldLicenceNo' => 'Required|digits:9|unique:customers',
+            'fldMobile' => 'digits:10',
         ]);
 
+        // if VALIDATION went ok proceed to below
         // get date time
         $dateTimeNow = Carbon::now();
 
