@@ -17,53 +17,64 @@
                 <div class="panel-heading">Update Customer</div>
 
                 <div class="panel-body">
-                    <!--  form -->
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                <!--  form -->
                     <form action="{{ url('customer/update') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
 
                     <!-- customer email -->
                         <div class="form-group">
-                            <label for="editCustomerEmail" class="col-sm-3 control-label">Email</label>
+                            <label for="fldEmail" class="col-sm-3 control-label">Email</label>
 
                             <div class="col-sm-6">
-                                <input type="email" name="editCustomerEmail" id="editCustomerEmail" class="form-control" value="{{ $customer->fldEmail }}" />
+                                <input type="email" name="fldEmail" id="fldEmail" class="form-control" value="{{ $customer->fldEmail }}" />
                             </div>
                             <input type="hidden" name="edit_customer_id" id="edit_customer_id" class="form-control" value="{{ $customer->id }}">
                         </div>
 
                         <!-- customer first name  -->
                         <div class="form-group">
-                            <label for="editCustomerFirstName" class="col-sm-3 control-label">First name</label>
+                            <label for="fldFirstName" class="col-sm-3 control-label">First name</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="editCustomerFirstName" id="editCustomerFirstName" class="form-control" value="{{ $customer->fldFirstName }}"  />
+                                <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" value="{{ $customer->fldFirstName }}"  />
                             </div>
                         </div>
 
                         <!-- customer last name  -->
                         <div class="form-group">
-                            <label for="editCustomerLastName" class="col-sm-3 control-label">Last name</label>
+                            <label for="fldLastName" class="col-sm-3 control-label">Last name</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="editCustomerLastName" id="editCustomerLastName" class="form-control" value="{{ $customer->fldLastName }}"  />
+                                <input type="text" name="fldLastName" id="fldLastName" class="form-control" value="{{ $customer->fldLastName }}"  />
                             </div>
                         </div>
 
                         <!-- customer licence number -->
                         <div class="form-group">
-                            <label for="editCustomerLicenceNo" class="col-sm-3 control-label">Licence Number (9 digits)</label>
+                            <label for="fldLicenceNo" class="col-sm-3 control-label">Licence Number (9 digits)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="editCustomerLicenceNo" id="editCustomerLicenceNo" class="form-control" maxlength="9"  value="{{ $customer->fldLicenceNo }}" />
+                                <input type="text" name="fldLicenceNo" id="fldLicenceNo" class="form-control" maxlength="9"  value="{{ $customer->fldLicenceNo }}" />
                             </div>
                         </div>
 
                         <!-- customer mobile -->
                         <div class="form-group">
-                            <label for="editCustomerMobile" class="col-sm-3 control-label">Mobile (10 digits)</label>
+                            <label for="fldMobile" class="col-sm-3 control-label">Mobile (10 digits)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="editCustomerMobile" id="editCustomerMobile" class="form-control" maxlength="10" value="{{ $customer->fldMobile }}" />
+                                <input type="text" name="fldMobile" id="fldMobile" class="form-control" maxlength="10" value="{{ $customer->fldMobile }}" />
                             </div>
                         </div>
 

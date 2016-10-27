@@ -103,17 +103,32 @@ class CustomerController extends Controller
      * Then the FORM calls the ROUTE to EDIT the Customer
      */
     public function updateCustomer(Request $request) {
+
+        // TODO how to redisplay the fields with what user has entered???
+        // TODO how to make customized messages
+        // TODO how to trim input before validating
+
+        // validation of user input in the form
+        // accept if user doesn't change email and licence no (so use: fldEmail,'.$request->edit_customer_id)
+        $this->validate($request, [
+            'fldEmail' => 'required|between:3,254|email|unique:customers,fldEmail,'.$request->edit_customer_id,
+            'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
+            'fldLastName' => 'Required|Min:2|Max:40|Alpha',
+            'fldLicenceNo' => 'Required|digits:9|unique:customers,fldLicenceNo,'.$request->edit_customer_id,
+            'fldMobile' => 'digits:10',
+        ]);
+
         // get current time
         $dateTimeNow = Carbon::now();
 
         // fetch correct Customer
         $cust = Customer::find($request->edit_customer_id);
 
-        $cust->fldEmail = $request->editCustomerEmail;
-        $cust->fldFirstName = $request->editCustomerFirstName;
-        $cust->fldLastName = $request->editCustomerLastName;
-        $cust->fldLicenceNo = $request->editCustomerLicenceNo;
-        $cust->fldMobile = $request->editCustomerMobile;
+        $cust->fldEmail = $request->fldEmail;
+        $cust->fldFirstName = $request->fldFirstName;
+        $cust->fldLastName = $request->fldLastName;
+        $cust->fldLicenceNo = $request->fldLicenceNo;
+        $cust->fldMobile = $request->fldMobile;
         $cust->fldBanned = $request->radEditCustomerBanned; // get value of Banned radio button
 
         // set updated_at to current date and time
