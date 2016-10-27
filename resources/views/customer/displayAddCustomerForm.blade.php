@@ -16,6 +16,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Add Customer</h2></div>
 
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            {{--@foreach ($errors->get('fldEmail') as $message)--}}
+                                {{--<li>{{ $message }}</li>--}}
+                            {{--@endforeach--}}
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="panel-body">
                     <!--  form -->
                     <form action="{{ url('customer/add') }}" method="POST" class="form-horizontal">
@@ -23,39 +36,37 @@
 
                         <!-- customer email -->
                         <div class="form-group">
-                            <label for="addCustomerEmail" class="col-sm-3 control-label">Email</label>
+                            <label for="fldEmail" class="col-sm-3 control-label">Email</label>
 
                             <div class="col-sm-4">
-                                <input type="email" name="addCustomerEmail" id="addCustomerEmail" class="form-control" />
+                                <input type="email" name="fldEmail" id="fldEmail" class="form-control" />
                             </div>
-
-                            <p class="col-sm-2" id="erraddCustomerEmail"></p>
                         </div>
 
                         <!-- customer first name  -->
                         <div class="form-group">
-                            <label for="addCustomerFirstName" class="col-sm-3 control-label">First name (min 2 characters)</label>
+                            <label for="fldFirstName" class="col-sm-3 control-label">First name (min 2 characters)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="addCustomerFirstName" id="addCustomerFirstName" class="form-control" />
+                                <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" />
                             </div>
                         </div>
 
                         <!-- customer last name  -->
                         <div class="form-group">
-                            <label for="addCustomerLastName" class="col-sm-3 control-label">Last name (min 2 characters)</label>
+                            <label for="fldLastName" class="col-sm-3 control-label">Last name (min 2 characters)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="addCustomerLastName" id="addCustomerLastName" class="form-control" />
+                                <input type="text" name="fldLastName" id="fldLastName" class="form-control" />
                             </div>
                         </div>
 
                         <!-- customer licence number -->
                         <div class="form-group">
-                            <label for="addCustomerLicenceNo" class="col-sm-3 control-label">Licence Number (9 digits)</label>
+                            <label for="fldLicenceNo" class="col-sm-3 control-label">Licence Number (9 digits)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="addCustomerLicenceNo" id="addCustomerLicenceNo" class="form-control" maxlength="9"/>
+                                <input type="text" name="fldLicenceNo" id="fldLicenceNo" class="form-control" maxlength="9"/>
                             </div>
                         </div>
 

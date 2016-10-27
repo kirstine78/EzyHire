@@ -44,46 +44,48 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function addCustomer(Request $request){
+
+        // TODO how to redisplay the fields
+        // TODO how to make customized messages
+        // TODO how to trim input before validating
+
+        // validation of user input in the form
+        $this->validate($request, [
+            'fldEmail' => 'required|unique:customers|between:3,254|email',
+            'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
+            'fldLastName' => 'Required|Min:2|Max:40|Alpha',
+            'fldLicenceNo' => 'Required|digits:9|unique:customers',
+        ]);
+
         // get date time
         $dateTimeNow = Carbon::now();
 
         $cust = new Customer();
 
-        // get someValue from the name="someValue"  key/value pair
-        $cust->fldEmail = $request->addCustomerEmail;
-        $cust->fldFirstName = $request->addCustomerFirstName;
-        $cust->fldLastName = $request->addCustomerLastName;
-        $cust->fldLicenceNo = $request->addCustomerLicenceNo;
-        $cust->fldMobile = $request->addCustomerMobile;
+        // get someValue from the name="someValue"  key/value pair from incoming $request
+        $cust->fldEmail = $request->fldEmail;
+        $cust->fldFirstName = $request->fldFirstName;
+        $cust->fldLastName = $request->fldLastName;
+        $cust->fldLicenceNo = $request->fldLicenceNo;
+        $cust->fldMobile = $request->fldMobile;
 
+        // check Banned radio buttons
+        $isBanned = $request->radBanned;
 
-        // validate input before proceeding
-        $isInputOk = $this->isAllInputOk($cust->fldEmail, $cust->fldFirstName, $cust->fldLastName, $cust->fldLicenceNo, $cust->fldMobile);
+        $cust->fldBanned = $isBanned;
 
-        if ($isInputOk)
-        {
-            // check Banned radio buttons
-            $isBanned = $request->radBanned;
+        // hardcode every new customer to be not deleted
+        $cust->fldDeleted = 0;
 
-            $cust->fldBanned = $isBanned;
+        // set created at to current date and time
+        $cust->created_at = $dateTimeNow;
 
-            // hardcode every new customer to be not deleted
-            $cust->fldDeleted = 0;
+        // set updated at to current date and time
+        $cust->updated_at = $dateTimeNow;
 
-            // set created at to current date and time
-            $cust->created_at = $dateTimeNow;
+        $cust->save();
 
-            // set updated at to current date and time
-            $cust->updated_at = $dateTimeNow;
-
-            $cust->save();
-
-            return redirect('customers');
-        }
-        else
-        {
-            return redirect('customer');
-        }
+        return redirect('customers');
     }  // end addCustomer
 
 
@@ -151,138 +153,5 @@ class CustomerController extends Controller
         return $cust;
     }
 
-    public function isAllInputOk($email, $fName, $lName, $licence, $mobile) {
-
-        $isOk = false;
-
-//        if (isEmailOk($email))
-//        {
-//            $isOk = true;
-//        }
-//        else
-//        {
-//            $isOk = false;
-//            return $isOk;
-//        }
-//
-//        if (isNameOk($fName))
-//        {
-//            $isOk = true;
-//        }
-//        else
-//        {
-//            $isOk = false;
-//            return $isOk;
-//        }
-//
-//        if (isNameOk($lName))
-//        {
-//            $isOk = true;
-//        }
-//        else
-//        {
-//            $isOk = false;
-//            return $isOk;
-//        }
-//
-//        if (isLicenceOk($licence))
-//        {
-//            $isOk = true;
-//        }
-//        else
-//        {
-//            $isOk = false;
-//            return $isOk;
-//        }
-//
-//
-//        if (isMobileOk($mobile))
-//        {
-//            $isOk = true;
-//        }
-//        else
-//        {
-//            $isOk = false;
-//            return $isOk;
-//        }
-
-        return $isOk;
-    }
-
-    public function isEmailOk($email){
-        $isOk = false;
-
-        if (strlen($email) > 2)
-        {
-            $isOk = true;
-        }
-        else
-        {
-            $isOk = false;
-        }
-        return $isOk;
-    }
-
-    public function isNameOk($fName){
-        $isOk = false;
-
-        if (strlen($fName) > 2)
-        {
-            $isOk = true;
-        }
-        else
-        {
-            $isOk = false;
-        }
-        return $isOk;
-    }
-
-    public function isLicenceOk($licence){
-        $isOk = false;
-
-        // must be 9 chars
-        if (strlen($licence) == 9)
-        {
-            // must all be digits
-            if (ctype_digit($licence))
-            {
-                // maybe check for unique here???
-
-                $isOk = true;
-            }
-            else
-            {
-                $isOk = false;
-            }
-        }
-        else
-        {
-            $isOk = false;
-        }
-        return $isOk;
-    }
-
-    public function isMobileOk($mobile){
-        $isOk = false;
-
-        // must be 9 chars
-        if (strlen($mobile) == 10)
-        {
-            // must all be digits
-            if (ctype_digit($mobile))
-            {
-                $isOk = true;
-            }
-            else
-            {
-                $isOk = false;
-            }
-        }
-        else
-        {
-            $isOk = false;
-        }
-        return $isOk;
-    }
 
 }

@@ -27,6 +27,10 @@
 	margin-top: 10px;
 }
 
+.errRed {
+	background-color: #a94442;
+}
+
 
 #myInput {
 	background-image: url('../img/search_icon.png'); /* Add a search icon to input */
