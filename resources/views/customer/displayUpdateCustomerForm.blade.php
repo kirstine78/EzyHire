@@ -73,11 +73,11 @@
 
                             <div class="col-sm-6">
                                 @if ($customer->fldBanned)
-                                    <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned" checked>Yes<br>
-                                    <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned">No<br>
+                                    <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned" class="preserveWhiteSpace" checked> Yes<br>
+                                    <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned" class="preserveWhiteSpace" > No<br>
                                 @else
-                                    <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned">Yes<br>
-                                    <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned" checked>No<br>
+                                    <input type="radio" name="radEditCustomerBanned" value="1" id="editCustomerBanned" class="preserveWhiteSpace" > Yes<br>
+                                    <input type="radio" name="radEditCustomerBanned" value="0" id="editCustomerNotBanned" class="preserveWhiteSpace" checked> No<br>
                                 @endif
                             </div>
                         </div>

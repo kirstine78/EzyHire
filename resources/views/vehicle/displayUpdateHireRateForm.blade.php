@@ -64,11 +64,11 @@
 
                             <div class="col-sm-6">
                                 @if ($vehicle->fldDamaged)
-                                    <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" checked disabled>Yes<br>
-                                    <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" disabled>No<br>
+                                    <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" checked disabled> Yes<br>
+                                    <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" disabled> No<br>
                                 @else
-                                    <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" disabled>Yes<br>
-                                    <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" checked disabled>No<br>
+                                    <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" disabled> Yes<br>
+                                    <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" checked disabled> No<br>
                                 @endif
                             </div>
                         </div>

@@ -23,8 +23,8 @@
                         <div class="form-group">
                             <label for="radFilterDamages" class="col-sm-3 control-label">Filter</label>
                             <div class="col-sm-6">
-                                <input type="radio" name="radFilterDamages" value="fixedAndUnFixed" id="fixedAndUnFixed" >Show fixed and un-fixed<br>
-                                <input type="radio" name="radFilterDamages" value="onlyUnFixed" id="onlyUnFixed" >Show only un-fixed<br>
+                                <input type="radio" name="radFilterDamages" value="fixedAndUnFixed" id="fixedAndUnFixed" class="preserveWhiteSpace" > Show fixed and un-fixed<br>
+                                <input type="radio" name="radFilterDamages" value="onlyUnFixed" id="onlyUnFixed" class="preserveWhiteSpace" > Show only un-fixed<br>
                             </div>
                         </div>
                     </form>

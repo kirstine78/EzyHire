@@ -73,8 +73,8 @@
                             <label for="radBanned" class="col-sm-3 control-label">Banned?</label>
 
                             <div class="col-sm-6">
-                                <input type="radio" name="radBanned" value="1" id="customerBanned">Yes<br>
-                                <input type="radio" name="radBanned" value="0" id="customerNotBanned" checked>No<br>
+                                <input type="radio" name="radBanned" value="1" id="customerBanned" class="preserveWhiteSpace"  > Yes<br>
+                                <input type="radio" name="radBanned" value="0" id="customerNotBanned" class="preserveWhiteSpace" checked> No<br>
                             </div>
                         </div>
 
