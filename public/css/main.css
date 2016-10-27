@@ -18,6 +18,10 @@
 	padding: 0px;
 }
 
+.paddingRight {
+	padding-right: 50px;
+}
+
 .marginTopBottom {
 	margin-bottom: 20px;
 	margin-top: 10px;
