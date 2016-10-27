@@ -23,56 +23,98 @@ use Illuminate\Support\Facades\DB;
 class ListController extends Controller
 {
 
-    public function listBookingsByCustomerForm(){
+    public function listByCustomerForm(){
 
         // the form will need a Customer DROP DOWN list
         // fetch all customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
-        // make sure to pass empty $joinTable
+        // make sure to pass empty $joinTable and empty $joinTableDamages
         $joinTable = [];
+        $joinTableDamages = [];
 
         // make sure to pass in null for $customerIdDropDownSelected
-        $customerIdDropDownSelected = null;
+        $customerIdSelected = null;
 
-        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
+        return View('list.listByCustomer',
+                ['customers' => $cust,
+                'joinTable' => $joinTable,
+                'joinTableDamages' => $joinTableDamages,
+                'customerIdSelected' => $customerIdSelected]);
     }
 
 
     public function listBookingsByCustomer(Request $request){
 
         // the form will need a Customer DROP DOWN list
+
         // fetch all customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
-        $customerIdDropDownSelected = $request->customer_id;
+        // make sure to pass empty $joinTableDamages
+        $joinTableDamages = [];
+
+//        $customerIdDropDownSelected = $request->customer_id;
+        $customerIdSelected = $request->customer_id;
+
+//        $bookings = Customer::find($customerIdDropDownSelected)->bookings()
+//            ->join('vehicles', 'vehicles.id', '=', 'bookings.vehicle_id')
+//            ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
+//            ->where('customers.id', '=', $customerIdDropDownSelected)
+//            ->orderBy('bookings.fldStartDate', 'desc')->get();
+
+//        $joinTable = $bookings;
 
         // create a Collection based on a join of 4 tables
         $joinTable = DB::table('bookings')
             ->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
             ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-            ->where('customers.id', '=', $customerIdDropDownSelected)
+            ->where('customers.id', '=', $customerIdSelected)
             ->orderBy('bookings.fldStartDate', 'desc')->get();
 
-        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
+        return View('list.listByCustomer',
+                ['customers' => $cust,
+                'joinTable' => $joinTable,
+                'joinTableDamages' => $joinTableDamages,
+                'customerIdSelected' => $customerIdSelected]);
     }
 
 
-    public function listDamagesByCustomerForm(){
+//    public function listDamagesByCustomerForm(){
+//
+//        // the form will need a Customer DROP DOWN list
+//        // fetch all customers that are not flagged deleted from db
+//        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
+//
+//        // make sure to pass empty $joinTable
+//        $joinTable = [];
+//
+//        // make sure to pass in null for $customerIdDropDownSelected
+//        $customerIdDropDownSelected = null;
+//
+//        return View('list.listDamagesByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
+//    }
 
-        // the form will need a Customer DROP DOWN list
-        // fetch all customers that are not flagged deleted from db
-        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
-        // make sure to pass empty $joinTable
-        $joinTable = [];
-
-        // make sure to pass in null for $customerIdDropDownSelected
-        $customerIdDropDownSelected = null;
-
-        return View('list.listDamagesByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
-    }
+//    public function listDamagesByCustomer(Request $request){
+//
+//        // the form will need a Customer DROP DOWN list
+//        // fetch all customers that are not flagged deleted from db
+//        $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
+//
+//        $customerIdDropDownSelected = $request->customer_id;
+//
+//        // create a Collection based on a join of 4 tables
+//        $joinTable = DB::table('bookings')
+//            ->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
+//            ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
+//            ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
+//            ->where('customers.id', '=', $customerIdDropDownSelected)
+//            ->orderBy('damages.fldDamageDate', 'desc')->get();
+//
+//        return View('list.listBookingsByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
+//    }
 
 
     public function listDamagesByCustomer(Request $request){
@@ -81,16 +123,24 @@ class ListController extends Controller
         // fetch all customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
-        $customerIdDropDownSelected = $request->customer_id;
+
+        // make sure to pass empty $joinTable
+        $joinTable = [];
+
+        $customerIdSelected = $request->customer_id;
 
         // create a Collection based on a join of 4 tables
-        $joinTable = DB::table('bookings')
+        $joinTableDamages = DB::table('bookings')
             ->join('customers', 'bookings.fldCustomerId', '=', 'customers.id')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
             ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-            ->where('customers.id', '=', $customerIdDropDownSelected)
+            ->where('customers.id', '=', $customerIdSelected)
             ->orderBy('damages.fldDamageDate', 'desc')->get();
 
-        return View('list.listDamagesByCustomer', ['customers' => $cust, 'joinTable' => $joinTable, 'customerIdDropDown' => $customerIdDropDownSelected]);
+        return View('list.listByCustomer',
+                ['customers' => $cust,
+                'joinTable' => $joinTable,
+                'joinTableDamages' => $joinTableDamages,
+                'customerIdSelected' => $customerIdSelected]);
     }
 }

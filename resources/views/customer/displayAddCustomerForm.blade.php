@@ -25,14 +25,16 @@
                         <div class="form-group">
                             <label for="addCustomerEmail" class="col-sm-3 control-label">Email</label>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <input type="email" name="addCustomerEmail" id="addCustomerEmail" class="form-control" />
                             </div>
+
+                            <p class="col-sm-2" id="erraddCustomerEmail"></p>
                         </div>
 
                         <!-- customer first name  -->
                         <div class="form-group">
-                            <label for="addCustomerFirstName" class="col-sm-3 control-label">First name</label>
+                            <label for="addCustomerFirstName" class="col-sm-3 control-label">First name (min 2 characters)</label>
 
                             <div class="col-sm-6">
                                 <input type="text" name="addCustomerFirstName" id="addCustomerFirstName" class="form-control" />
@@ -41,7 +43,7 @@
 
                         <!-- customer last name  -->
                         <div class="form-group">
-                            <label for="addCustomerLastName" class="col-sm-3 control-label">Last name</label>
+                            <label for="addCustomerLastName" class="col-sm-3 control-label">Last name (min 2 characters)</label>
 
                             <div class="col-sm-6">
                                 <input type="text" name="addCustomerLastName" id="addCustomerLastName" class="form-control" />

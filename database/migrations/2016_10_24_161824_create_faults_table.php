@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDamagesTable extends Migration
+class CreateFaultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateDamagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('damages', function (Blueprint $table) {
+        Schema::create('faults', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('fldBookingNo')->unsigned();
-            $table->string('fldDamageType', 50);
-            $table->string('fldDamageDescription', 200);
-            $table->date('fldDamageDate');
+            $table->integer('fldCarId')->unsigned();
+            $table->string('fldFaultType', 50);
+            $table->string('fldFaultDescription', 200);
+            $table->date('fldFaultDate');
             $table->boolean('fldFixed');
 
-            $table->foreign('fldBookingNo')->references('id')->on('bookings')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fldCarId')->references('id')->on('vehicles')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateDamagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('damages');
+        Schema::drop('faults');
     }
 }

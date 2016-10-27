@@ -56,24 +56,35 @@ class CustomerController extends Controller
         $cust->fldLicenceNo = $request->addCustomerLicenceNo;
         $cust->fldMobile = $request->addCustomerMobile;
 
-        // check Banned radio buttons
-        $isBanned = $request->radBanned;
 
-        $cust->fldBanned = $isBanned;
+        // validate input before proceeding
+        $isInputOk = $this->isAllInputOk($cust->fldEmail, $cust->fldFirstName, $cust->fldLastName, $cust->fldLicenceNo, $cust->fldMobile);
 
-        // hardcode every new customer to be not deleted
-        $cust->fldDeleted = 0;
+        if ($isInputOk)
+        {
+            // check Banned radio buttons
+            $isBanned = $request->radBanned;
 
-        // set created at to current date and time
-        $cust->created_at = $dateTimeNow;
+            $cust->fldBanned = $isBanned;
 
-        // set updated at to current date and time
-        $cust->updated_at = $dateTimeNow;
+            // hardcode every new customer to be not deleted
+            $cust->fldDeleted = 0;
 
-        $cust->save();
+            // set created at to current date and time
+            $cust->created_at = $dateTimeNow;
 
-        return redirect('customers');
-    }
+            // set updated at to current date and time
+            $cust->updated_at = $dateTimeNow;
+
+            $cust->save();
+
+            return redirect('customers');
+        }
+        else
+        {
+            return redirect('customer');
+        }
+    }  // end addCustomer
 
 
     /**
@@ -139,4 +150,139 @@ class CustomerController extends Controller
         $cust = Customer::orderBy('fldFirstName', 'asc')->where('fldDeleted', '=', 0)->get();
         return $cust;
     }
+
+    public function isAllInputOk($email, $fName, $lName, $licence, $mobile) {
+
+        $isOk = false;
+
+//        if (isEmailOk($email))
+//        {
+//            $isOk = true;
+//        }
+//        else
+//        {
+//            $isOk = false;
+//            return $isOk;
+//        }
+//
+//        if (isNameOk($fName))
+//        {
+//            $isOk = true;
+//        }
+//        else
+//        {
+//            $isOk = false;
+//            return $isOk;
+//        }
+//
+//        if (isNameOk($lName))
+//        {
+//            $isOk = true;
+//        }
+//        else
+//        {
+//            $isOk = false;
+//            return $isOk;
+//        }
+//
+//        if (isLicenceOk($licence))
+//        {
+//            $isOk = true;
+//        }
+//        else
+//        {
+//            $isOk = false;
+//            return $isOk;
+//        }
+//
+//
+//        if (isMobileOk($mobile))
+//        {
+//            $isOk = true;
+//        }
+//        else
+//        {
+//            $isOk = false;
+//            return $isOk;
+//        }
+
+        return $isOk;
+    }
+
+    public function isEmailOk($email){
+        $isOk = false;
+
+        if (strlen($email) > 2)
+        {
+            $isOk = true;
+        }
+        else
+        {
+            $isOk = false;
+        }
+        return $isOk;
+    }
+
+    public function isNameOk($fName){
+        $isOk = false;
+
+        if (strlen($fName) > 2)
+        {
+            $isOk = true;
+        }
+        else
+        {
+            $isOk = false;
+        }
+        return $isOk;
+    }
+
+    public function isLicenceOk($licence){
+        $isOk = false;
+
+        // must be 9 chars
+        if (strlen($licence) == 9)
+        {
+            // must all be digits
+            if (ctype_digit($licence))
+            {
+                // maybe check for unique here???
+
+                $isOk = true;
+            }
+            else
+            {
+                $isOk = false;
+            }
+        }
+        else
+        {
+            $isOk = false;
+        }
+        return $isOk;
+    }
+
+    public function isMobileOk($mobile){
+        $isOk = false;
+
+        // must be 9 chars
+        if (strlen($mobile) == 10)
+        {
+            // must all be digits
+            if (ctype_digit($mobile))
+            {
+                $isOk = true;
+            }
+            else
+            {
+                $isOk = false;
+            }
+        }
+        else
+        {
+            $isOk = false;
+        }
+        return $isOk;
+    }
+
 }

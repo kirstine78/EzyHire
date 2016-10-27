@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\DB;
  */
 class ReportController extends Controller
 {
+    // ***************** damages report relevant ******************
+
     public function showDamagesReport(Request $request){
         // prepare a table to hold damages and their relevant details
         $unionTable = null;
@@ -51,10 +53,6 @@ class ReportController extends Controller
         return View('report.showDamagesReport', ['unionTableArchivedAndNonArchived' => $unionTable, 'filterOption' => $filterOption]);
     }
 
-    public function showFaultsReport(){
-        return View('report.showFaultsReport');
-    }
-
     public function getFixedAndUnFixedDamages() {
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
@@ -67,7 +65,8 @@ class ReportController extends Controller
                 'damages.fldDamageDescription as damageDescription',
                 'damages.fldFixed as fixed');
 
-        // get all damages belonging to archived bookings, and car details, and union it with $joinTableNonArchivedBookingVehicleDamage
+        // get all damages belonging to archived bookings, and car details,
+        // and union it with $joinTableNonArchivedBookingVehicleDamage
         $unionTable = DB::table('archivedbookings')
             ->join('vehicles', 'vehicles.id', '=', 'archivedbookings.fldCarId')
             ->join('archiveddamages', 'archivedbookings.id', '=', 'archiveddamages.fldArchiveBookingNo')
@@ -99,7 +98,8 @@ class ReportController extends Controller
                 'damages.fldDamageDescription as damageDescription',
                 'damages.fldFixed as fixed');
 
-        // get all damages belonging to archived bookings, and car details, and union it with $joinTableNonArchivedBookingVehicleDamage
+        // get all damages belonging to archived bookings, and car details,
+        // and union it with $joinTableNonArchivedBookingVehicleDamage
         $unionTable = DB::table('archivedbookings')
             ->join('vehicles', 'vehicles.id', '=', 'archivedbookings.fldCarId')
             ->join('archiveddamages', 'archivedbookings.id', '=', 'archiveddamages.fldArchiveBookingNo')
@@ -117,4 +117,61 @@ class ReportController extends Controller
 
         return $unionTable;
     }  // end getOnlyUnFixedDamages
+
+
+    // ***************** faults report relevant ******************
+
+    public function showFaultsReport(Request $request){
+        // prepare a table to hold faults and the vehicle details
+        $joinTable = null;
+
+        // check if radio buttons have a value
+        if ($request->radFilterFaults == null)
+        {
+            // no value yet, so set it to default which will be show all (fixed AND un-fixed)
+            $filterOption = "fixedAndUnFixed";
+        }
+        else
+        {
+            // does have a value
+            $filterOption = $request->radFilterFaults;
+        }
+
+        // now decide which method to call
+        if ($filterOption == "fixedAndUnFixed")
+        {
+            $joinTable = $this->getFixedAndUnFixedFaults();
+        }
+        else
+        {
+            $joinTable = $this->getOnlyUnFixedFaults();
+        }
+
+        return View('report.showFaultsReport', ['joinTable' => $joinTable, 'filterOption' => $filterOption]);
+    }
+
+    public function getFixedAndUnFixedFaults() {
+        // join vehicles and faults
+        $joinTable = DB::table('faults')
+            ->join('vehicles', 'vehicles.id', '=', 'faults.fldCarId')
+            ->where('vehicles.fldRetired', '=', 0)
+            ->orderBy('vehicles.fldRegoNo', 'asc')
+            ->orderBy('faults.fldfaultDate', 'desc')
+            ->get();
+
+        return $joinTable;
+    }  // end getFixedAndUnFixedFaults
+
+
+    public function getOnlyUnFixedFaults() {
+        $joinTable = DB::table('faults')
+            ->join('vehicles', 'vehicles.id', '=', 'faults.fldCarId')
+            ->where('vehicles.fldRetired', '=', 0)
+            ->where('faults.fldFixed', '=', 0)
+            ->orderBy('vehicles.fldRegoNo', 'asc')
+            ->orderBy('faults.fldfaultDate', 'desc')
+            ->get();
+
+        return $joinTable;
+    }  // end getOnlyUnFixedFaults
 }

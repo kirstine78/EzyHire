@@ -62,14 +62,16 @@
 						</ul>
 					</li>
 
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">List
-							<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li class="nav_buttons"><a href="{{ url('list/bookings') }}"  style="color:black;">Bookings by Customer</a></li>
-							<li class="nav_buttons"><a href="{{ url('list/damages') }}"  style="color:black;">Damages by Customer</a></li>
-						</ul>
-					</li>
+					<li class="nav_buttons"><a href="{{ url('list') }}" style="color:black;">Lists</a></li>
+
+					{{--<li class="dropdown">--}}
+						{{--<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">List--}}
+							{{--<span class="caret"></span></a>--}}
+						{{--<ul class="dropdown-menu">--}}
+							{{--<li class="nav_buttons"><a href="{{ url('list') }}"  style="color:black;">Bookings by Customer</a></li>--}}
+							{{--<li class="nav_buttons"><a href="{{ url('list/damages') }}"  style="color:black;">Damages by Customer</a></li>--}}
+						{{--</ul>--}}
+					{{--</li>--}}
 
 					<li class="nav_buttons"><a href="{{ url('archive') }}" style="color:black;">Archive</a></li>
 					<li class="nav_buttons"><a href="{{ url('register') }}" style="color:black;">Register</a></li>
@@ -89,13 +91,21 @@
 	@yield('content')
 
 	@yield('page-script')
+	{{--@yield('page-script-damages-report')--}}
+	{{--@yield('page-script-faults-report')--}}
 
 
-	<div class="panel-footer">
+	<footer class="navbar-fixed-bottom"  id="myFooter">
 		<div class="container">
-			Kirstine Brørup Nielsen 100527988
+			<p class="text-muted" style="color: #ffffff">Kirstine Brørup Nielsen 100527988</p>
 		</div>
-	</div>
+	</footer>
+
+	{{--<div class="panel-footer">--}}
+		{{--<div class="container">--}}
+			{{--Kirstine Brørup Nielsen 100527988--}}
+		{{--</div>--}}
+	{{--</div>--}}
 
 	<!-- Scripts -->
 

@@ -36,7 +36,7 @@ Route::get('customers', 'CustomerController@allCustomers' );
 
 // To add a Customer we display a form then the form submits the data
 // First we display a view with a Form on it
-Route::get('/customer', 'CustomerController@displayAddCustomerForm');
+Route::get('customer', 'CustomerController@displayAddCustomerForm');
 
 // then the form calls the ROUTE to save the data
 Route::post('customer/add', 'CustomerController@addCustomer' );
@@ -54,12 +54,12 @@ Route::delete('customer/{customer}', 'CustomerController@deleteCustomer' );
 
 // ********** ListController **********
 // display form with drop down for customer
-Route::get('list/bookings', 'ListController@listBookingsByCustomerForm' );
+Route::get('list', 'ListController@listByCustomerForm' );
 // display the list of bookings for the chosen customer
 Route::post('list/bookings', 'ListController@listBookingsByCustomer');
 
 // display form with drop down for customer
-Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
+//Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
 // display the list of damages for the chosen customer
 Route::post('list/damages', 'ListController@listDamagesByCustomer' );
 

@@ -16,8 +16,8 @@ class CreateArchivedbookingsTable extends Migration
         Schema::create('archivedbookings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->mediumInteger('fldCarId');
-            $table->mediumInteger('fldCustomerId');
+            $table->integer('fldCarId')->unsigned();
+            $table->integer('fldCustomerId')->unsigned();
             $table->date('fldStartDate');
             $table->date('fldReturnDate');
             $table->date('fldActualReturnDate');

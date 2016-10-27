@@ -24,13 +24,17 @@
                         </button>
                     </form>
 
+
+
                     @if (count($customers) > 0)
 
-                        <table class="table table-striped task-table">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name..">
+
+                        <table class="table table-striped task-table" id="myTable">
                             <!-- Table Headings -->
                             <thead>
-                            <th>First name</th>
-                            <th>Last name</th>
+                            <th>Name</th>
+                            {{--<th>Last name</th>--}}
                             <th>Email</th>
                             <th>Licence no</th>
                             <th>Mobile</th>
@@ -43,14 +47,9 @@
                             <tbody>
                             @foreach($customers as $cust)
                                 <tr>
-                                    <!-- Customer first Name -->
+                                    <!-- Customer Name -->
                                     <td class="table-text">
-                                        <div>{{ $cust->fldFirstName }}</div>
-                                    </td>
-
-                                    <!-- Customer last Name -->
-                                    <td class="table-text">
-                                        <div>{{ $cust->fldLastName }}</div>
+                                        <div>{{ $cust->fldFirstName }}{{" "}}{{ $cust->fldLastName }}</div>
                                     </td>
 
                                     <!-- Customer email -->
@@ -106,7 +105,6 @@
                         </table>
                     @else
                         <div>There are currently no customers in the system</div>
-
                     @endif
 
                 </div>
@@ -114,4 +112,29 @@
         </div>
     </div>
 
+@endsection
+
+@section('page-script')
+    <script type="text/javascript">
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 @endsection

@@ -16,7 +16,7 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->mediumInteger('fldLocationId')->nullable();
+            $table->integer('fldLocationId')->nullable();
             $table->string('fldRegoNo', 6)->unique();
             $table->string('fldBrand', 15);
             $table->tinyInteger('fldSeating');
