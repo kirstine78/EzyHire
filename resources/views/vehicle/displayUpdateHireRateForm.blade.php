@@ -17,6 +17,17 @@
                 <div class="panel-heading"><h2>Update Hire Rate</h2></div>
 
                 <div class="panel-body">
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <!--  form -->
                     <form action="{{ url('vehicle/update') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
@@ -51,10 +62,10 @@
 
                         <!-- vehicle hire price -->
                         <div class="form-group">
-                            <label for="editVehicleHirePrice" class="col-sm-3 control-label">Current hire price $</label>
+                            <label for="fldHirePriceCurrent" class="col-sm-3 control-label">Current hire price $</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="editVehicleHirePrice" id="editVehicleHirePrice" class="form-control" value="{{ $vehicle->fldHirePriceCurrent }}" />
+                                <input type="text" name="fldHirePriceCurrent" id="fldHirePriceCurrent" class="form-control" value="{{ $vehicle->fldHirePriceCurrent }}" />
                             </div>
                         </div>
 

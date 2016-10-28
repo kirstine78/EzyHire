@@ -103,6 +103,19 @@ class VehicleController extends Controller
      * Then the FORM calls the ROUTE to EDIT the Vehicle
      */
     public function updateHireRate(Request $request){
+
+        // TODO how to redisplay the fields
+        // TODO how to make customized messages
+        // TODO how to trim input before validating
+        // TODO accept space in Brand fx Rolls Royce
+        // TODO error if input is 100.     full stop followed by nothing
+
+        // validation of user input in the form
+        $this->validate($request, [
+            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
+        ]);
+
+        // if VALIDATION went ok proceed to below
         // get current time
         $dateTimeNow = Carbon::now();
 
@@ -110,7 +123,7 @@ class VehicleController extends Controller
         $vehi = Vehicle::find($request->edit_vehicle_id);
 
         // only hire price and updated_at are updated
-        $vehi->fldHirePriceCurrent = $request->editVehicleHirePrice;
+        $vehi->fldHirePriceCurrent = $request->fldHirePriceCurrent;
 
         // set updated_at to current date and time
         $vehi->updated_at = $dateTimeNow;
