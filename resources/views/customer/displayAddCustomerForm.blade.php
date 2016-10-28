@@ -37,7 +37,7 @@
                             <label for="fldEmail" class="col-sm-3 control-label">Email</label>
 
                             <div class="col-sm-4">
-                                <input type="email" name="fldEmail" id="fldEmail" class="form-control" />
+                                <input type="email" name="fldEmail" id="fldEmail" class="form-control" value="{{ old('fldEmail') }}" />
                             </div>
                         </div>
 
@@ -46,7 +46,7 @@
                             <label for="fldFirstName" class="col-sm-3 control-label">First name (min 2 characters)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" />
+                                <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" value="{{ old('fldFirstName') }}" />
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                             <label for="fldLastName" class="col-sm-3 control-label">Last name (min 2 characters)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="fldLastName" id="fldLastName" class="form-control" />
+                                <input type="text" name="fldLastName" id="fldLastName" class="form-control" value="{{ old('fldLastName') }}" />
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@
                             <label for="fldLicenceNo" class="col-sm-3 control-label">Licence Number (9 digits)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="fldLicenceNo" id="fldLicenceNo" class="form-control" maxlength="9"/>
+                                <input type="text" name="fldLicenceNo" id="fldLicenceNo" class="form-control" maxlength="9" value="{{ old('fldLicenceNo') }}"/>
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                             <label for="fldMobile" class="col-sm-3 control-label">Mobile (10 digits)</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="fldMobile" id="fldMobile" class="form-control" maxlength="10"/>
+                                <input type="text" name="fldMobile" id="fldMobile" class="form-control" maxlength="10" value="{{ old('fldMobile') }}"/>
                             </div>
                         </div>
 
@@ -82,8 +82,13 @@
                             <label for="radBanned" class="col-sm-3 control-label">Banned?</label>
 
                             <div class="col-sm-6">
-                                <input type="radio" name="radBanned" value="1" id="customerBanned" class="preserveWhiteSpace"  > Yes<br>
-                                <input type="radio" name="radBanned" value="0" id="customerNotBanned" class="preserveWhiteSpace" checked> No<br>
+                                @if(old('radBanned')== "1")
+                                    <input type="radio" name="radBanned" value="1" id="customerBanned" class="preserveWhiteSpace" checked> Yes<br>
+                                    <input type="radio" name="radBanned" value="0" id="customerNotBanned" class="preserveWhiteSpace" > No<br>
+                                @else
+                                    <input type="radio" name="radBanned" value="1" id="customerBanned" class="preserveWhiteSpace" > Yes<br>
+                                    <input type="radio" name="radBanned" value="0" id="customerNotBanned" class="preserveWhiteSpace" checked> No<br>
+                                @endif
                             </div>
                         </div>
 
