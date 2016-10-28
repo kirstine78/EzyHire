@@ -14,7 +14,7 @@ class CreateArchivedbookingsTable extends Migration
     public function up()
     {
         Schema::create('archivedbookings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id');  // cannot use increment because special case regarding archiving process
             $table->timestamps();
             $table->integer('fldCarId')->unsigned();
             $table->integer('fldCustomerId')->unsigned();
@@ -24,6 +24,7 @@ class CreateArchivedbookingsTable extends Migration
             $table->integer('fldOdometerFinish')->nullable();
             $table->double('fldHirePricePerDay', 6, 2);
 
+            $table->primary('id');
             $table->foreign('fldCarId')->references('id')->on('vehicles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('fldCustomerId')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
         });

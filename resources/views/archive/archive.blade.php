@@ -31,17 +31,6 @@
                     <!--  form -->
                     <form action="{{ url('#') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}
-
-                        <!-- date -->
-                        {{--<div class="form-group">--}}
-                            {{--<label for="archiveDate" class="col-sm-3 control-label">Date *</label>--}}
-
-                            {{--<div class="col-sm-4">--}}
-                                {{--<input type="date" name="archiveDate" id="archiveDate" class="form-control" />--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-
                         <!-- date (compare with return date for bookings records in db; and they must have actual return date, cannot be null) -->
                         <div class="form-group">
                             <label for="fldReturnDate" class="col-sm-3 control-label">Choose a Date before today's date *</label>
@@ -72,7 +61,7 @@
         $(document).ready(function() {
             $('#fldReturnDate').dcalendar();
             $('#fldReturnDate').dcalendarpicker({
-                format: 'dd-mm-yyyy'
+                format: 'yyyy-mm-dd'
             });
         })
     </script>

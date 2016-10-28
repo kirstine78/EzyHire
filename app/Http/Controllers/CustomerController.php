@@ -129,6 +129,7 @@ class CustomerController extends Controller
             'fldMobile' => 'digits:10',
         ]);
 
+        // if VALIDATION went ok proceed to below
         // get current time
         $dateTimeNow = Carbon::now();
 
