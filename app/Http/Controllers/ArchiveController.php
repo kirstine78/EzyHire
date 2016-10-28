@@ -24,11 +24,24 @@ use Carbon\Carbon;
  */
 class ArchiveController extends Controller
 {
+    /**
+     * display archive form
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showArchiveForm(){
-        return View('archive.archive');
+
+        // make sure to pass in false
+        $isArchived = false;
+
+        return View('archive.archive', ['isArchived' => $isArchived]);
     }
 
 
+    /**
+     * handle how to archive bookings
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function archiveBookings(Request $request){
 
         // validate user input in the form (date). Date must be before today's date
@@ -46,7 +59,7 @@ class ArchiveController extends Controller
             ->leftJoin('damages', 'damages.fldBookingNo', '=', 'bookings.id')
             ->where('bookings.fldReturnDate', '<=', $archiveDateInput)
             ->where('bookings.fldActualReturnDate', '!=', null)
-            ->select(   'bookings.id as id',
+            ->select(   'bookings.id as fldBookingId',
                 'bookings.fldCarId as fldCarId',
                 'bookings.fldCustomerId as fldCustomerId',
                 'bookings.fldStartDate as fldStartDate',
@@ -59,21 +72,24 @@ class ArchiveController extends Controller
                 'damages.fldDamageType as fldDamageType',
                 'damages.fldDamageDescription as fldDamageDescription',
                 'damages.fldDamageDate as fldDamageDate',
-                'damages.fldFixed as fldFixed')
-            ->get();
+                'damages.fldFixed as fldFixed')->get();
 
-        $this->insertInArchiveBookingsTable($jointable);
+        // insert in archive tables
+        $this->insertInArchivedTables($jointable);
 
-        return "ok date";
-//        return View('archive.archive');
+        // delete records from bookings table (and damages table if relevant)
+        $this->deleteFromNonArchivedTables($jointable);
+
+        $isArchived = true;
+        return View('archive.archive', ['isArchived' => $isArchived]);
     }
 
 
     /**
-     * insert records in archivebookings table and archiveddamages table in db
-     * @param $someTable   holding the records we want to insert
+     * insert records in archivebookings table (and archiveddamages table in db if relevant)
+     * @param $someTable    is holding the records we want to insert
      */
-    public function insertInArchiveBookingsTable($someTable){
+    public function insertInArchivedTables($someTable){
         // get current date time
         $dateTimeNow = Carbon::now();
 
@@ -84,7 +100,7 @@ class ArchiveController extends Controller
             $archBooking = new ArchivedBooking();
 
             // assign $record col value
-            $archBooking->id = $record->id;
+            $archBooking->id = $record->fldBookingId;
             $archBooking->fldCarId = $record->fldCarId;
             $archBooking->fldCustomerId = $record->fldCustomerId;
             $archBooking->fldStartDate = $record->fldStartDate;
@@ -124,5 +140,25 @@ class ArchiveController extends Controller
             }
         }
     }  // end function insertInArchiveBookingsTable
+
+
+    /**
+     * delete records in bookings table (and damages table in db if relevant)
+     * @param $someTable    is holding the records we want to delete
+     */
+    public function deleteFromNonArchivedTables($someTable){
+
+        // loop through table and delete all records in bookings table (and in damages table if relevant)
+        foreach ($someTable as $record) {
+
+            DB::table('bookings')->where('id', '=', $record->fldBookingId)->delete();
+
+            // check if damage is present, if present then delete records in damages table
+            if ($record->fldDamageId != null)
+            {
+                DB::table('damages')->where('id', '=', $record->fldDamageId)->delete();
+            }
+        }
+    }
 
 }  // end class ArchiveController

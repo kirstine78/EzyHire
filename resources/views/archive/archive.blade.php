@@ -28,6 +28,12 @@
                         </div>
                     @endif
 
+                    @if($isArchived)
+                        <div class="container">
+                            yeah success
+                        </div>
+                    @endif
+
                     <!--  form -->
                     <form action="{{ url('#') }}" method="POST" class="form-horizontal">
                     {!! csrf_field() !!}

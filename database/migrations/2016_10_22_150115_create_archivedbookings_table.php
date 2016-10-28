@@ -14,7 +14,7 @@ class CreateArchivedbookingsTable extends Migration
     public function up()
     {
         Schema::create('archivedbookings', function (Blueprint $table) {
-            $table->integer('id');  // cannot use increment because special case regarding archiving process
+            $table->integer('id')->unique();  // cannot use increment because special case regarding archiving process
             $table->timestamps();
             $table->integer('fldCarId')->unsigned();
             $table->integer('fldCustomerId')->unsigned();
