@@ -90,9 +90,10 @@ class VehicleController extends Controller
         return redirect('vehicles');
     }
 
-
     /**
      * Update Hire Rate for a vehicle - display form
+     * @param Vehicle $vehicle
+     * @return $this
      */
     public function displayUpdateHireRateForm(Vehicle $vehicle){
         return View('vehicle.displayUpdateHireRateForm')->with('vehicle', $vehicle);
@@ -100,7 +101,10 @@ class VehicleController extends Controller
 
 
     /**
-     * Then the FORM calls the ROUTE to EDIT the Vehicle
+     * Validate input and then update if valid
+     * The FORM calls the ROUTE to EDIT the Vehicle
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateHireRate(Request $request){
 
@@ -134,7 +138,33 @@ class VehicleController extends Controller
     }
 
 
-    public function retireVehicle($id){
+
+//    public function retireVehicle($id){
+//        // TODO confirmation box before retiring
+//
+//        // we just flag as 'retired'
+//
+//        // get current time
+//        $dateTimeNow = Carbon::now();
+//
+//        // get the correct record
+//        $vehi = Vehicle::find($id);
+//
+//        // flag as retired 1 = true
+//        $vehi->fldRetired = 1;
+//        $vehi->updated_at = $dateTimeNow;
+//        $vehi->save();
+//
+//        return redirect('vehicles');
+//    }
+
+
+    /**
+     * Flag vehicle as retired
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function retireVehicle(Vehicle $vehicle){
         // TODO confirmation box before retiring
 
         // we just flag as 'retired'
@@ -143,12 +173,12 @@ class VehicleController extends Controller
         $dateTimeNow = Carbon::now();
 
         // get the correct record
-        $vehi = Vehicle::find($id);
+//        $vehi = Vehicle::find($id);
 
         // flag as retired 1 = true
-        $vehi->fldRetired = 1;
-        $vehi->updated_at = $dateTimeNow;
-        $vehi->save();
+        $vehicle->fldRetired = 1;
+        $vehicle->updated_at = $dateTimeNow;
+        $vehicle->save();
 
         return redirect('vehicles');
     }
