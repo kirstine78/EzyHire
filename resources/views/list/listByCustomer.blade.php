@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading"><h2>List by Customer</h2>(Bookings are excluding archived Bookings)<br/>(Damages are excluding Damages belonging to archived Bookings)</div>
+                <div class="panel-heading"><h2>List Bookings or Damages by Customer</h2>(Bookings are excluding archived Bookings)<br/>(Damages are excluding Damages belonging to archived Bookings)</div>
 
                 <div class="panel-body">
                     @if ($customerIdSelected == null)

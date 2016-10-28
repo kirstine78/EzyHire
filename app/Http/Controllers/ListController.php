@@ -25,8 +25,7 @@ class ListController extends Controller
 
     public function listByCustomerForm(){
 
-        // the form will need a Customer DROP DOWN list
-        // fetch all customers that are not flagged deleted from db
+        // fetch ALL customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
         // make sure to pass empty $joinTable and empty $joinTableDamages
@@ -46,24 +45,13 @@ class ListController extends Controller
 
     public function listBookingsByCustomer(Request $request){
 
-        // the form will need a Customer DROP DOWN list
-
-        // fetch all customers that are not flagged deleted from db
+        // fetch ALL customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
         // make sure to pass empty $joinTableDamages
         $joinTableDamages = [];
 
-//        $customerIdDropDownSelected = $request->customer_id;
         $customerIdSelected = $request->customer_id;
-
-//        $bookings = Customer::find($customerIdDropDownSelected)->bookings()
-//            ->join('vehicles', 'vehicles.id', '=', 'bookings.vehicle_id')
-//            ->leftJoin('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-//            ->where('customers.id', '=', $customerIdDropDownSelected)
-//            ->orderBy('bookings.fldStartDate', 'desc')->get();
-
-//        $joinTable = $bookings;
 
         // create a Collection based on a join of 4 tables
         $joinTable = DB::table('bookings')
@@ -119,10 +107,8 @@ class ListController extends Controller
 
     public function listDamagesByCustomer(Request $request){
 
-        // the form will need a Customer DROP DOWN list
-        // fetch all customers that are not flagged deleted from db
+        // fetch ALL customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
-
 
         // make sure to pass empty $joinTable
         $joinTable = [];
