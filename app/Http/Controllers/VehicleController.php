@@ -46,16 +46,31 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function addVehicle(Request $request){
+
+        // TODO how to redisplay the fields
+        // TODO how to make customized messages
+        // TODO how to trim input before validating
+        // TODO accept space in Brand fx Rolls Royce
+
+        // validation of user input in the form
+        $this->validate($request, [
+            'fldRegoNo' => 'required|unique:vehicles|alpha_num|size:6',
+            'fldBrand' => 'required|Max:15|Alpha',
+            'fldSeating' => 'required|integer|between:1,20',
+            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
+        ]);
+
+        // if VALIDATION went ok proceed to below
         // get date time
         $dateTimeNow = Carbon::now();
 
         $vehi = new Vehicle();
 
         // get someValue from the name="someValue"  key/value pair
-        $vehi->fldRegoNo = $request->addVehicleRegoNo;
-        $vehi->fldBrand = $request->addVehicleBrand;
-        $vehi->fldSeating = $request->addVehicleSeating;
-        $vehi->fldHirePriceCurrent = $request->addVehicleHirePrice;
+        $vehi->fldRegoNo = $request->fldRegoNo;
+        $vehi->fldBrand = $request->fldBrand;
+        $vehi->fldSeating = $request->fldSeating;
+        $vehi->fldHirePriceCurrent = $request->fldHirePriceCurrent;
 
         // assuming every new vehicle added is not damaged nor retired, so hardcode these values
         $vehi->fldDamaged = 0;

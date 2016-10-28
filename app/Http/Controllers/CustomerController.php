@@ -48,6 +48,7 @@ class CustomerController extends Controller
         // TODO how to redisplay the fields
         // TODO how to make customized messages
         // TODO how to trim input before validating
+        // TODO accept space in Names fx mary ann
 
         // validation of user input in the form
         $this->validate($request, [
