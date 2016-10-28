@@ -24,6 +24,11 @@ class ReportController extends Controller
 {
     // ***************** damages report relevant ******************
 
+    /**
+     * Show report for damages
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showDamagesReport(Request $request){
         // prepare a table to hold damages and their relevant details
         $unionTable = null;
@@ -53,6 +58,11 @@ class ReportController extends Controller
         return View('report.showDamagesReport', ['unionTableArchivedAndNonArchived' => $unionTable, 'filterOption' => $filterOption]);
     }
 
+
+    /**
+     * fetch all damages, both fixed and unfixed, but excluding records related with retired vehicles
+     * @return mixed
+     */
     public function getFixedAndUnFixedDamages() {
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
@@ -85,6 +95,10 @@ class ReportController extends Controller
     }  // end getFixedAndUnFixedDamages
 
 
+    /**
+     * fetch all damages, including only unfixed damages, and excluding records related with retired vehicles
+     * @return mixed
+     */
     public function getOnlyUnFixedDamages() {
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
@@ -121,6 +135,11 @@ class ReportController extends Controller
 
     // ***************** faults report relevant ******************
 
+    /**
+     * Show report for faults
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showFaultsReport(Request $request){
         // prepare a table to hold faults and the vehicle details
         $joinTable = null;
@@ -150,6 +169,11 @@ class ReportController extends Controller
         return View('report.showFaultsReport', ['joinTable' => $joinTable, 'filterOption' => $filterOption]);
     }
 
+
+    /**
+     * fetch all faults, both fixed and unfixed, but excluding records related with retired vehicles
+     * @return mixed
+     */
     public function getFixedAndUnFixedFaults() {
         // join vehicles and faults
         $joinTable = DB::table('faults')
@@ -163,6 +187,10 @@ class ReportController extends Controller
     }  // end getFixedAndUnFixedFaults
 
 
+    /**
+     * fetch all faults, including only unfixed faults, and excluding records related with retired vehicles
+     * @return mixed
+     */
     public function getOnlyUnFixedFaults() {
         $joinTable = DB::table('faults')
             ->join('vehicles', 'vehicles.id', '=', 'faults.fldCarId')
