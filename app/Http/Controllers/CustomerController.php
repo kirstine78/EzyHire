@@ -141,7 +141,29 @@ class CustomerController extends Controller
     }
 
 
-    public function deleteCustomer($id){
+//    public function deleteCustomer($id){
+//
+//        // we don't delete record, instead we just flag as 'deleted'
+//
+//        // get current time
+//        $dateTimeNow = Carbon::now();
+//
+//        // get the correct record
+//        $cust = Customer::find($id);
+//
+//        // flag as deleted 1 = true
+//        $cust->fldDeleted = 1;
+//        $cust->updated_at = $dateTimeNow;
+//        $cust->save();
+//
+//        return redirect('customers');
+//    }
+
+
+    // use Route Model Binding.
+    // Laravel will automatically inject the model instance that has
+    // an ID matching the corresponding value from the request URI.
+    public function deleteCustomer(Customer $customer){
         // TODO confirmation box before deleting
 
         // we don't delete record, instead we just flag as 'deleted'
@@ -149,13 +171,10 @@ class CustomerController extends Controller
         // get current time
         $dateTimeNow = Carbon::now();
 
-        // get the correct record
-        $cust = Customer::find($id);
-
         // flag as deleted 1 = true
-        $cust->fldDeleted = 1;
-        $cust->updated_at = $dateTimeNow;
-        $cust->save();
+        $customer->fldDeleted = 1;
+        $customer->updated_at = $dateTimeNow;
+        $customer->save();
 
         return redirect('customers');
     }
