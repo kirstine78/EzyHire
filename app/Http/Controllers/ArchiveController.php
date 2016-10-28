@@ -21,7 +21,20 @@ use App\Http\Requests;
  */
 class ArchiveController extends Controller
 {
-    public function index(){
+    public function showArchiveForm(){
         return View('archive.archive');
     }
+
+
+    public function archiveBookings(Request $request){
+
+        // validate user input in the form (date). Date must be before today's date
+        $this->validate($request, [
+            'fldReturnDate' => 'required|before:today',
+        ]);
+        return "ok date";
+//        return View('archive.archive');
+    }
+
+
 }

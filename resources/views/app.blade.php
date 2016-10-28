@@ -14,9 +14,12 @@
 	<title>EzyHire</title>
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/dcalendar.picker.css') }}" rel="stylesheet">
 
 	<script src="{{ asset('/js/jquery-3.1.1.js') }}"></script>
 	<script src="{{ asset('/js/bootstrap.js') }}"></script>
+	<script src="{{ asset('/js/dcalendar.picker.js') }}"></script>
+
 </head>
 <body class="body_bg">
 
