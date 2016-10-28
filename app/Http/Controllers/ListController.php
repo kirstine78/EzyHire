@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\DB;
 class ListController extends Controller
 {
 
+    /**
+     * Fetch form for list by customer
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function listByCustomerForm(){
 
         // fetch ALL customers that are not flagged deleted from db
@@ -43,6 +47,11 @@ class ListController extends Controller
     }
 
 
+    /**
+     * show list of bookings for specific customer, excluding archived bookings
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function listBookingsByCustomer(Request $request){
 
         // fetch ALL customers that are not flagged deleted from db
@@ -105,6 +114,11 @@ class ListController extends Controller
 //    }
 
 
+    /**
+     * show list of damages for specific customer, excluding damages belonging to archived bookings
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function listDamagesByCustomer(Request $request){
 
         // fetch ALL customers that are not flagged deleted from db
