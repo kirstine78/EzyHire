@@ -41,7 +41,7 @@ class VehicleController extends Controller
 
 
     /**
-     * when "add vehicle' button is clicked
+     * when "add vehicle' button is clicked, add record to database
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -90,6 +90,7 @@ class VehicleController extends Controller
         return redirect('vehicles');
     }
 
+
     /**
      * Update Hire Rate for a vehicle - display form
      * @param Vehicle $vehicle
@@ -101,8 +102,7 @@ class VehicleController extends Controller
 
 
     /**
-     * Validate input and then update if valid
-     * The FORM calls the ROUTE to EDIT the Vehicle
+     * Validate input and then update record in database if valid
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -160,7 +160,7 @@ class VehicleController extends Controller
 
 
     /**
-     * Flag vehicle as retired
+     * Flag vehicle as retired in database
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -185,7 +185,7 @@ class VehicleController extends Controller
 
 
     /**
-     * fetch all vehicles from database that are not flagged retired
+     * fetch all vehicles from database that are not flagged as retired
      * @return mixed
      */
     public function getAllNotRetiredVehicles() {
