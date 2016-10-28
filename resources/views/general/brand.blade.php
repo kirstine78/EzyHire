@@ -20,18 +20,18 @@
                     <div class="container paddingRight">
                         <div class="row">
                             <div class="col-sm-3">
-                                <img src="{{URL::asset('/img/holden.jpg')}}" alt="car" class="img-responsive marginTopBottom" >
-                            </div>
-                            <div class="col-sm-3">
-                                <h4>Holden</h4>
-                                Holden vehicles are designed around you. With the sleek design you can truly express yourself wherever you go, whatever your lifestyle.
-                            </div>
-                            <div class="col-sm-3">
                                 <img src="{{URL::asset('/img/nissan.jpg')}}" alt="car" class="img-responsive marginTopBottom" >
                             </div>
                             <div class="col-sm-3">
                                 <h4>Nissan</h4>
                                 Designed for you. Let the Nissan take you on adventures around Australia.
+                            </div>
+                            <div class="col-sm-3">
+                                <img src="{{URL::asset('/img/holden.jpg')}}" alt="car" class="img-responsive marginTopBottom" >
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>Holden</h4>
+                                Holden vehicles are designed around you. With the sleek design you can truly express yourself wherever you go, whatever your lifestyle.
                             </div>
                         </div>
                         <div class="row">
