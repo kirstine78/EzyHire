@@ -164,6 +164,10 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function retireVehicle(Vehicle $vehicle){
+        // Because of Route Model Binding,
+        // Laravel will automatically inject the model instance that has
+        // an ID matching the corresponding value from the request URI.
+        
         // TODO confirmation box before retiring
 
         // get current time

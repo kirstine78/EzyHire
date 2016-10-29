@@ -102,6 +102,7 @@ class CustomerController extends Controller
     public function updateCustomer(Request $request) {
 
         // TODO how to trim input before validating
+        // TODO accept space in Names fx mary ann
 
         // handle validation, if not validated redirect back to where you came from
         $this->validateCustomer($request);
@@ -179,7 +180,7 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function deleteCustomer(Customer $customer){
-        // use Route Model Binding.
+        // Because of Route Model Binding,
         // Laravel will automatically inject the model instance that has
         // an ID matching the corresponding value from the request URI.
 

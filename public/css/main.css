@@ -32,6 +32,10 @@
 	margin: 0px;
 }
 
+.greenMessage {
+	color: green;
+}
+
 
 #myInput {
 	background-image: url('../img/search_icon.png'); /* Add a search icon to input */

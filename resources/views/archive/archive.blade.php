@@ -18,19 +18,11 @@
 
                 <div class="panel-body">
 
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     @if($isArchived)
                         <div class="container">
-                            yeah success
+                            <h4 class="greenMessage">{{ $numberOfRecords }} bookings were archived</h4>
+
+
                         </div>
                     @endif
 
@@ -39,10 +31,14 @@
                     {!! csrf_field() !!}
                         <!-- date (compare with return date for bookings records in db; and they must have actual return date, cannot be null) -->
                         <div class="form-group">
-                            <label for="fldReturnDate" class="col-sm-3 control-label">Choose a Date before today's date *</label>
+                            <label for="fldReturnDate" class="col-sm-3 control-label">Pick a Date before today's date *</label>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <input type="text" name="fldReturnDate" id="fldReturnDate" class="form-control" readonly/>
+                            </div>
+
+                            <div class="col-sm-5">
+                                @if ($errors->has('fldReturnDate')) <div class="help-block alert alert-danger errRed">{{ $errors->first('fldReturnDate') }}</div> @endif
                             </div>
                         </div>
 

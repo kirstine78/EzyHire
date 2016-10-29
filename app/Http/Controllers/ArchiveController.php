@@ -45,9 +45,7 @@ class ArchiveController extends Controller
     public function archiveBookings(Request $request){
 
         // validate user input in the form (date). Date must be before today's date
-        $this->validate($request, [
-            'fldReturnDate' => 'required|before:today',
-        ]);
+        $this->validateArchiveDate($request);
 
         // if VALIDATION went ok proceed to below
         // archive date
@@ -81,7 +79,27 @@ class ArchiveController extends Controller
         $this->deleteFromNonArchivedTables($jointable);
 
         $isArchived = true;
-        return View('archive.archive', ['isArchived' => $isArchived]);
+        return View('archive.archive', ['isArchived' => $isArchived, 'numberOfRecords' => count($jointable)]);
+    }
+
+
+    /**
+     * validate user input, customize error messages
+     * @param Request $request
+     */
+    public function validateArchiveDate(Request $request) {
+        // my array of customized messages
+        $messages = [];
+
+        // rename attributes to look pretty in form
+        $attributes = [
+            'fldReturnDate' => 'date',
+        ];
+
+        // validate user input in the form (date). Date must be before today's date
+        $this->validate($request, [
+            'fldReturnDate' => 'required|before:today',
+        ], $messages, $attributes);
     }
 
 
