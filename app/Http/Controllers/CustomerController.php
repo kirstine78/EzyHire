@@ -40,7 +40,8 @@ class CustomerController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function displayAddCustomerForm(){
-        return View('customer.displayAddCustomerForm');
+        $customer = new Customer();
+        return View('customer.displayAddCustomerForm')->with('customer', $customer);
     }
 
 
@@ -77,11 +78,7 @@ class CustomerController extends Controller
         $cust->fldLastName = $request->fldLastName;
         $cust->fldLicenceNo = $request->fldLicenceNo;
         $cust->fldMobile = $request->fldMobile;
-
-        // check Banned radio buttons
-        $isBanned = $request->radBanned;
-
-        $cust->fldBanned = $isBanned;
+        $cust->fldBanned = $request->radCustomerBanned;  // get value of Banned radio button
 
         // hardcode every new customer to be not deleted
         $cust->fldDeleted = 0;
@@ -141,7 +138,7 @@ class CustomerController extends Controller
         $cust->fldLastName = $request->fldLastName;
         $cust->fldLicenceNo = $request->fldLicenceNo;
         $cust->fldMobile = $request->fldMobile;
-        $cust->fldBanned = $request->radEditCustomerBanned; // get value of Banned radio button
+        $cust->fldBanned = $request->radCustomerBanned; // get value of Banned radio button
 
         // set updated_at to current date and time
         $cust->updated_at = $dateTimeNow;
