@@ -102,7 +102,7 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateCustomer(Request $request) {
-        
+
         // TODO accept space in Names fx mary ann
 
         // sanitize input (function in Controller parent)

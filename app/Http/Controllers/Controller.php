@@ -26,6 +26,7 @@ class Controller extends BaseController
      * @param Request $request
      */
     public function formatInput(Request $request) {
+        // trim all input from white space pre and post string
         $trim_if_string = function ($var) { return is_string($var) ? trim($var) : $var; };
         $request->merge(array_map($trim_if_string, $request->all()));
     }

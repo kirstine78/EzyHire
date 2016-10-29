@@ -50,9 +50,11 @@ class VehicleController extends Controller
      */
     public function addVehicle(Request $request){
 
-        // TODO how to trim input before validating
         // TODO accept space in Brand fx Rolls Royce
         // TODO error if input is 100.     full stop followed by nothing
+
+        // sanitize input (function in Controller parent)
+        $this->formatInput($request);
 
         // validation of user input in the form
         $this->validateVehicle($request);
@@ -105,9 +107,11 @@ class VehicleController extends Controller
      */
     public function updateHireRate(Request $request){
 
-        // TODO how to trim input before validating
         // TODO accept space in Brand fx Rolls Royce
         // TODO error if input is 100.     full stop followed by nothing
+
+        // sanitize input (function in Controller parent)
+        $this->formatInput($request);
 
         // validation of user input in the form
         $this->validateVehicle($request);
