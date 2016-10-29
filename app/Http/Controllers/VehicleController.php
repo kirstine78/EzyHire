@@ -55,12 +55,14 @@ class VehicleController extends Controller
         // TODO accept space in Brand fx Rolls Royce
 
         // validation of user input in the form
-        $this->validate($request, [
-            'fldRegoNo' => 'required|unique:vehicles|alpha_num|size:6',
-            'fldBrand' => 'required|Max:15|Alpha',
-            'fldSeating' => 'required|integer|between:1,20',
-            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
-        ]);
+        $this->validateVehicle($request);
+
+//        $this->validate($request, [
+//            'fldRegoNo' => 'required|unique:vehicles|alpha_num|size:6',
+//            'fldBrand' => 'required|Max:15|Alpha',
+//            'fldSeating' => 'required|integer|between:1,20',
+//            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
+//        ]);
 
         // if VALIDATION went ok proceed to below
         // get date time
@@ -116,9 +118,7 @@ class VehicleController extends Controller
         // TODO error if input is 100.     full stop followed by nothing
 
         // validation of user input in the form
-        $this->validate($request, [
-            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
-        ]);
+        $this->validateVehicle($request);
 
         // if VALIDATION went ok proceed to below
         // get current time
@@ -136,6 +136,33 @@ class VehicleController extends Controller
         $vehi->save();
 
         return redirect('vehicles');
+    }
+
+
+    /**
+     * validate user input, display customized error messages
+     * @param Request $request
+     */
+    public function validateVehicle(Request $request) {
+        // my array of customized messages
+        $messages = [];
+
+        // rename attributes to look pretty in form
+        $attributes = [
+            'fldRegoNo' => 'rego no',
+            'fldBrand' => 'brand',
+            'fldSeating' => 'seating',
+            'fldHirePriceCurrent' => 'hire',
+        ];
+
+        // validation of user input in the form
+        // regarding "UPDATE hire price Vehicle" accept rego no as it is (so use: fldRegoNo,'.$request->edit_vehicle_id)
+        $this->validate($request, [
+            'fldRegoNo' => 'required|alpha_num|size:6|unique:vehicles,fldRegoNo,'.$request->edit_vehicle_id,
+            'fldBrand' => 'required|Max:15|Alpha',
+            'fldSeating' => 'required|integer|between:1,20',
+            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
+        ], $messages, $attributes);
     }
 
 

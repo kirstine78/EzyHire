@@ -14,7 +14,7 @@
     <label for="fldRegoNo" class="col-sm-2 control-label">Rego no *</label>
 
     <div class="col-sm-4">
-        <input type="text" name="fldRegoNo" id="fldRegoNo" class="form-control vehicleFormReadOnly" value="{{ old('fldRegoNo', $vehicle->fldRegoNo) }}"  />
+        <input type="text" name="fldRegoNo" id="fldRegoNo" class="form-control vehicleFormReadOnly" maxlength="6" value="{{ old('fldRegoNo', $vehicle->fldRegoNo) }}"  />
     </div>
     <input type="hidden" name="edit_vehicle_id" id="edit_vehicle_id" class="form-control" value="{{ $vehicle->id }}">
 
