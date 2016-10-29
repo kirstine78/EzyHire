@@ -11,7 +11,7 @@
 
 <!-- customer email -->
 <div class="form-group">
-    <label for="fldEmail" class="col-sm-2 control-label">Email</label>
+    <label for="fldEmail" class="col-sm-2 control-label">Email *</label>
 
     <div class="col-sm-4">
         <input type="email" name="fldEmail" id="fldEmail" class="form-control" maxlength="254" value="{{ old('fldEmail', $customer->fldEmail) }}" />
@@ -26,7 +26,7 @@
 
 <!-- customer first name  -->
 <div class="form-group">
-    <label for="fldFirstName" class="col-sm-2 control-label">First name</label>
+    <label for="fldFirstName" class="col-sm-2 control-label">First name *</label>
 
     <div class="col-sm-4">
         <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" maxlength="40" value="{{ old('fldFirstName', $customer->fldFirstName) }}"  />
@@ -39,7 +39,7 @@
 
 <!-- customer last name  -->
 <div class="form-group">
-    <label for="fldLastName" class="col-sm-2 control-label">Last name</label>
+    <label for="fldLastName" class="col-sm-2 control-label">Last name *</label>
 
     <div class="col-sm-4">
         <input type="text" name="fldLastName" id="fldLastName" class="form-control" maxlength="40" value="{{ old('fldLastName', $customer->fldLastName) }}"  />
@@ -52,7 +52,7 @@
 
 <!-- customer licence number -->
 <div class="form-group">
-    <label for="fldLicenceNo" class="col-sm-2 control-label">Licence no (9 digits)</label>
+    <label for="fldLicenceNo" class="col-sm-2 control-label">Licence no (9 digits) *</label>
 
     <div class="col-sm-4">
         <input type="text" name="fldLicenceNo" id="fldLicenceNo" class="form-control" maxlength="9"  value="{{ old('fldLicenceNo', $customer->fldLicenceNo) }}" />

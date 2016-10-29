@@ -54,8 +54,10 @@ class CustomerController extends Controller
      */
     public function addCustomer(Request $request){
 
-        // TODO how to trim input before validating
         // TODO accept space in Names fx mary ann
+
+        // sanitize input (function in Controller parent)
+        $this->formatInput($request);
 
         // handle validation, if not validated redirect back to where you came from
         $this->validateCustomer($request);
@@ -100,9 +102,11 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateCustomer(Request $request) {
-
-        // TODO how to trim input before validating
+        
         // TODO accept space in Names fx mary ann
+
+        // sanitize input (function in Controller parent)
+        $this->formatInput($request);
 
         // handle validation, if not validated redirect back to where you came from
         $this->validateCustomer($request);
