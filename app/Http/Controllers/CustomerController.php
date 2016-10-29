@@ -125,6 +125,10 @@ class CustomerController extends Controller
     }
 
 
+    /**
+     * validate user input, customize error messages
+     * @param Request $request
+     */
     public function validateCustomer(Request $request) {
         // my array of customized messages
         $messages = ['fldMobile.digits' => 'The :attribute is optional or must be exactly 10 digits.'];
@@ -150,6 +154,12 @@ class CustomerController extends Controller
     }
 
 
+    /**
+     * from request assign values to column fields in the customer record
+     * @param Customer $customer
+     * @param Request $request
+     * @return Customer
+     */
     public function populateCustomerFromRequest(Customer $customer, Request $request) {
         // get someValue from the name="someValue"  key/value pair from incoming $request
         $customer->fldEmail = $request->fldEmail;
