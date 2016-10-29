@@ -14,7 +14,7 @@
     <label for="editVehicleRegoNo" class="col-sm-2 control-label">Rego no</label>
 
     <div class="col-sm-4">
-        <input type="text" name="editVehicleRegoNo" id="editVehicleRegoNo" class="form-control" value="{{ $vehicle->fldRegoNo }}" readonly />
+        <input type="text" name="editVehicleRegoNo" id="editVehicleRegoNo" class="form-control vehicleFormReadOnly" value="{{ $vehicle->fldRegoNo }}"  />
     </div>
     <input type="hidden" name="edit_vehicle_id" id="edit_vehicle_id" class="form-control" value="{{ $vehicle->id }}">
 </div>
@@ -24,7 +24,7 @@
     <label for="editVehicleBrand" class="col-sm-2 control-label">Brand</label>
 
     <div class="col-sm-4">
-        <input type="text" name="editVehicleBrand" id="editVehicleBrand" class="form-control" value="{{ $vehicle->fldBrand }}" readonly />
+        <input type="text" name="editVehicleBrand" id="editVehicleBrand" class="form-control vehicleFormReadOnly" value="{{ $vehicle->fldBrand }}"  />
     </div>
 </div>
 
@@ -33,7 +33,7 @@
     <label for="editVehicleSeating" class="col-sm-2 control-label">Seating</label>
 
     <div class="col-sm-4">
-        <input type="text" name="editVehicleSeating" id="editVehicleSeating" class="form-control" value="{{ $vehicle->fldSeating }}" readonly />
+        <input type="text" name="editVehicleSeating" id="editVehicleSeating" class="form-control vehicleFormReadOnly" value="{{ $vehicle->fldSeating }}"  />
     </div>
 </div>
 
@@ -54,13 +54,13 @@
 <div class="form-group">
     <label for="radEditVehicleDamaged" class="col-sm-2 control-label">Damaged?</label>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4" id="myRadioGroup">
         @if ($vehicle->fldDamaged)
-            <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" checked disabled> Yes<br>
-            <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" disabled> No<br>
+            <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" checked > Yes<br>
+            <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" > No<br>
         @else
-            <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" disabled> Yes<br>
-            <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" checked disabled> No<br>
+            <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" > Yes<br>
+            <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" checked > No<br>
         @endif
     </div>
 </div>

@@ -102,3 +102,13 @@
     </div>
 
 @endsection
+
+@section('page-script')
+    <script type="text/javascript">
+
+        var readOnlyElements = $(".vehicleFormReadOnly").prop('readonly', true);
+        var disabledElements = $("#myRadioGroup").children('input').prop('disabled', true);
+
+    </script>
+@endsection
+

@@ -31,7 +31,7 @@
                     <!--  form -->
                     <form action="{{ url('vehicle/add') }}" method="POST" class="form-horizontal">
 
-                    @include('vehicle/vehicleForm')
+                        @include('vehicle/vehicleForm')
 
                         {{--{!! csrf_field() !!}--}}
 
