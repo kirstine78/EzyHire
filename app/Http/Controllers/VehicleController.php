@@ -50,7 +50,6 @@ class VehicleController extends Controller
      */
     public function addVehicle(Request $request){
 
-        // TODO how to redisplay the fields
         // TODO how to make customized messages
         // TODO how to trim input before validating
         // TODO accept space in Brand fx Rolls Royce
@@ -70,7 +69,7 @@ class VehicleController extends Controller
         $vehi = new Vehicle();
 
         // get someValue from the name="someValue"  key/value pair
-        $vehi->fldRegoNo = $request->fldRegoNo;
+        $vehi->fldRegoNo = strtoupper($request->fldRegoNo);  // convert to uppercase
         $vehi->fldBrand = $request->fldBrand;
         $vehi->fldSeating = $request->fldSeating;
         $vehi->fldHirePriceCurrent = $request->fldHirePriceCurrent;
@@ -111,7 +110,6 @@ class VehicleController extends Controller
      */
     public function updateHireRate(Request $request){
 
-        // TODO how to redisplay the fields
         // TODO how to make customized messages
         // TODO how to trim input before validating
         // TODO accept space in Brand fx Rolls Royce
