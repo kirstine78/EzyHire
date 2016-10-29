@@ -61,21 +61,16 @@ class CustomerController extends Controller
         $this->validateCustomer($request);
 
         // if VALIDATION went ok proceed to below
-        // get date time
-        $dateTimeNow = Carbon::now();
-
         $cust = new Customer();
 
-        // get someValue from the name="someValue"  key/value pair from incoming $request
-        $cust->fldEmail = $request->fldEmail;
-        $cust->fldFirstName = $request->fldFirstName;
-        $cust->fldLastName = $request->fldLastName;
-        $cust->fldLicenceNo = $request->fldLicenceNo;
-        $cust->fldMobile = $request->fldMobile;
-        $cust->fldBanned = $request->radCustomerBanned;  // get value of Banned radio button
+        // assign input values to fields for the customer record
+        $cust = $this->populateCustomerFromRequest($cust, $request);
 
         // hardcode every new customer to be not deleted
         $cust->fldDeleted = 0;
+
+        // get date time
+        $dateTimeNow = Carbon::now();
 
         // set created at to current date and time
         $cust->created_at = $dateTimeNow;
@@ -112,18 +107,14 @@ class CustomerController extends Controller
         $this->validateCustomer($request);
 
         // if VALIDATION went ok proceed to below
-        // get current time
-        $dateTimeNow = Carbon::now();
-
         // fetch correct Customer
         $cust = Customer::find($request->specific_customer_id);
 
-        $cust->fldEmail = $request->fldEmail;
-        $cust->fldFirstName = $request->fldFirstName;
-        $cust->fldLastName = $request->fldLastName;
-        $cust->fldLicenceNo = $request->fldLicenceNo;
-        $cust->fldMobile = $request->fldMobile;
-        $cust->fldBanned = $request->radCustomerBanned; // get value of Banned radio button
+        // assign input values to fields for the customer record
+        $cust = $this->populateCustomerFromRequest($cust, $request);
+
+        // get current time
+        $dateTimeNow = Carbon::now();
 
         // set updated_at to current date and time
         $cust->updated_at = $dateTimeNow;
@@ -156,6 +147,19 @@ class CustomerController extends Controller
             'fldLicenceNo' => 'Required|digits:9|unique:customers,fldLicenceNo,'.$request->specific_customer_id,
             'fldMobile' => 'digits:10',
         ], $messages, $attributes);
+    }
+
+
+    public function populateCustomerFromRequest(Customer $customer, Request $request) {
+        // get someValue from the name="someValue"  key/value pair from incoming $request
+        $customer->fldEmail = $request->fldEmail;
+        $customer->fldFirstName = $request->fldFirstName;
+        $customer->fldLastName = $request->fldLastName;
+        $customer->fldLicenceNo = $request->fldLicenceNo;
+        $customer->fldMobile = $request->fldMobile;
+        $customer->fldBanned = $request->radCustomerBanned;  // get value of Banned radio button
+
+        return $customer;
     }
 
 
