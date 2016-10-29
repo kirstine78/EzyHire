@@ -36,7 +36,10 @@ class VehicleController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function displayAddVehicleForm(){
-        return View('vehicle.displayAddVehicleForm');
+        // make sure to pass in empty vehicle
+        $vehicle = new Vehicle();
+
+        return View('vehicle.displayAddVehicleForm')->with('vehicle', $vehicle);
     }
 
 

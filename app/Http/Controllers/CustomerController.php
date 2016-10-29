@@ -40,7 +40,9 @@ class CustomerController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function displayAddCustomerForm(){
+        // make sure to pass in empty customer
         $customer = new Customer();
+
         return View('customer.displayAddCustomerForm')->with('customer', $customer);
     }
 
