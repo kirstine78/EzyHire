@@ -14,7 +14,7 @@
     <label for="fldEmail" class="col-sm-2 control-label">Email</label>
 
     <div class="col-sm-4">
-        <input type="email" name="fldEmail" id="fldEmail" class="form-control" value="{{ old('fldEmail', $customer->fldEmail) }}" />
+        <input type="email" name="fldEmail" id="fldEmail" class="form-control" maxlength="254" value="{{ old('fldEmail', $customer->fldEmail) }}" />
     </div>
 
     <input type="hidden" name="specific_customer_id" id="specific_customer_id" class="form-control" value="{{ $customer->id }}">
@@ -29,7 +29,7 @@
     <label for="fldFirstName" class="col-sm-2 control-label">First name</label>
 
     <div class="col-sm-4">
-        <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" value="{{ old('fldFirstName', $customer->fldFirstName) }}"  />
+        <input type="text" name="fldFirstName" id="fldFirstName" class="form-control" maxlength="40" value="{{ old('fldFirstName', $customer->fldFirstName) }}"  />
     </div>
 
     <div class="col-sm-5">
@@ -42,7 +42,7 @@
     <label for="fldLastName" class="col-sm-2 control-label">Last name</label>
 
     <div class="col-sm-4">
-        <input type="text" name="fldLastName" id="fldLastName" class="form-control" value="{{ old('fldLastName', $customer->fldLastName) }}"  />
+        <input type="text" name="fldLastName" id="fldLastName" class="form-control" maxlength="40" value="{{ old('fldLastName', $customer->fldLastName) }}"  />
     </div>
 
     <div class="col-sm-5">
