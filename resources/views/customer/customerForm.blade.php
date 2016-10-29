@@ -17,7 +17,7 @@
         <input type="email" name="fldEmail" id="fldEmail" class="form-control" value="{{ old('fldEmail', $customer->fldEmail) }}" />
     </div>
 
-    <input type="hidden" name="edit_customer_id" id="edit_customer_id" class="form-control" value="{{ $customer->id }}">
+    <input type="hidden" name="specific_customer_id" id="specific_customer_id" class="form-control" value="{{ $customer->id }}">
 
     <div class="col-sm-5">
         @if ($errors->has('fldEmail')) <div class="help-block alert alert-danger errRed">{{ $errors->first('fldEmail') }}</div> @endif

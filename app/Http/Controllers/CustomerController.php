@@ -54,18 +54,11 @@ class CustomerController extends Controller
      */
     public function addCustomer(Request $request){
 
-        // TODO how to make customized messages
         // TODO how to trim input before validating
         // TODO accept space in Names fx mary ann
 
-        // validation of user input in the form
-        $this->validate($request, [
-            'fldEmail' => 'required|unique:customers|between:3,254|email',
-            'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
-            'fldLastName' => 'Required|Min:2|Max:40|Alpha',
-            'fldLicenceNo' => 'Required|digits:9|unique:customers',
-            'fldMobile' => 'digits:10',
-        ]);
+        // handle validation, if not validated redirect back to where you came from
+        $this->validateCustomer($request);
 
         // if VALIDATION went ok proceed to below
         // get date time
@@ -113,25 +106,17 @@ class CustomerController extends Controller
      */
     public function updateCustomer(Request $request) {
 
-        // TODO how to make customized messages
         // TODO how to trim input before validating
 
-        // validation of user input in the form
-        // accept if user doesn't change email and licence no (so use: fldEmail,'.$request->edit_customer_id)
-        $this->validate($request, [
-            'fldEmail' => 'required|between:3,254|email|unique:customers,fldEmail,'.$request->edit_customer_id,
-            'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
-            'fldLastName' => 'Required|Min:2|Max:40|Alpha',
-            'fldLicenceNo' => 'Required|digits:9|unique:customers,fldLicenceNo,'.$request->edit_customer_id,
-            'fldMobile' => 'digits:10',
-        ]);
+        // handle validation, if not validated redirect back to where you came from
+        $this->validateCustomer($request);
 
         // if VALIDATION went ok proceed to below
         // get current time
         $dateTimeNow = Carbon::now();
 
         // fetch correct Customer
-        $cust = Customer::find($request->edit_customer_id);
+        $cust = Customer::find($request->specific_customer_id);
 
         $cust->fldEmail = $request->fldEmail;
         $cust->fldFirstName = $request->fldFirstName;
@@ -146,6 +131,31 @@ class CustomerController extends Controller
         $cust->save();
 
         return redirect('customers');
+    }
+
+
+    public function validateCustomer(Request $request) {
+        // my array of customized messages
+        $messages = ['fldMobile.digits' => 'The :attribute is optional or must be exactly 10 digits.'];
+
+        // rename attributes to look pretty in form
+        $attributes = [
+            'fldEmail' => 'email',
+            'fldFirstName' => 'first name',
+            'fldLastName' => 'last name',
+            'fldLicenceNo' => 'licence no',
+            'fldMobile' => 'mobile',
+        ];
+
+        // validation of user input in the form
+        // regarding "UPDATE Customer" accept if user doesn't change email and licence no (so use: fldEmail,'.$request->specific_customer_id)
+        $this->validate($request, [
+            'fldEmail' => 'required|between:3,254|email|unique:customers,fldEmail,'.$request->specific_customer_id,
+            'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
+            'fldLastName' => 'Required|Min:2|Max:40|Alpha',
+            'fldLicenceNo' => 'Required|digits:9|unique:customers,fldLicenceNo,'.$request->specific_customer_id,
+            'fldMobile' => 'digits:10',
+        ], $messages, $attributes);
     }
 
 
