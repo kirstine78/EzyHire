@@ -52,7 +52,6 @@ class CustomerController extends Controller
      */
     public function addCustomer(Request $request){
 
-        // TODO how to redisplay the fields
         // TODO how to make customized messages
         // TODO how to trim input before validating
         // TODO accept space in Names fx mary ann
@@ -112,7 +111,6 @@ class CustomerController extends Controller
      */
     public function updateCustomer(Request $request) {
 
-        // TODO how to redisplay the fields with what user has entered???
         // TODO how to make customized messages
         // TODO how to trim input before validating
 
@@ -147,25 +145,6 @@ class CustomerController extends Controller
 
         return redirect('customers');
     }
-
-
-//    public function deleteCustomer($id){
-//
-//        // we don't delete record, instead we just flag as 'deleted'
-//
-//        // get current time
-//        $dateTimeNow = Carbon::now();
-//
-//        // get the correct record
-//        $cust = Customer::find($id);
-//
-//        // flag as deleted 1 = true
-//        $cust->fldDeleted = 1;
-//        $cust->updated_at = $dateTimeNow;
-//        $cust->save();
-//
-//        return redirect('customers');
-//    }
 
 
     /**
