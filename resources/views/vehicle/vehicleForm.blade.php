@@ -16,7 +16,7 @@
     <div class="col-sm-4">
         <input type="text" name="fldRegoNo" id="fldRegoNo" class="form-control vehicleFormReadOnly" maxlength="6" value="{{ old('fldRegoNo', $vehicle->fldRegoNo) }}"  />
     </div>
-    <input type="hidden" name="edit_vehicle_id" id="edit_vehicle_id" class="form-control" value="{{ $vehicle->id }}">
+    <input type="hidden" name="specific_vehicle_id" id="specific_vehicle_id" class="form-control" value="{{ $vehicle->id }}">
 
     <div class="col-sm-5">
         @if ($errors->has('fldRegoNo')) <div class="help-block alert alert-danger errRed">{{ $errors->first('fldRegoNo') }}</div> @endif

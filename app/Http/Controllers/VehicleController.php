@@ -57,13 +57,6 @@ class VehicleController extends Controller
         // validation of user input in the form
         $this->validateVehicle($request);
 
-//        $this->validate($request, [
-//            'fldRegoNo' => 'required|unique:vehicles|alpha_num|size:6',
-//            'fldBrand' => 'required|Max:15|Alpha',
-//            'fldSeating' => 'required|integer|between:1,20',
-//            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
-//        ]);
-
         // if VALIDATION went ok proceed to below
         // get date time
         $dateTimeNow = Carbon::now();
@@ -125,7 +118,7 @@ class VehicleController extends Controller
         $dateTimeNow = Carbon::now();
 
         // fetch correct Vehicle
-        $vehi = Vehicle::find($request->edit_vehicle_id);
+        $vehi = Vehicle::find($request->specific_vehicle_id);
 
         // only hire price and updated_at are updated
         $vehi->fldHirePriceCurrent = $request->fldHirePriceCurrent;
@@ -156,9 +149,9 @@ class VehicleController extends Controller
         ];
 
         // validation of user input in the form
-        // regarding "UPDATE hire price Vehicle" accept rego no as it is (so use: fldRegoNo,'.$request->edit_vehicle_id)
+        // regarding "UPDATE hire price Vehicle" accept rego no as it is (so use: fldRegoNo,'.$request->specific_vehicle_id)
         $this->validate($request, [
-            'fldRegoNo' => 'required|alpha_num|size:6|unique:vehicles,fldRegoNo,'.$request->edit_vehicle_id,
+            'fldRegoNo' => 'required|alpha_num|size:6|unique:vehicles,fldRegoNo,'.$request->specific_vehicle_id,
             'fldBrand' => 'required|Max:15|Alpha',
             'fldSeating' => 'required|integer|between:1,20',
             'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
