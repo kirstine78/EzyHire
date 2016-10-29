@@ -105,9 +105,8 @@
 
 @section('page-script')
     <script type="text/javascript">
-
-        var readOnlyElements = $(".vehicleFormReadOnly").prop('readonly', true);
-        var disabledElements = $("#myRadioGroup").children('input').prop('disabled', true);
+        {{-- set relevant input fields to readonly --}}
+        $(".vehicleFormReadOnly").prop('readonly', true);
 
     </script>
 @endsection

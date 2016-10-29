@@ -11,35 +11,47 @@
 
 <!-- vehicle rego no -->
 <div class="form-group">
-    <label for="editVehicleRegoNo" class="col-sm-2 control-label">Rego no</label>
+    <label for="fldRegoNo" class="col-sm-2 control-label">Rego no *</label>
 
     <div class="col-sm-4">
-        <input type="text" name="editVehicleRegoNo" id="editVehicleRegoNo" class="form-control vehicleFormReadOnly" value="{{ $vehicle->fldRegoNo }}"  />
+        <input type="text" name="fldRegoNo" id="fldRegoNo" class="form-control vehicleFormReadOnly" value="{{ old('fldRegoNo', $vehicle->fldRegoNo) }}"  />
     </div>
     <input type="hidden" name="edit_vehicle_id" id="edit_vehicle_id" class="form-control" value="{{ $vehicle->id }}">
+
+    <div class="col-sm-5">
+        @if ($errors->has('fldRegoNo')) <div class="help-block alert alert-danger errRed">{{ $errors->first('fldRegoNo') }}</div> @endif
+    </div>
 </div>
 
 <!-- vehicle brand  -->
 <div class="form-group">
-    <label for="editVehicleBrand" class="col-sm-2 control-label">Brand</label>
+    <label for="fldBrand" class="col-sm-2 control-label">Brand *</label>
 
     <div class="col-sm-4">
-        <input type="text" name="editVehicleBrand" id="editVehicleBrand" class="form-control vehicleFormReadOnly" value="{{ $vehicle->fldBrand }}"  />
+        <input type="text" name="fldBrand" id="fldBrand" class="form-control vehicleFormReadOnly" maxlength="15" value="{{ old('fldBrand', $vehicle->fldBrand) }}"  />
+    </div>
+
+    <div class="col-sm-5">
+        @if ($errors->has('fldBrand')) <div class="help-block alert alert-danger errRed">{{ $errors->first('fldBrand') }}</div> @endif
     </div>
 </div>
 
 <!-- vehicle seating  -->
 <div class="form-group">
-    <label for="editVehicleSeating" class="col-sm-2 control-label">Seating</label>
+    <label for="fldSeating" class="col-sm-2 control-label">Seating (1 - 20) *</label>
 
     <div class="col-sm-4">
-        <input type="text" name="editVehicleSeating" id="editVehicleSeating" class="form-control vehicleFormReadOnly" value="{{ $vehicle->fldSeating }}"  />
+        <input type="text" name="fldSeating" id="fldSeating" class="form-control vehicleFormReadOnly" maxlength="2" value="{{ old('fldSeating', $vehicle->fldSeating) }}"  />
+    </div>
+
+    <div class="col-sm-5">
+        @if ($errors->has('fldSeating')) <div class="help-block alert alert-danger errRed">{{ $errors->first('fldSeating') }}</div> @endif
     </div>
 </div>
 
 <!-- vehicle hire price -->
 <div class="form-group">
-    <label for="fldHirePriceCurrent" class="col-sm-2 control-label">Current hire price $</label>
+    <label for="fldHirePriceCurrent" class="col-sm-2 control-label">Hire $ (max 9999.99) *</label>
 
     <div class="col-sm-4">
         <input type="text" name="fldHirePriceCurrent" id="fldHirePriceCurrent" class="form-control" value="{{ old('fldHirePriceCurrent', $vehicle->fldHirePriceCurrent) }}" />
@@ -50,17 +62,18 @@
     </div>
 </div>
 
-<!-- vehicle damaged? -->
-<div class="form-group">
+<!-- is vehicle damaged? only show for update hire rate, not show when add vehicle -->
+<div class="form-group" id="fullDivRadioGroup">
     <label for="radEditVehicleDamaged" class="col-sm-2 control-label">Damaged?</label>
 
-    <div class="col-sm-4" id="myRadioGroup">
+    <div class="col-sm-4">
         @if ($vehicle->fldDamaged)
-            <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" checked > Yes<br>
-            <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" > No<br>
+        {{--@if (old('radVehicleDamaged', $vehicle->fldDamaged))--}}
+            <input type="radio" name="radVehicleDamaged" value="1" id="vehicleDamaged" class="preserveWhiteSpace" checked disabled> Yes<br>
+            <input type="radio" name="radVehicleDamaged" value="0" id="vehicleNotDamaged" class="preserveWhiteSpace" disabled > No<br>
         @else
-            <input type="radio" name="radEditVehicleDamaged" value="1" id="editVehicleDamaged" class="preserveWhiteSpace" > Yes<br>
-            <input type="radio" name="radEditVehicleDamaged" value="0" id="editVehicleNotDamaged" class="preserveWhiteSpace" checked > No<br>
+            <input type="radio" name="radVehicleDamaged" value="1" id="vehicleDamaged" class="preserveWhiteSpace" disabled > Yes<br>
+            <input type="radio" name="radVehicleDamaged" value="0" id="vehicleNotDamaged" class="preserveWhiteSpace" checked disabled > No<br>
         @endif
     </div>
 </div>
