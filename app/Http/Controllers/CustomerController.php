@@ -185,13 +185,11 @@ class CustomerController extends Controller
 
         // TODO confirmation box before deleting
 
-        // we don't delete record, instead we just flag as 'deleted'
-
         // get current time
         $dateTimeNow = Carbon::now();
 
         // flag as deleted 1 = true
-        $customer->fldDeleted = 1;
+        $customer->fldDeleted = 1;  // we don't delete record, instead we just flag as 'deleted'
         $customer->updated_at = $dateTimeNow;
         $customer->save();
 

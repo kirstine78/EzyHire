@@ -50,17 +50,14 @@ class VehicleController extends Controller
      */
     public function addVehicle(Request $request){
 
-        // TODO how to make customized messages
         // TODO how to trim input before validating
         // TODO accept space in Brand fx Rolls Royce
+        // TODO error if input is 100.     full stop followed by nothing
 
         // validation of user input in the form
         $this->validateVehicle($request);
 
         // if VALIDATION went ok proceed to below
-        // get date time
-        $dateTimeNow = Carbon::now();
-
         $vehi = new Vehicle();
 
         // get someValue from the name="someValue"  key/value pair
@@ -72,6 +69,9 @@ class VehicleController extends Controller
         // assuming every new vehicle added is not damaged nor retired, so hardcode these values
         $vehi->fldDamaged = 0;
         $vehi->fldRetired = 0;
+
+        // get date time
+        $dateTimeNow = Carbon::now();
 
         // set created_at to current date and time
         $vehi->created_at = $dateTimeNow;
@@ -105,7 +105,6 @@ class VehicleController extends Controller
      */
     public function updateHireRate(Request $request){
 
-        // TODO how to make customized messages
         // TODO how to trim input before validating
         // TODO accept space in Brand fx Rolls Royce
         // TODO error if input is 100.     full stop followed by nothing
@@ -114,14 +113,14 @@ class VehicleController extends Controller
         $this->validateVehicle($request);
 
         // if VALIDATION went ok proceed to below
-        // get current time
-        $dateTimeNow = Carbon::now();
-
         // fetch correct Vehicle
         $vehi = Vehicle::find($request->specific_vehicle_id);
 
         // only hire price and updated_at are updated
         $vehi->fldHirePriceCurrent = $request->fldHirePriceCurrent;
+
+        // get current time
+        $dateTimeNow = Carbon::now();
 
         // set updated_at to current date and time
         $vehi->updated_at = $dateTimeNow;
@@ -159,45 +158,19 @@ class VehicleController extends Controller
     }
 
 
-
-//    public function retireVehicle($id){
-//        // TODO confirmation box before retiring
-//
-//        // we just flag as 'retired'
-//
-//        // get current time
-//        $dateTimeNow = Carbon::now();
-//
-//        // get the correct record
-//        $vehi = Vehicle::find($id);
-//
-//        // flag as retired 1 = true
-//        $vehi->fldRetired = 1;
-//        $vehi->updated_at = $dateTimeNow;
-//        $vehi->save();
-//
-//        return redirect('vehicles');
-//    }
-
-
     /**
      * Flag vehicle as retired in database
-     * @param $id
+     * @param Vehicle $vehicle
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function retireVehicle(Vehicle $vehicle){
         // TODO confirmation box before retiring
 
-        // we just flag as 'retired'
-
         // get current time
         $dateTimeNow = Carbon::now();
 
-        // get the correct record
-//        $vehi = Vehicle::find($id);
-
         // flag as retired 1 = true
-        $vehicle->fldRetired = 1;
+        $vehicle->fldRetired = 1;  // we just flag as 'retired'
         $vehicle->updated_at = $dateTimeNow;
         $vehicle->save();
 
@@ -210,8 +183,9 @@ class VehicleController extends Controller
      * @return mixed
      */
     public function getAllNotRetiredVehicles() {
-        // fetch all vehicles that are not flagged retired from db
+        // fetch all vehicles from db that are not flagged as retired
         $vehi = Vehicle::orderBy('fldRegoNo', 'asc')->where('fldRetired', '=', 0)->get();
+
         return $vehi;
     }
 }
