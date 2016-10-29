@@ -25,7 +25,7 @@
 
                         <!-- Update customer button -->
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-6">
+                            <div class="col-sm-offset-2 col-sm-4">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-plus">Update Customer</i>
                                 </button>

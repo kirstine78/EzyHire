@@ -78,9 +78,9 @@
 
 <!-- customer banned? -->
 <div class="form-group">
-    <label for="radCustomerBanned" class="col-sm-3 control-label">Banned?</label>
+    <label for="radCustomerBanned" class="col-sm-2 control-label">Banned?</label>
 
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         @if (old('radCustomerBanned')== "1" or $customer->fldBanned)
             <input type="radio" name="radCustomerBanned" value="1" id="customerBanned" class="preserveWhiteSpace" checked> Yes<br>
             <input type="radio" name="radCustomerBanned" value="0" id="customerNotBanned" class="preserveWhiteSpace" > No<br>
