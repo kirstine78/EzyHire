@@ -86,13 +86,34 @@
 
                                     <!-- Vehicle Retire Button -->
                                     <td>
-                                        <form action="vehicle/retire/{{ $vehi->id }}" method="POST">
+                                        <form id="formRetireVehicle" action="vehicle/retire/{{ $vehi->id }}" method="POST">
                                             {{ csrf_field() }}
-
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash">Retire</i>
-                                            </button>
                                         </form>
+
+                                        <!-- Trigger the modal with a button -->
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-btn fa-trash">Retire</i></button>
+
+                                        <!-- Modal -->
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Confirm Retire</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to retire Vehicle?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button id="btnRetireVehicle" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -132,5 +153,10 @@
                 }
             }
         }
+
+        // handle confirm yes button to retire vehicle
+        $('#btnRetireVehicle').on("click", function () {
+            $('#formRetireVehicle').submit();
+        });
     </script>
 @endsection

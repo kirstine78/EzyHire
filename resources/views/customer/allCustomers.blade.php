@@ -89,50 +89,41 @@
 
                                     <!-- Customer Delete Button -->
                                     <td>
-                                        {{--<form action="customer/{{ $cust->id }}" method="POST">--}}
-                                        {{--{{ csrf_field() }}--}}
-                                        {{--{{ method_field('DELETE') }}--}}
-
-                                        {{--<button type="submit" class="btn btn-danger" >--}}
-                                        {{--<i class="fa fa-btn fa-trash">Delete</i>--}}
-                                        {{--</button>--}}
-                                        {{--</form>--}}
-
-
-                                        <form id="formDeleteCustomer" action="customer/{{ $cust->id }}" method="POST">
+                                        <form action="customer/{{ $cust->id }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
+
+                                            <!-- Trigger the modal with a button -->
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myConfirmModal" data-customerId="{{ $cust->id }}" ><i class="fa fa-btn fa-trash">Delete</i></button>
                                         </form>
-
-                                        <!-- Trigger the modal with a button -->
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-btn fa-trash">Delete</i></button>
-
-                                        <!-- Modal -->
-                                        <div id="myModal" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
-
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Confirm Delete</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure you want to delete Customer?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button id="btnDeleteCustomer" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+
+                        <!-- Modal -->
+                        <div id="myConfirmModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Confirm Delete</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete Customer?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="btnConfirmYes" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     @else
                         <div>There are currently no customers in the system</div>
                     @endif
@@ -167,9 +158,20 @@
             }
         }
 
-        // handle confirm yes button to delete customer
-        $('#btnDeleteCustomer').on("click", function () {
-            $('#formDeleteCustomer').submit();
+
+        // handle when modal shows
+        $('#myConfirmModal').on('show.bs.modal', function (e) {
+            // on show confirm dialog modal, select the event's related button ("delete" btn in form) that got clicked.
+            var btnForm = $(e.relatedTarget);
+
+            // when click yes on dialog box
+            $('#btnConfirmYes').on("click", function () {
+
+                // the parent called form has the correct customer id
+                btnForm.parent('form').submit();
+            });
         });
+
+
     </script>
 @endsection
