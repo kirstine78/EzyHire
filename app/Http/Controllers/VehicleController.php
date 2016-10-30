@@ -164,8 +164,6 @@ class VehicleController extends Controller
         // Because of Route Model Binding,
         // Laravel will automatically inject the model instance that has
         // an ID matching the corresponding value from the request URI.
-        
-        // TODO confirmation box before retiring
 
         // get current time
         $dateTimeNow = Carbon::now();
