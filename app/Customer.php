@@ -10,5 +10,4 @@ class Customer extends Model
     public function setUpdatedAtAttribute() {
         $this->attributes['updated_at'] = Carbon::now();
     }
-
 }

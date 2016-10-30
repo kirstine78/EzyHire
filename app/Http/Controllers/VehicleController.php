@@ -68,14 +68,8 @@ class VehicleController extends Controller
         $vehi->fldDamaged = 0;
         $vehi->fldRetired = 0;
 
-        // get date time
-        $dateTimeNow = Carbon::now();
-
         // set created_at to current date and time
-        $vehi->created_at = $dateTimeNow;
-
-        // set updated_at to current date and time
-        $vehi->updated_at = $dateTimeNow;
+        $vehi->created_at = Carbon::now();
 
         // set fldLocationId to null since we don't implement location/suburb in this assignment
         $vehi->fldLocationId = null;
@@ -114,12 +108,6 @@ class VehicleController extends Controller
 
         // only hire price and updated_at are updated
         $vehi->fldHirePriceCurrent = $request->fldHirePriceCurrent;
-
-        // get current time
-        $dateTimeNow = Carbon::now();
-
-        // set updated_at to current date and time
-        $vehi->updated_at = $dateTimeNow;
 
         $vehi->save();
 
