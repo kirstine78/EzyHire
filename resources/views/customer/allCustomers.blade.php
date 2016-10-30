@@ -80,7 +80,6 @@
                                     <td>
                                         <form action="customer/{{ $cust->id }}" method="GET">
                                             {{ csrf_field() }}
-                                            {{ method_field('UPDATE') }}
 
                                             <button type="submit" class="btn btn-warning">
                                                 <i class="fa fa-btn fa-trash">Update</i>

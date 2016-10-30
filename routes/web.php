@@ -39,7 +39,7 @@ Route::get('customers', 'CustomerController@allCustomers');
 Route::get('customer', 'CustomerController@displayAddCustomerForm');
 
 // then the form calls the ROUTE to save the data
-Route::post('customer/add', 'CustomerController@addCustomer');
+Route::put('customer', 'CustomerController@addCustomer');
 
 // To update a Customer we display a form then the form submits the data
 // First we display a view with a update Form on it
@@ -51,17 +51,6 @@ Route::post('customer/update', 'CustomerController@updateCustomer');
 // Delete Customer
 Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
 
-
-// ********** ListController **********
-// display form with drop down for customer
-Route::get('list', 'ListController@listByCustomerForm');
-// display the list of bookings for the chosen customer
-Route::post('list/bookings', 'ListController@listBookingsByCustomer');
-
-// display form with drop down for customer
-//Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
-// display the list of damages for the chosen customer
-Route::post('list/damages', 'ListController@listDamagesByCustomer');
 
 
 // ********** VehicleController **********
@@ -83,6 +72,19 @@ Route::post('vehicle/update', 'VehicleController@updateHireRate');
 
 // Retire Vehicle
 Route::post('vehicle/retire/{vehicle}', 'VehicleController@retireVehicle');
+
+
+
+// ********** ListController **********
+// display form with drop down for customer
+Route::get('list', 'ListController@listByCustomerForm');
+// display the list of bookings for the chosen customer
+Route::post('list/bookings', 'ListController@listBookingsByCustomer');
+
+// display form with drop down for customer
+//Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
+// display the list of damages for the chosen customer
+Route::post('list/damages', 'ListController@listDamagesByCustomer');
 
 
 // ********** ReportController **********

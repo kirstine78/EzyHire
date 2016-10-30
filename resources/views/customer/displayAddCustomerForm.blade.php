@@ -19,7 +19,8 @@
                 <div class="panel-body">
 
                     <!--  form -->
-                    <form action="{{ url('customer/add') }}" method="POST" class="form-horizontal">
+                    <form action="{{ url('customer') }}" method="POST" class="form-horizontal">
+                        {{ method_field('PUT') }}
 
                         @include('customer/customerForm')
 
