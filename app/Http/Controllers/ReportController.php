@@ -170,24 +170,28 @@ class ReportController extends Controller
         }
 
         // now decide which method to call
-//        if ($filterOption == "fixedAndUnFixed")
-//        {
-//            $joinTable = $this->getFixedAndUnFixedFaults();
-//        }
-//        else
-//        {
-//            $joinTable = $this->getOnlyUnFixedFaults();
-//        }
-
-//        return View('report.showFaultsReport', ['joinTable' => $joinTable, 'filterOption' => $filterOption]);
-
-        // use relationship, to get all faults, both fixed and unfixed, but excluding records related with retired vehicles
-        $faults = Fault::whereHas('vehicle', function ($query)
+        if ($filterOption == "fixedAndUnFixed")
         {
-            return $query->where('fldRetired', 0);
-        })->get();
+            $joinTable = $this->getFixedAndUnFixedFaults();
+        }
+        else
+        {
+            $joinTable = $this->getOnlyUnFixedFaults();
+        }
 
-        return View('report.showFaultsReport', ['faults' => $faults, 'filterOption' => $filterOption]);
+        return View('report.showFaultsReport', ['joinTable' => $joinTable, 'filterOption' => $filterOption]);
+
+        // The below does NOT work, since you can't easily sort by because each method only
+        // knows of it's own existence and returns a new collection.
+
+//        // use relationship, to get all faults, both fixed and unfixed, but excluding records related with retired vehicles
+//        $faults = Fault::with('vehicle')->whereHas('vehicle', function ($query)
+//        {
+//            return $query->where('fldRetired', 0);
+//        })->orderBy('fldFaultDate', 'desc')->get();
+//        // order by rego no
+//        $sortedFaults = $faults->sortBy('vehicle.fldRegoNo');
+//        return View('report.showFaultsReport', ['faults' => $sortedFaults, 'filterOption' => $filterOption]);
     }
 
 
@@ -201,9 +205,8 @@ class ReportController extends Controller
             ->join('vehicles', 'vehicles.id', '=', 'faults.fldCarId')
             ->where('vehicles.fldRetired', '=', 0)
             ->orderBy('vehicles.fldRegoNo', 'asc')
-            ->orderBy('faults.fldfaultDate', 'desc')
+            ->orderBy('faults.fldFaultDate', 'desc')
             ->get();
-
 
         return $joinTable;
     }  // end getFixedAndUnFixedFaults

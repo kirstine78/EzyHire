@@ -10,4 +10,8 @@ class Fault extends Model
 
         return $this->belongsTo(Vehicle::class, 'fldCarId');
     }
+
+    public function vehicleNotRetired() {
+        return $this->belongsTo(Vehicle::class, 'fldCarId')->notRetired();
+    }
 }
