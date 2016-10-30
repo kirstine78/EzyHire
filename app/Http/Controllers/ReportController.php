@@ -11,6 +11,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fault;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -64,6 +65,17 @@ class ReportController extends Controller
      * @return mixed
      */
     public function getFixedAndUnFixedDamages() {
+//        // get all damages belonging to NON-archived bookings, and car details
+//        $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
+//            ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
+//            ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
+//            ->where('vehicles.fldRetired', '=', 0)
+//            ->select('vehicles.fldRegoNo as regoNo',
+//                'damages.fldDamageDate as damageDate',
+//                'damages.fldDamageType as damageType',
+//                'damages.fldDamageDescription as damageDescription',
+//                'damages.fldFixed as fixed');
+
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
@@ -74,6 +86,7 @@ class ReportController extends Controller
                 'damages.fldDamageType as damageType',
                 'damages.fldDamageDescription as damageDescription',
                 'damages.fldFixed as fixed');
+
 
         // get all damages belonging to archived bookings, and car details,
         // and union it with $joinTableNonArchivedBookingVehicleDamage
@@ -157,16 +170,24 @@ class ReportController extends Controller
         }
 
         // now decide which method to call
-        if ($filterOption == "fixedAndUnFixed")
-        {
-            $joinTable = $this->getFixedAndUnFixedFaults();
-        }
-        else
-        {
-            $joinTable = $this->getOnlyUnFixedFaults();
-        }
+//        if ($filterOption == "fixedAndUnFixed")
+//        {
+//            $joinTable = $this->getFixedAndUnFixedFaults();
+//        }
+//        else
+//        {
+//            $joinTable = $this->getOnlyUnFixedFaults();
+//        }
 
-        return View('report.showFaultsReport', ['joinTable' => $joinTable, 'filterOption' => $filterOption]);
+//        return View('report.showFaultsReport', ['joinTable' => $joinTable, 'filterOption' => $filterOption]);
+
+        // use relationship, to get all faults, both fixed and unfixed, but excluding records related with retired vehicles
+        $faults = Fault::whereHas('vehicle', function ($query)
+        {
+            return $query->where('fldRetired', 0);
+        })->get();
+
+        return View('report.showFaultsReport', ['faults' => $faults, 'filterOption' => $filterOption]);
     }
 
 
@@ -182,6 +203,7 @@ class ReportController extends Controller
             ->orderBy('vehicles.fldRegoNo', 'asc')
             ->orderBy('faults.fldfaultDate', 'desc')
             ->get();
+
 
         return $joinTable;
     }  // end getFixedAndUnFixedFaults

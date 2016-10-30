@@ -29,7 +29,7 @@
                         </div>
                     </form>
 
-                    @if (count($joinTable) > 0)
+                    @if (count($faults) > 0)
 
                         <table class="table table-striped task-table">
                             <!-- Table Headings -->
@@ -43,11 +43,11 @@
 
                             <!-- Table Body -->
                             <tbody>
-                            @foreach($joinTable as $j)
+                            @foreach($faults as $j)
                                 <tr>
                                     <!-- Rego no -->
                                     <td class="table-text">
-                                        <div>{{ $j->fldRegoNo }}</div>
+                                        <div>{{ $j->vehicle->fldRegoNo }}</div>
                                     </td>
 
                                     <!-- Fault date -->
