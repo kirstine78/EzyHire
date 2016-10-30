@@ -179,8 +179,6 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function deleteCustomer(Customer $customer){
-
-        dd($customer);
         // Because of Route Model Binding,
         // Laravel will automatically inject the model instance that has
         // an ID matching the corresponding value from the request URI.

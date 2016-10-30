@@ -24,8 +24,6 @@
                         </button>
                     </form>
 
-
-
                     @if (count($customers) > 0)
 
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name..">
@@ -94,7 +92,7 @@
                                             {{ method_field('DELETE') }}
 
                                             <!-- Trigger the modal with a button -->
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myConfirmModal" data-customerId="{{ $cust->id }}" ><i class="fa fa-btn fa-trash">Delete</i></button>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myConfirmModal" ><i class="fa fa-btn fa-trash">Delete</i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -137,6 +135,7 @@
 
 @section('page-script')
     <script type="text/javascript">
+
         function myFunction() {
             // Declare variables
             var input, filter, table, tr, td, i;
@@ -158,7 +157,6 @@
             }
         }
 
-
         // handle when modal shows
         $('#myConfirmModal').on('show.bs.modal', function (e) {
             // on show confirm dialog modal, select the event's related button ("delete" btn in form) that got clicked.
@@ -167,11 +165,10 @@
             // when click yes on dialog box
             $('#btnConfirmYes').on("click", function () {
 
-                // the parent called form has the correct customer id
+                // the parent called 'form' has the correct customer id
                 btnForm.parent('form').submit();
             });
         });
-
 
     </script>
 @endsection
