@@ -31,6 +31,7 @@ Route::get('suburbs', 'GeneralController@getSuburbs');
 Route::get('brands', 'GeneralController@getBrands');
 
 
+
 // ********** CustomerController **********
 Route::get('customers', 'CustomerController@allCustomers');
 
@@ -80,16 +81,15 @@ Route::post('vehicle/retire/{vehicle}', 'VehicleController@retireVehicle');
 Route::get('list', 'ListController@listByCustomerForm');
 // display the list of bookings for the chosen customer
 Route::post('list/bookings', 'ListController@listBookingsByCustomer');
-
-// display form with drop down for customer
-//Route::get('list/damages', 'ListController@listDamagesByCustomerForm' );
 // display the list of damages for the chosen customer
 Route::post('list/damages', 'ListController@listDamagesByCustomer');
+
 
 
 // ********** ReportController **********
 Route::get('report/damage', 'ReportController@showDamagesReport');
 Route::get('report/fault', 'ReportController@showFaultsReport');
+
 
 
 // ********** ArchiveController **********

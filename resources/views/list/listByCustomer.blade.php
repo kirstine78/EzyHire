@@ -57,7 +57,6 @@
                                         <td>
                                             <form action="list/bookings" method="POST">
                                                 {{ csrf_field() }}
-                                                {{ method_field('POST') }}
 
                                                 <button type="submit" class="btn btn-success">
                                                     <i class="fa fa-btn fa-trash">Show bookings list</i>
@@ -70,7 +69,6 @@
                                         <td>
                                             <form action="list/damages" method="POST">
                                                 {{ csrf_field() }}
-                                                {{ method_field('POST') }}
 
                                                 <button type="submit" class="btn btn-success">
                                                     <i class="fa fa-btn fa-trash">Show damages list</i>
@@ -93,7 +91,6 @@
                             <h4>Customer currently has no bookings</h4>
                             <form action="/list" method="GET">
                                 {{ csrf_field() }}
-                                {{ method_field('UPDATE') }}
 
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-btn fa-trash">Search again</i>
@@ -104,7 +101,6 @@
 
                             <form action="/list" method="GET">
                                 {{ csrf_field() }}
-                                {{ method_field('UPDATE') }}
 
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-btn fa-trash">Search again</i>
@@ -179,7 +175,6 @@
                             <h4>Customer has a clean damage record</h4>
                             <form action="/list" method="GET">
                                 {{ csrf_field() }}
-                                {{ method_field('UPDATE') }}
 
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-btn fa-trash">Search again</i>
@@ -190,7 +185,6 @@
 
                             <form action="/list" method="GET">
                                 {{ csrf_field() }}
-                                {{ method_field('UPDATE') }}
 
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-btn fa-trash">Search again</i>
