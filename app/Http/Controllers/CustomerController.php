@@ -68,14 +68,8 @@ class CustomerController extends Controller
         // hardcode every new customer to be not deleted
         $cust->fldDeleted = 0;
 
-        // get date time
-        $dateTimeNow = Carbon::now();
-
         // set created at to current date and time
-        $cust->created_at = $dateTimeNow;
-
-        // set updated at to current date and time
-        $cust->updated_at = $dateTimeNow;
+        $cust->created_at = Carbon::now();
 
         $cust->save();
 
@@ -111,12 +105,6 @@ class CustomerController extends Controller
 
         // assign input values to fields for the customer record
         $cust = $this->populateCustomerFromRequest($cust, $request);
-
-        // get current time
-        $dateTimeNow = Carbon::now();
-
-        // set updated_at to current date and time
-        $cust->updated_at = $dateTimeNow;
 
         $cust->save();
 
