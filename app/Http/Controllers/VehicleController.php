@@ -49,10 +49,6 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function addVehicle(Request $request){
-
-        // TODO accept space in Brand fx Rolls Royce
-        // TODO error if input is 100.     full stop followed by nothing
-
         // sanitize input (function in Controller parent)
         $this->formatInput($request);
 
@@ -106,10 +102,6 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateHireRate(Request $request){
-
-        // TODO accept space in Brand fx Rolls Royce
-        // TODO error if input is 100.     full stop followed by nothing
-
         // sanitize input (function in Controller parent)
         $this->formatInput($request);
 
@@ -153,11 +145,12 @@ class VehicleController extends Controller
 
         // validation of user input in the form
         // regarding "UPDATE hire price Vehicle" accept rego no as it is (so use: fldRegoNo,'.$request->specific_vehicle_id)
+        // accept space and dash in brand
         $this->validate($request, [
             'fldRegoNo' => 'required|alpha_num|size:6|unique:vehicles,fldRegoNo,'.$request->specific_vehicle_id,
-            'fldBrand' => 'required|Max:15|Alpha',
+            'fldBrand' => 'required|Max:15|regex:/^([A-Za-z\s\-]*)$/',
             'fldSeating' => 'required|integer|between:1,20',
-            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99',
+            'fldHirePriceCurrent' => 'required|numeric|between:0,9999.99|regex:/.*[^.]$/',
         ], $messages, $attributes);
     }
 

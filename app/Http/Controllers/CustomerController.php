@@ -53,9 +53,6 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function addCustomer(Request $request){
-
-        // TODO accept space in Names fx mary ann
-
         // sanitize input (function in Controller parent)
         $this->formatInput($request);
 
@@ -102,9 +99,6 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateCustomer(Request $request) {
-
-        // TODO accept space in Names fx mary ann
-
         // sanitize input (function in Controller parent)
         $this->formatInput($request);
 
@@ -149,9 +143,10 @@ class CustomerController extends Controller
 
         // validation of user input in the form
         // regarding "UPDATE Customer" accept if user doesn't change email and licence no (so use: fldEmail,'.$request->specific_customer_id)
+        // accept space and dash in FIRST NAME only
         $this->validate($request, [
             'fldEmail' => 'required|between:3,254|email|unique:customers,fldEmail,'.$request->specific_customer_id,
-            'fldFirstName' => 'Required|Min:2|Max:40|Alpha',
+            'fldFirstName' => 'Required|Min:2|Max:40|regex:/^([A-Za-z\s\-]*)$/',
             'fldLastName' => 'Required|Min:2|Max:40|Alpha',
             'fldLicenceNo' => 'Required|digits:9|unique:customers,fldLicenceNo,'.$request->specific_customer_id,
             'fldMobile' => 'digits:10',
