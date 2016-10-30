@@ -16,9 +16,9 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('fldEmail', 40)->unique();
-            $table->string('fldFirstName', 20);
-            $table->string('fldLastName', 20);
+            $table->string('fldEmail', 254)->unique();
+            $table->string('fldFirstName', 40);
+            $table->string('fldLastName', 40);
             $table->char('fldLicenceNo', 9)->unique();
             $table->string('fldMobile', 10)->nullable();
             $table->boolean('fldBanned');

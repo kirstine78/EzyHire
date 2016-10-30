@@ -28,7 +28,10 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         // Route model binding
-//        Route::model('customers', 'App\Customer');
+        /* 'customer' refers to the '{customer}' in the:
+            Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
+            in web.php */
+        Route::model('customer', 'App\Customer');
 
     }
 
