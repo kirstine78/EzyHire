@@ -33,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider
             in web.php */
         Route::model('customer', 'App\Customer');
 
+        Route::model('vehicle', 'App\Vehicle');
     }
 
     /**
