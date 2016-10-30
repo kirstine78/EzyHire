@@ -72,7 +72,7 @@ Route::get('vehicles', 'VehicleController@allVehicles');
 Route::get('vehicle', 'VehicleController@displayAddVehicleForm');
 
 // then the form calls the ROUTE to save the data
-Route::post('vehicle/add', 'VehicleController@addVehicle');
+Route::put('vehicle', 'VehicleController@addVehicle');
 
 // To update a  Hire Rate for Vehicle we display a form then the form submits the data
 // First we display a view with a update Form on it
@@ -81,8 +81,8 @@ Route::get('vehicle/{vehicle}', 'VehicleController@displayUpdateHireRateForm');
 // Then the FORM calls the ROUTE to EDIT the Customer
 Route::post('vehicle/update', 'VehicleController@updateHireRate');
 
-// Delete Vehicle
-Route::delete('vehicle/{vehicle}', 'VehicleController@retireVehicle');
+// Retire Vehicle
+Route::post('vehicle/retire/{vehicle}', 'VehicleController@retireVehicle');
 
 
 // ********** ReportController **********

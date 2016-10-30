@@ -77,7 +77,6 @@
                                     <td>
                                         <form action="vehicle/{{ $vehi->id }}" method="GET">
                                             {{ csrf_field() }}
-                                            {{ method_field('UPDATE') }}
 
                                             <button type="submit" class="btn btn-warning">
                                                 <i class="fa fa-btn fa-trash">Update Hire Rate</i>
@@ -87,9 +86,8 @@
 
                                     <!-- Vehicle Retire Button -->
                                     <td>
-                                        <form action="vehicle/{{ $vehi->id }}" method="POST">
+                                        <form action="vehicle/retire/{{ $vehi->id }}" method="POST">
                                             {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
 
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash">Retire</i>
