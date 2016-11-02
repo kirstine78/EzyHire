@@ -16,7 +16,7 @@ class CreateArchiveddamagesTable extends Migration
         Schema::create('archiveddamages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('fldArchiveBookingNo')->unsigned();
+            $table->integer('fldArchiveBookingNo');
             $table->string('fldDamageType', 50);
             $table->string('fldDamageDescription', 200);
             $table->date('fldDamageDate');
