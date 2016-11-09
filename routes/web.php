@@ -31,6 +31,13 @@ Route::get('suburbs', 'GeneralController@getSuburbs');
 Route::get('brands', 'GeneralController@getBrands');
 
 
+Route::get('home','GeneralController@index');
+
+
+
+// ********** VehicleController **********
+Route::get('vehicles', 'VehicleController@allVehicles');
+
 
 // ********** CustomerController **********
 Route::get('customers', 'CustomerController@allCustomers');
@@ -53,9 +60,9 @@ Route::post('customer/update', 'CustomerController@updateCustomer');
 Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
 
 
-
-// ********** VehicleController **********
-Route::get('vehicles', 'VehicleController@allVehicles');
+//
+//// ********** VehicleController **********
+//Route::get('vehicles', 'VehicleController@allVehicles');
 
 // To add a Vehicle we display a form then the form submits the data
 // First we display a view with a Form on it
@@ -105,3 +112,8 @@ Route::post('archive', 'ArchiveController@archiveBookings');
 Route::get('register', 'StaffController@registerStaffMember');
 Route::get('login', 'StaffController@login');
 Route::get('logout', 'StaffController@logout');
+
+
+
+Auth::routes();
+

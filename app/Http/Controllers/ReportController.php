@@ -65,16 +65,6 @@ class ReportController extends Controller
      * @return mixed
      */
     public function getFixedAndUnFixedDamages() {
-//        // get all damages belonging to NON-archived bookings, and car details
-//        $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
-//            ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
-//            ->join('damages', 'bookings.id', '=', 'damages.fldBookingNo')
-//            ->where('vehicles.fldRetired', '=', 0)
-//            ->select('vehicles.fldRegoNo as regoNo',
-//                'damages.fldDamageDate as damageDate',
-//                'damages.fldDamageType as damageType',
-//                'damages.fldDamageDescription as damageDescription',
-//                'damages.fldFixed as fixed');
 
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')

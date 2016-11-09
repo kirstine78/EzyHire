@@ -22,6 +22,12 @@ use App\Http\Requests;
  */
 class CustomerController extends Controller
 {
+    /** The constructor has code to restrict access to users that are logged in */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * show all customers, excluding all customers flagged as deleted
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

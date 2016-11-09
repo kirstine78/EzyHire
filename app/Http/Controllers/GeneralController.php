@@ -24,7 +24,19 @@ class GeneralController extends Controller
 {
     // show home page
     public function index() {
-        return View('home');
+
+        // check if logged in?
+        $user = \Auth::user();
+        if ($user == null) {
+            return "there is no user";
+        }
+        else {
+            return \Auth::user();
+        }
+
+
+
+        return View('general.myhome');
     }
 
     // show suburbs in company
