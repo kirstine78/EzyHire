@@ -74,22 +74,25 @@
 
 					@if ($isUserLoggedIn)
 
-						<li class="nav_buttons"><a href="{{ url('customers') }}" style="color:black;">Customers</a></li>
-						<li class="nav_buttons"><a href="{{ url('vehicles') }}" style="color:black;">Vehicles</a></li>
 
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">Report
-								<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li class="nav_buttons"><a href="{{ url('report/damage') }}"  style="color:black;">Damage Report</a></li>
-								<li class="nav_buttons"><a href="{{ url('report/fault') }}"  style="color:black;">Fault Report</a></li>
-							</ul>
-						</li>
+						@if ($isUserAdmin == false)
+							<li class="nav_buttons"><a href="{{ url('customers') }}" style="color:black;">Customers</a></li>
+							<li class="nav_buttons"><a href="{{ url('vehicles') }}" style="color:black;">Vehicles</a></li>
 
-						<li class="nav_buttons"><a href="{{ url('list') }}" style="color:black;">Lists</a></li>
-						<li class="nav_buttons"><a href="{{ url('archive') }}" style="color:black;">Archive</a></li>
-						<li class="nav_buttons"><a href="{{ url('register') }}" style="color:black;">Register</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">Report
+									<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li class="nav_buttons"><a href="{{ url('report/damage') }}"  style="color:black;">Damage Report</a></li>
+									<li class="nav_buttons"><a href="{{ url('report/fault') }}"  style="color:black;">Fault Report</a></li>
+								</ul>
+							</li>
 
+							<li class="nav_buttons"><a href="{{ url('list') }}" style="color:black;">Lists</a></li>
+						@else
+							<li class="nav_buttons"><a href="{{ url('archive') }}" style="color:black;">Archive</a></li>
+							<li class="nav_buttons"><a href="{{ url('register') }}" style="color:black;">Register</a></li>
+						@endif
 					@endif
 				</ul>
 

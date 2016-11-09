@@ -35,6 +35,7 @@ class User extends Authenticatable
     {
         $records = User::find($this->id);
 
+        // check if role is admin?
         if (strcmp($records->name, "k") == 0 )
         {
             $isAdmin = true;
