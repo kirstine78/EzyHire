@@ -34,46 +34,46 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 // ********** CustomerController **********
-Route::get('customers', 'CustomerController@allCustomers');
-
-// To add a Customer we display a form then the form submits the data
-// First we display a view with a Form on it
-Route::get('customer', 'CustomerController@displayAddCustomerForm');
-
-// then the form calls the ROUTE to save the data
-Route::put('customer', 'CustomerController@addCustomer');
-
-// To update a Customer we display a form then the form submits the data
-// First we display a view with a update Form on it
-Route::get('customer/{customer}', 'CustomerController@displayUpdateCustomerForm');
-
-// Then the FORM calls the ROUTE to EDIT the Customer
-Route::post('customer/update', 'CustomerController@updateCustomer');
-
-// Delete Customer
-Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
-
-
+//Route::get('customers', 'CustomerController@allCustomers');
 //
-//// ********** VehicleController **********
-Route::get('vehicles', 'VehicleController@allVehicles');
+//// To add a Customer we display a form then the form submits the data
+//// First we display a view with a Form on it
+//Route::get('customer', 'CustomerController@displayAddCustomerForm');
+//
+//// then the form calls the ROUTE to save the data
+//Route::put('customer', 'CustomerController@addCustomer');
+//
+//// To update a Customer we display a form then the form submits the data
+//// First we display a view with a update Form on it
+//Route::get('customer/{customer}', 'CustomerController@displayUpdateCustomerForm');
+//
+//// Then the FORM calls the ROUTE to EDIT the Customer
+//Route::post('customer/update', 'CustomerController@updateCustomer');
+//
+//// Delete Customer
+//Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
 
-// To add a Vehicle we display a form then the form submits the data
-// First we display a view with a Form on it
-Route::get('vehicle', 'VehicleController@displayAddVehicleForm');
 
-// then the form calls the ROUTE to save the data
-Route::put('vehicle', 'VehicleController@addVehicle');
 
-// To update a  Hire Rate for Vehicle we display a form then the form submits the data
-// First we display a view with a update Form on it
-Route::get('vehicle/{vehicle}', 'VehicleController@displayUpdateHireRateForm');
-
-// Then the FORM calls the ROUTE to EDIT the Customer
-Route::post('vehicle/update', 'VehicleController@updateHireRate');
-
-// Retire Vehicle
-Route::post('vehicle/retire/{vehicle}', 'VehicleController@retireVehicle');
+// ********** VehicleController **********
+//Route::get('vehicles', 'VehicleController@allVehicles');
+//
+//// To add a Vehicle we display a form then the form submits the data
+//// First we display a view with a Form on it
+//Route::get('vehicle', 'VehicleController@displayAddVehicleForm');
+//
+//// then the form calls the ROUTE to save the data
+//Route::put('vehicle', 'VehicleController@addVehicle');
+//
+//// To update a  Hire Rate for Vehicle we display a form then the form submits the data
+//// First we display a view with a update Form on it
+//Route::get('vehicle/{vehicle}', 'VehicleController@displayUpdateHireRateForm');
+//
+//// Then the FORM calls the ROUTE to EDIT the Customer
+//Route::post('vehicle/update', 'VehicleController@updateHireRate');
+//
+//// Retire Vehicle
+//Route::post('vehicle/retire/{vehicle}', 'VehicleController@retireVehicle');
 
 
 
@@ -88,14 +88,14 @@ Route::post('list/damages', 'ListController@listDamagesByCustomer');
 
 
 // ********** ReportController **********
-Route::get('report/damage', 'ReportController@showDamagesReport');
-Route::get('report/fault', 'ReportController@showFaultsReport');
+//Route::get('report/damage', 'ReportController@showDamagesReport');
+//Route::get('report/fault', 'ReportController@showFaultsReport');
 
 
 
 // ********** ArchiveController **********
-Route::get('archive', 'ArchiveController@showArchiveForm');
-Route::post('archive', 'ArchiveController@archiveBookings');
+//Route::get('archive', 'ArchiveController@showArchiveForm');
+//Route::post('archive', 'ArchiveController@archiveBookings');
 
 
 
@@ -107,6 +107,77 @@ Route::post('archive', 'ArchiveController@archiveBookings');
 //Route::get('login', 'StaffController@login');
 //Route::get('logout', 'StaffController@logout');
 
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+    // can only access this if user is Admin (NOT Staff)
+    Route::get('archive', 'ArchiveController@showArchiveForm');
+    Route::post('archive', 'ArchiveController@archiveBookings');
+
+    // TODO route for registration of staff
+
+});
+
+Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
+{
+    // can only access this if user is Staff (NOT Admin)
+    // ********** CustomerController **********
+    Route::get('customers', 'CustomerController@allCustomers');
+
+    // To add a Customer we display a form then the form submits the data
+    // First we display a view with a Form on it
+    Route::get('customer', 'CustomerController@displayAddCustomerForm');
+
+    // then the form calls the ROUTE to save the data
+    Route::put('customer', 'CustomerController@addCustomer');
+
+    // To update a Customer we display a form then the form submits the data
+    // First we display a view with a update Form on it
+    Route::get('customer/{customer}', 'CustomerController@displayUpdateCustomerForm');
+
+    // Then the FORM calls the ROUTE to EDIT the Customer
+    Route::post('customer/update', 'CustomerController@updateCustomer');
+
+    // Delete Customer
+    Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
+
+
+    // ********** VehicleController **********
+    Route::get('vehicles', 'VehicleController@allVehicles');
+
+    // To add a Vehicle we display a form then the form submits the data
+    // First we display a view with a Form on it
+    Route::get('vehicle', 'VehicleController@displayAddVehicleForm');
+
+    // then the form calls the ROUTE to save the data
+    Route::put('vehicle', 'VehicleController@addVehicle');
+
+    // To update a  Hire Rate for Vehicle we display a form then the form submits the data
+    // First we display a view with a update Form on it
+    Route::get('vehicle/{vehicle}', 'VehicleController@displayUpdateHireRateForm');
+
+    // Then the FORM calls the ROUTE to EDIT the Customer
+    Route::post('vehicle/update', 'VehicleController@updateHireRate');
+
+    // Retire Vehicle
+    Route::post('vehicle/retire/{vehicle}', 'VehicleController@retireVehicle');
+
+
+
+    // ********** ListController **********
+    // display form with drop down for customer
+    Route::get('list', 'ListController@listByCustomerForm');
+    // display the list of bookings for the chosen customer
+    Route::post('list/bookings', 'ListController@listBookingsByCustomer');
+    // display the list of damages for the chosen customer
+    Route::post('list/damages', 'ListController@listDamagesByCustomer');
+
+
+
+    // ********** ReportController **********
+    Route::get('report/damage', 'ReportController@showDamagesReport');
+    Route::get('report/fault', 'ReportController@showFaultsReport');
+
+});
 
 
 Auth::routes();
