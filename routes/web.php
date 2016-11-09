@@ -109,9 +109,9 @@ Route::post('archive', 'ArchiveController@archiveBookings');
 
 
 // ********** StaffController **********
-Route::get('register', 'StaffController@registerStaffMember');
-Route::get('login', 'StaffController@login');
-Route::get('logout', 'StaffController@logout');
+//Route::get('register', 'StaffController@registerStaffMember');
+//Route::get('login', 'StaffController@login');
+//Route::get('logout', 'StaffController@logout');
 
 
 
