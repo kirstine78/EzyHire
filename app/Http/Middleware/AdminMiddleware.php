@@ -46,7 +46,7 @@ class AdminMiddleware
 
 
 
-        if ($request->user()->name != 'k')
+        if ($request->user()->role != 'admin')
         {
             return redirect('home');
         }

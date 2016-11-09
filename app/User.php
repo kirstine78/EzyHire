@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -36,7 +36,7 @@ class User extends Authenticatable
         $records = User::find($this->id);
 
         // check if role is admin?
-        if (strcmp($records->name, "k") == 0 )
+        if (strcmp($records->role, "admin") == 0 )
         {
             $isAdmin = true;
         }

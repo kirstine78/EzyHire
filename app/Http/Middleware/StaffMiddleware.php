@@ -23,7 +23,7 @@ class StaffMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->name == 'k')
+        if ($request->user()->role != 'staff')
         {
             return redirect('home');
         }
