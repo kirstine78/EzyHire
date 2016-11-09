@@ -31,10 +31,21 @@
 
 			@if ($isUserLoggedIn)
 				logged in
+
+				@if ($isUserAdmin)
+					| is Admin
+				@else
+					| is NOT Admin
+				@endif
 			@else
 				not logged in
 			@endif
-			
+
+
+
+
+
+
 			<div class="col-md-4">
 				<div class="heading_bar" id="titleBanner"><h1 class="title">EzyHire</h1></div>
 			</div>
@@ -60,31 +71,26 @@
 					<li class="nav_buttons"><a href="{{ url('/') }}" style="color:black;">Home</a></li>
 					<li class="nav_buttons"><a href="{{ url('suburbs') }}"  style="color:black;">Suburbs</a></li>
 					<li class="nav_buttons"><a href="{{ url('brands') }}"  style="color:black;">Brands</a></li>
-					<li class="nav_buttons"><a href="{{ url('customers') }}" style="color:black;">Customers</a></li>
-					<li class="nav_buttons"><a href="{{ url('vehicles') }}" style="color:black;">Vehicles</a></li>
 
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">Report
-							<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li class="nav_buttons"><a href="{{ url('report/damage') }}"  style="color:black;">Damage Report</a></li>
-							<li class="nav_buttons"><a href="{{ url('report/fault') }}"  style="color:black;">Fault Report</a></li>
-						</ul>
-					</li>
+					@if ($isUserLoggedIn)
 
-					<li class="nav_buttons"><a href="{{ url('list') }}" style="color:black;">Lists</a></li>
+						<li class="nav_buttons"><a href="{{ url('customers') }}" style="color:black;">Customers</a></li>
+						<li class="nav_buttons"><a href="{{ url('vehicles') }}" style="color:black;">Vehicles</a></li>
 
-					{{--<li class="dropdown">--}}
-						{{--<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">List--}}
-							{{--<span class="caret"></span></a>--}}
-						{{--<ul class="dropdown-menu">--}}
-							{{--<li class="nav_buttons"><a href="{{ url('list') }}"  style="color:black;">Bookings by Customer</a></li>--}}
-							{{--<li class="nav_buttons"><a href="{{ url('list/damages') }}"  style="color:black;">Damages by Customer</a></li>--}}
-						{{--</ul>--}}
-					{{--</li>--}}
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black;">Report
+								<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li class="nav_buttons"><a href="{{ url('report/damage') }}"  style="color:black;">Damage Report</a></li>
+								<li class="nav_buttons"><a href="{{ url('report/fault') }}"  style="color:black;">Fault Report</a></li>
+							</ul>
+						</li>
 
-					<li class="nav_buttons"><a href="{{ url('archive') }}" style="color:black;">Archive</a></li>
-					<li class="nav_buttons"><a href="{{ url('register') }}" style="color:black;">Register</a></li>
+						<li class="nav_buttons"><a href="{{ url('list') }}" style="color:black;">Lists</a></li>
+						<li class="nav_buttons"><a href="{{ url('archive') }}" style="color:black;">Archive</a></li>
+						<li class="nav_buttons"><a href="{{ url('register') }}" style="color:black;">Register</a></li>
+
+					@endif
 				</ul>
 
 				{{--<ul class="nav navbar-nav navbar-right">--}}

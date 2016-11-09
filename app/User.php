@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * check if user has a role as Admin (user can have a role as Staff OR Admin)
+     */
+    public function isUserRoleAdmin()
+    {
+        $records = User::find($this->id);
+
+        if (strcmp($records->name, "k") == 0 )
+        {
+            $isAdmin = true;
+        }
+        else
+        {
+            $isAdmin = false;
+        }
+
+         return $isAdmin;
+    }
 }
