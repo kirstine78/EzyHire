@@ -23,7 +23,15 @@ use Illuminate\Support\Facades\DB;
  */
 class ReportController extends Controller
 {
+    /** The constructor has code to restrict access to users that are logged in */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
+
+    // ************************************************************
     // ***************** damages report relevant ******************
+    // ************************************************************
 
     /**
      * Show report for damages
@@ -136,7 +144,9 @@ class ReportController extends Controller
     }  // end getOnlyUnFixedDamages
 
 
-    // ***************** faults report relevant ******************
+    // ************************************************************
+    // ***************** faults report relevant *******************
+    // ************************************************************
 
     /**
      * Show report for faults

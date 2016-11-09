@@ -22,6 +22,11 @@ use Illuminate\Support\Facades\DB;
  */
 class ListController extends Controller
 {
+    /** The constructor has code to restrict access to users that are logged in */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
 
     /**
      * Fetch form for list by customer

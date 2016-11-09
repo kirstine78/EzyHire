@@ -22,6 +22,16 @@ use App\Http\Requests;
  */
 class VehicleController extends Controller
 {
+    /** The constructor has code to restrict access to users that are logged in */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
+
+    /**
+     * display all vehicles
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function allVehicles(){
         // fetch all vehicles that are not flagged retired from db
         $vehi = $this->getAllNotRetiredVehicles();
