@@ -7,7 +7,7 @@
     File:            register.blade.php
 -->
 
-@extends('app')
+@extends('myapp')
 
 @section('content')
 

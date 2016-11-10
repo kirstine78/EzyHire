@@ -7,7 +7,7 @@
     File:            showDamagesReport.blade.php
 -->
 
-@extends('app')
+@extends('myapp')
 
 @section('content')
 

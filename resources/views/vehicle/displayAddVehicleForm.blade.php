@@ -7,7 +7,7 @@
     File:            displayAddVehicleForm.blade.php
 -->
 
-@extends('app')
+@extends('myapp')
 
 @section('content')
 

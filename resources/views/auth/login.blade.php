@@ -1,5 +1,5 @@
-{{--@extends('layouts.app')--}}
-@extends('app')
+@extends('layouts.app')
+{{--@extends('myapp')--}}
 
 @section('content')
 <div class="container">

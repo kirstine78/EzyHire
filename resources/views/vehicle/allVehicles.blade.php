@@ -7,7 +7,7 @@
     File:            allVehicles.blade.php
 -->
 
-@extends('app')
+@extends('myapp')
 
 @section('content')
 

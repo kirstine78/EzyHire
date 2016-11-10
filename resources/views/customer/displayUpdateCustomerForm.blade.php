@@ -7,7 +7,7 @@
     File:            displayUpdateCustomerForm.blade.php
 -->
 
-@extends('app')
+@extends('myapp')
 
 @section('content')
 

@@ -24,7 +24,7 @@ class ComposerServiceProvider extends ServiceProvider {
     public function boot()
     {
         // register my view composer
-        View::composer('app', function($view){
+        View::composer('myapp', function($view){
 
             // get user (will be null if not logged in)
             $user = \Auth::user();
