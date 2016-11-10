@@ -42,10 +42,8 @@ class RegisterController extends Controller
 
     /** The constructor has code to restrict access to users that are logged in */
     public function __construct() {
-        $this->middleware('auth');
-
-//        $this->middleware('auth', ['except' => ['getLogout', 'getRegister']]);
-//        $this->middleware('admin', ['only' => 'postRegister']);  //************
+//        $this->middleware('auth');  // to prevent non logged in user to access
+        $this->middleware('App\Http\Middleware\AdminMiddleware');  // to prevent other than logged in Admin to access
     }
 
     /**
