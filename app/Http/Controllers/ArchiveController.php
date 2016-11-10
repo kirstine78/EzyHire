@@ -25,9 +25,9 @@ use Carbon\Carbon;
 class ArchiveController extends Controller
 {
     /** The constructor has code to restrict access to users that are logged in */
-    public function __construct() {
-        $this->middleware('auth');
-    }
+//    public function __construct() {
+//        $this->middleware('auth');
+//    }
 
 
     /**

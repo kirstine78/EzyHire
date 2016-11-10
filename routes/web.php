@@ -25,7 +25,11 @@
 //});
 
 
-// GeneralController
+
+// *****************************************
+// *********** GeneralController ***********
+// *****************************************
+
 Route::get('/','GeneralController@index');
 Route::get('suburbs', 'GeneralController@getSuburbs');
 Route::get('brands', 'GeneralController@getBrands');
@@ -33,7 +37,10 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 
+// ****************************************
 // ********** CustomerController **********
+// ****************************************
+
 //Route::get('customers', 'CustomerController@allCustomers');
 //
 //// To add a Customer we display a form then the form submits the data
@@ -55,7 +62,10 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 
+// ***************************************
 // ********** VehicleController **********
+// ***************************************
+
 //Route::get('vehicles', 'VehicleController@allVehicles');
 //
 //// To add a Vehicle we display a form then the form submits the data
@@ -77,7 +87,10 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 
+// ************************************
 // ********** ListController **********
+// ************************************
+
 // display form with drop down for customer
 //Route::get('list', 'ListController@listByCustomerForm');
 //// display the list of bookings for the chosen customer
@@ -87,13 +100,19 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 
+// **************************************
 // ********** ReportController **********
+// **************************************
+
 //Route::get('report/damage', 'ReportController@showDamagesReport');
 //Route::get('report/fault', 'ReportController@showFaultsReport');
 
 
 
+// ***************************************
 // ********** ArchiveController **********
+// ***************************************
+
 //Route::get('archive', 'ArchiveController@showArchiveForm');
 //Route::post('archive', 'ArchiveController@archiveBookings');
 
@@ -111,11 +130,14 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 // GROUP ADMIN
-Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+Route::group(['middleware' => 'auth', 'middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {
-    // can only access this if user is Admin (NOT Staff)
+    // can only access the below if user is Admin (NOT Staff)
 
+    // ***************************************
     // ********** ArchiveController **********
+    // ***************************************
+
     Route::get('archive', 'ArchiveController@showArchiveForm');
     Route::post('archive', 'ArchiveController@archiveBookings');
 
@@ -128,11 +150,14 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 
 
 // GROUP STAFF
-Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
+Route::group(['middleware' => 'auth', 'middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
 {
-    // can only access this if user is Staff (NOT Admin)
+    // can only access the below if user is Staff (NOT Admin)
 
+    // ****************************************
     // ********** CustomerController **********
+    // ****************************************
+
     Route::get('customers', 'CustomerController@allCustomers');
 
     // To add a Customer we display a form then the form submits the data
@@ -154,7 +179,10 @@ Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
 
 
 
+    // ***************************************
     // ********** VehicleController **********
+    // ***************************************
+
     Route::get('vehicles', 'VehicleController@allVehicles');
 
     // To add a Vehicle we display a form then the form submits the data
@@ -176,7 +204,10 @@ Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
 
 
 
+    // ************************************
     // ********** ListController **********
+    // ************************************
+
     // display form with drop down for customer
     Route::get('list', 'ListController@listByCustomerForm');
     // display the list of bookings for the chosen customer
@@ -186,10 +217,12 @@ Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
 
 
 
+    // **************************************
     // ********** ReportController **********
+    // **************************************
+
     Route::get('report/damage', 'ReportController@showDamagesReport');
     Route::get('report/fault', 'ReportController@showFaultsReport');
-
 });
 
 
