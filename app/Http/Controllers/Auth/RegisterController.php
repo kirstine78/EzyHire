@@ -35,9 +35,17 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
+//    public function __construct()
+//    {
+//        $this->middleware('guest');
+//    }
+
+    /** The constructor has code to restrict access to users that are logged in */
+    public function __construct() {
+        $this->middleware('auth');
+
+//        $this->middleware('auth', ['except' => ['getLogout', 'getRegister']]);
+//        $this->middleware('admin', ['only' => 'postRegister']);  //************
     }
 
     /**
@@ -63,7 +71,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -71,4 +78,23 @@ class RegisterController extends Controller
             'role' => $data['role'],
         ]);
     }
+
+    // from internet:
+    // http://laravel.io/forum/06-12-2015-restricting-access-to-authregister-page
+//    public function getRegister()
+//    {
+//        echo "in get register";
+//
+//        if (!Auth::check() || Auth::user()->role !== "admin")
+//        {
+//            echo "is not admin ...";
+//            return redirect('/');
+//
+//        }
+//        else {
+//
+//            echo "is an admin ...";
+//        }
+//        return view('auth.register');
+//    }
 }

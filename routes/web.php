@@ -79,11 +79,11 @@ Route::get('brands', 'GeneralController@getBrands');
 
 // ********** ListController **********
 // display form with drop down for customer
-Route::get('list', 'ListController@listByCustomerForm');
-// display the list of bookings for the chosen customer
-Route::post('list/bookings', 'ListController@listBookingsByCustomer');
-// display the list of damages for the chosen customer
-Route::post('list/damages', 'ListController@listDamagesByCustomer');
+//Route::get('list', 'ListController@listByCustomerForm');
+//// display the list of bookings for the chosen customer
+//Route::post('list/bookings', 'ListController@listBookingsByCustomer');
+//// display the list of damages for the chosen customer
+//Route::post('list/damages', 'ListController@listDamagesByCustomer');
 
 
 
@@ -107,19 +107,31 @@ Route::post('list/damages', 'ListController@listDamagesByCustomer');
 //Route::get('login', 'StaffController@login');
 //Route::get('logout', 'StaffController@logout');
 
+
+
+
+// GROUP ADMIN
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {
     // can only access this if user is Admin (NOT Staff)
+
+    // ********** ArchiveController **********
     Route::get('archive', 'ArchiveController@showArchiveForm');
     Route::post('archive', 'ArchiveController@archiveBookings');
 
     // TODO route for registration of staff
-
+    // Registration Routes...
+    // https://laracasts.com/discuss/channels/laravel/laravel-53-routing-as-authroutes
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm');
+    Route::post('register', 'Auth\RegisterController@register');
 });
 
+
+// GROUP STAFF
 Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
 {
     // can only access this if user is Staff (NOT Admin)
+
     // ********** CustomerController **********
     Route::get('customers', 'CustomerController@allCustomers');
 
@@ -139,6 +151,7 @@ Route::group(['middleware' => 'App\Http\Middleware\StaffMiddleware'], function()
 
     // Delete Customer
     Route::delete('customer/{customer}', 'CustomerController@deleteCustomer');
+
 
 
     // ********** VehicleController **********

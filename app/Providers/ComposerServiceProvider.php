@@ -40,7 +40,7 @@ class ComposerServiceProvider extends ServiceProvider {
                 $isUserLoggedIn = true;
 
                 // check if the user is Admin
-                $isUserAdmin = $user->isUserRoleAdmin();
+                $isUserAdmin = $user->isAdmin();
             }
 
             $view->with('isUserLoggedIn', $isUserLoggedIn)->with('isUserAdmin', $isUserAdmin);

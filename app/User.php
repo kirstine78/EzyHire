@@ -31,7 +31,7 @@ class User extends Authenticatable
     /**
      * check if user has a role as Admin (user can have a role as Staff OR Admin)
      */
-    public function isUserRoleAdmin()
+    public function isAdmin()
     {
         $records = User::find($this->id);
 

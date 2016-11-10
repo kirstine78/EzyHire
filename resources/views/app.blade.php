@@ -41,11 +41,6 @@
 				not logged in
 			@endif
 
-
-
-
-
-
 			<div class="col-md-4">
 				<div class="heading_bar" id="titleBanner"><h1 class="title">EzyHire</h1></div>
 			</div>
@@ -91,7 +86,7 @@
 							<li class="nav_buttons"><a href="{{ url('list') }}" style="color:black;">Lists</a></li>
 						@else
 							<li class="nav_buttons"><a href="{{ url('archive') }}" style="color:black;">Archive</a></li>
-							<li class="nav_buttons"><a href="{{ url('register') }}" style="color:black;">Register</a></li>
+							<li class="nav_buttons"><a href="{{ url('/register') }}" style="color:black;">Register</a></li>
 						@endif
 					@endif
 				</ul>
@@ -106,7 +101,7 @@
 					<!-- Authentication Links -->
 					@if (Auth::guest())
 						<li><a href="{{ url('/login') }}">Login</a></li>
-						<li><a href="{{ url('/register') }}">Register</a></li>
+						{{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

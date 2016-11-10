@@ -66,30 +66,32 @@
                             </div>
                         </div>
 
-                        {{--<!-- customer banned? -->--}}
-                        {{--<div class="form-group">--}}
-                            {{--<label for="radUserRole" class="col-md-4 control-label">Role</label>--}}
-
-                            {{--<div class="col-md-6">--}}
-                                    {{--<input type="radio" name="radUserRole" value="staff" id="userRoleStaff" class="preserveWhiteSpace" checked> Staff<br>--}}
-                                    {{--<input type="radio" name="radUserRole" value="admin" id="userRoleAdmin" class="preserveWhiteSpace" > Admin<br>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-
+                        <!-- customer role -->
                         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                             <label for="role" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="text" class="form-control" name="role" value="{{ old('role') }}" required autofocus>
-
-                                @if ($errors->has('role'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                @endif
+                                    <input type="radio" name="role" value="staff" id="roleStaff" class="preserveWhiteSpace" checked> Staff<br>
+                                    <input type="radio" name="role" value="admin" id="roleAdmin" class="preserveWhiteSpace" > Admin<br>
                             </div>
                         </div>
+
+
+
+                        {{--<!-- customer role -->--}}
+                        {{--<div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">--}}
+                            {{--<label for="role" class="col-md-4 control-label">Role</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="role" type="text" class="form-control" name="role" value="{{ old('role') }}" required autofocus>--}}
+
+                                {{--@if ($errors->has('role'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('role') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
 
 

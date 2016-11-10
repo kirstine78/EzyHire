@@ -24,6 +24,12 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
 
+        if ($request->user()->role != 'admin')
+        {
+            return redirect('home');
+        }
+
+        return $next($request);
 
 //        // get name
 //        $user = $request->user();
@@ -43,15 +49,6 @@ class AdminMiddleware
 //
 //            return $next($request);
 //        }
-
-
-
-        if ($request->user()->role != 'admin')
-        {
-            return redirect('home');
-        }
-
-        return $next($request);
 
 
     }
