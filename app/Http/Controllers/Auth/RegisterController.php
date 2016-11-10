@@ -77,6 +77,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     // from internet:
     // http://laravel.io/forum/06-12-2015-restricting-access-to-authregister-page
 //    public function getRegister()
