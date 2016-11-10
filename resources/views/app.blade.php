@@ -91,17 +91,11 @@
 					@endif
 				</ul>
 
-				{{--<ul class="nav navbar-nav navbar-right">--}}
-					{{--<li class="nav_buttons"><a href="{{ url('login') }}"></span>Login</a></li>--}}
-					{{--<li class="nav_buttons"><a href="{{ url('logout') }}"></span>Logout</a></li>--}}
-				{{--</ul>--}}
-
-			<!-- Right Side Of Navbar -->
+				<!-- Right Side Of Navbar -->
 				<ul class="nav navbar-nav navbar-right">
 					<!-- Authentication Links -->
 					@if (Auth::guest())
 						<li><a href="{{ url('/login') }}">Login</a></li>
-						{{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -7,7 +7,7 @@
     File:            login.blade.php
 -->
 
-@extends('myapp')
+@extends('app')
 
 @section('content')
 

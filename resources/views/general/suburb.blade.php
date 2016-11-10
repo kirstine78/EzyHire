@@ -7,7 +7,7 @@
     File:            suburb.blade.php
 -->
 
-@extends('myapp')
+@extends('app')
 
 @section('content')
 

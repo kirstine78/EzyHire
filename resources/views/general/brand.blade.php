@@ -7,7 +7,7 @@
     File:            brand.blade.php
 -->
 
-@extends('myapp')
+@extends('app')
 
 @section('content')
 
