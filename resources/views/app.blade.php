@@ -134,8 +134,6 @@
 	@yield('content')
 
 	@yield('page-script')
-	{{--@yield('page-script-damages-report')--}}
-	{{--@yield('page-script-faults-report')--}}
 
 
 	<footer class="navbar-fixed-bottom"  id="myFooter">
@@ -143,14 +141,6 @@
 			<p class="text-muted" style="color: #ffffff">Kirstine Brørup Nielsen 100527988</p>
 		</div>
 	</footer>
-
-	{{--<div class="panel-footer">--}}
-		{{--<div class="container">--}}
-			{{--Kirstine Brørup Nielsen 100527988--}}
-		{{--</div>--}}
-	{{--</div>--}}
-
-	<!-- Scripts -->
 
 </body>
 </html>
