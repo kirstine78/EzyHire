@@ -41,10 +41,10 @@ class RegisterController extends Controller
 //    }
 
     /** The constructor has code to restrict access to users that are logged in */
-    public function __construct() {
-//        $this->middleware('auth');  // to prevent non logged in user to access
-        $this->middleware('App\Http\Middleware\AdminMiddleware');  // to prevent other than logged in Admin to access
-    }
+//    public function __construct() {
+////        $this->middleware('auth');  // to prevent non logged in user to access
+//        $this->middleware('App\Http\Middleware\AdminMiddleware');  // to prevent other than logged in Admin to access
+//    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -76,24 +76,4 @@ class RegisterController extends Controller
             'role' => $data['role'],
         ]);
     }
-
-
-    // from internet:
-    // http://laravel.io/forum/06-12-2015-restricting-access-to-authregister-page
-//    public function getRegister()
-//    {
-//        echo "in get register";
-//
-//        if (!Auth::check() || Auth::user()->role !== "admin")
-//        {
-//            echo "is not admin ...";
-//            return redirect('/');
-//
-//        }
-//        else {
-//
-//            echo "is an admin ...";
-//        }
-//        return view('auth.register');
-//    }
 }

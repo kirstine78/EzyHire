@@ -126,7 +126,8 @@ Route::get('brands', 'GeneralController@getBrands');
 //Route::get('login', 'StaffController@login');
 //Route::get('logout', 'StaffController@logout');
 
-
+// define all Authorization routes - MUST be before Group Admin
+Auth::routes();
 
 
 // GROUP ADMIN
@@ -141,9 +142,7 @@ Route::group(['middleware' => 'auth', 'middleware' => 'App\Http\Middleware\Admin
     Route::get('archive', 'ArchiveController@showArchiveForm');
     Route::post('archive', 'ArchiveController@archiveBookings');
 
-    // TODO route for registration of staff
-    // Registration Routes...
-    // https://laracasts.com/discuss/channels/laravel/laravel-53-routing-as-authroutes
+    // override the register route, so only Admin can access, and not Staff
     Route::get('register', 'Auth\RegisterController@showRegistrationForm');
     Route::post('register', 'Auth\RegisterController@register');
 });
@@ -226,6 +225,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'App\Http\Middleware\Staff
 });
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('home','GeneralController@index');

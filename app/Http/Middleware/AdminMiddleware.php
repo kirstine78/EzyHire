@@ -30,26 +30,5 @@ class AdminMiddleware
         }
 
         return $next($request);
-
-//        // get name
-//        $user = $request->user();
-//
-//
-//
-//        if ($user == null)
-//        {
-//            return $next($request);
-//        }
-//        else  // not null
-//        {
-//            if ($request->user()->name != 'k')
-//            {
-//                return redirect('home');
-//            }
-//
-//            return $next($request);
-//        }
-
-
     }
 }

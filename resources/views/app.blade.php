@@ -30,15 +30,15 @@
 			</div>
 
 			@if ($isUserLoggedIn)
-				logged in
+				Logged in
 
 				@if ($isUserAdmin)
-					| is Admin
+					| is Admin (NOT Staff)
 				@else
-					| is NOT Admin
+					| is Staff (NOT Admin)
 				@endif
 			@else
-				not logged in
+				Not logged in
 			@endif
 
 			<div class="col-md-4">
