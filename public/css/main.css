@@ -36,7 +36,6 @@
 	color: green;
 }
 
-
 #myInput {
 	background-image: url('../img/search_icon.png'); /* Add a search icon to input */
 	background-position: 10px 12px; /* Position the search icon */
@@ -57,6 +56,11 @@
 	padding-top: 16px;
 }
 
+#map {
+	height: 400px;
+	width: 100%;
+}
+
 /******** logo image shall NOT appear ********/
 @media only screen and (max-width: 992px) {
 	#logoCar {
@@ -69,5 +73,4 @@
 		padding-top: 0px;
 		text-align: left;
 	}
-
 }

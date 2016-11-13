@@ -26,6 +26,7 @@
                         <br/>
                         You can also call our friendly and helpful staff to make bookings.
                         <br/>
+                        <br/>
                         Phone: 0112233445
                         <br/>
                     </div>
