@@ -120,12 +120,6 @@ Route::get('brands', 'GeneralController@getBrands');
 
 
 
-
-// ********** StaffController **********
-//Route::get('register', 'StaffController@registerStaffMember');
-//Route::get('login', 'StaffController@login');
-//Route::get('logout', 'StaffController@logout');
-
 // define all Authorization routes - MUST be before Group Admin
 Auth::routes();
 
