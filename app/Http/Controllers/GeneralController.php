@@ -15,8 +15,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+
 /**
- * Class GeneralController
+ * Class GeneralController handles pages that are accessible for general visitors
  * @package App\Http\Controllers
  * Controller for pages that can be viewed without being logged in
  */

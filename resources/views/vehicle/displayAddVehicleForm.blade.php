@@ -42,8 +42,7 @@
 
 @section('page-script')
     <script type="text/javascript">
-        {{-- hide damaged radio buttons --}}
+        // hide damaged radio buttons
         $("#fullDivRadioGroup").hide();
-
     </script>
 @endsection

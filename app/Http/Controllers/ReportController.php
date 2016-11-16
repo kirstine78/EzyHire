@@ -17,18 +17,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
+
 /**
- * Class ReportController
+ * Class ReportController handles logic for report on damages - faults relevant
  * @package App\Http\Controllers
  */
 class ReportController extends Controller
 {
-    /** The constructor has code to restrict access to users that are logged in */
-//    public function __construct() {
-//        $this->middleware('auth');
-//    }
-
-
     // ************************************************************
     // ***************** damages report relevant ******************
     // ************************************************************
@@ -73,7 +68,6 @@ class ReportController extends Controller
      * @return mixed
      */
     public function getFixedAndUnFixedDamages() {
-
         // get all damages belonging to NON-archived bookings, and car details
         $joinTableNonArchivedBookingVehicleDamage = DB::table('bookings')
             ->join('vehicles', 'vehicles.id', '=', 'bookings.fldCarId')
@@ -84,7 +78,6 @@ class ReportController extends Controller
                 'damages.fldDamageType as damageType',
                 'damages.fldDamageDescription as damageDescription',
                 'damages.fldFixed as fixed');
-
 
         // get all damages belonging to archived bookings, and car details,
         // and union it with $joinTableNonArchivedBookingVehicleDamage
@@ -227,4 +220,5 @@ class ReportController extends Controller
 
         return $joinTable;
     }  // end getOnlyUnFixedFaults
-}
+
+}  // end class

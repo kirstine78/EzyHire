@@ -1,9 +1,12 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Kirstine
- * Date: 9/11/2016
- * Time: 1:59 PM
+ * Student name:    Kirstine Brørup Nielsen
+ * Student id:      100527988
+ * Date:            09.11.2016
+ * Assignment:      EzyHire
+ * Version:         1.0
+ * File:            ComposerServiceProvider.php
  */
 
 namespace App\Providers;
@@ -13,7 +16,7 @@ use Illuminate\Support\ServiceProvider;
 
 
 /**
- * Class ComposerServiceProvider
+ * Class ComposerServiceProvider used to decide how the view should display based on wheter user is admin or staff
  * To inject data into a layout view (a view that's @extended by others) I use a view composer.
  * Explanation found on:
  * http://stackoverflow.com/questions/28915811/how-put-data-in-app-blade-php-from-controller-in-laravel-5

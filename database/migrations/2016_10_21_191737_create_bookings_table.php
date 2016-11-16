@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Student name:    Kirstine Brørup Nielsen
+ * Student id:      100527988
+ * Date:            18.10.2016
+ * Assignment:      EzyHire
+ * Version:         1.0
+ * File:            bookings migration
+ */
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

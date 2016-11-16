@@ -15,21 +15,25 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+
 /**
- * Class StaffController
+ * Class StaffController handles logic for staff related
  * @package App\Http\Controllers
  * controls staff member related
  */
 class StaffController extends Controller
 {
+    // go to view for register
     public function registerStaffMember(){
         return View('staff.register');
     }
 
+    // go to view for login
     public function login(){
         return View('staff.login');
     }
 
+    // go to view for logout
     public function logout(){
         return View('home');
     }

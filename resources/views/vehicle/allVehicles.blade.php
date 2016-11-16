@@ -166,6 +166,5 @@
                 btnForm.parent('form').submit();
             });
         });
-
     </script>
 @endsection

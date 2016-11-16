@@ -18,24 +18,21 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Carbon\Carbon;
 
+
+use App\Booking;
+use App\Damage;
+
 /**
- * Class ArchiveController
+ * Class ArchiveController handles the logic for archiving bookings (and belonging damages)
  * @package App\Http\Controllers *
  */
 class ArchiveController extends Controller
 {
-    /** The constructor has code to restrict access to users that are logged in */
-//    public function __construct() {
-//        $this->middleware('auth');
-//    }
-
-
     /**
      * display archive form
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showArchiveForm(){
-
         // make sure to pass in false
         $isArchived = false;
 
@@ -44,12 +41,11 @@ class ArchiveController extends Controller
 
 
     /**
-     * handle how to archive bookings
+     * handles the archiving of bookings
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function archiveBookings(Request $request){
-
         // validate user input in the form (date). Date must be before today's date
         $this->validateArchiveDate($request);
 
@@ -117,7 +113,7 @@ class ArchiveController extends Controller
         // get current date time
         $dateTimeNow = Carbon::now();
 
-        // loop through and insert in archived tables (and achived damages table if damage is present)
+        // loop through and insert in archived tables (and archived damages table if damage is present)
         foreach ($someTable as $record) {
 
             // prepare object
@@ -175,12 +171,20 @@ class ArchiveController extends Controller
         // loop through table and delete all records in bookings table (and in damages table if relevant)
         foreach ($someTable as $record) {
 
-            DB::table('bookings')->where('id', '=', $record->fldBookingId)->delete();
+//            DB::table('bookings')->where('id', '=', $record->fldBookingId)->delete();
+//
+//            // check if damage is present, if present then delete records in damages table
+//            if ($record->fldDamageId != null)
+//            {
+//                DB::table('damages')->where('id', '=', $record->fldDamageId)->delete();
+//            }
+
+            Booking::where('id', '=', $record->fldBookingId)->delete();
 
             // check if damage is present, if present then delete records in damages table
             if ($record->fldDamageId != null)
             {
-                DB::table('damages')->where('id', '=', $record->fldDamageId)->delete();
+                Damage::where('id', '=', $record->fldDamageId)->delete();
             }
         }
     }

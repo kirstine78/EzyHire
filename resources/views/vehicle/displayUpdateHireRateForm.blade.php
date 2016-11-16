@@ -42,9 +42,8 @@
 
 @section('page-script')
     <script type="text/javascript">
-        {{-- set relevant input fields to readonly --}}
+        // set relevant input fields to readonly
         $(".vehicleFormReadOnly").prop('readonly', true);
-
     </script>
 @endsection
 

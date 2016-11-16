@@ -7,7 +7,7 @@
 		Date:            18.10.2016
 		Assignment:      EzyHire
 		Version:         1.0
-		File:            myapp.blade.php  -  the master page
+		File:            app.blade.php  -  the master page
 	-->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

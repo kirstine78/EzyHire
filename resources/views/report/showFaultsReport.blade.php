@@ -100,6 +100,5 @@
         };
 
         document.getElementById('{{ $filterOption }}').checked=true;
-
     </script>
 @endsection

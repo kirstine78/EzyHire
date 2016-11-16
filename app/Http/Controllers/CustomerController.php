@@ -16,18 +16,13 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests;
 
+
 /**
- * Class CustomerController
+ * Class CustomerController handles business logic for customer related
  * @package App\Http\Controllers
  */
 class CustomerController extends Controller
 {
-    /** The constructor has code to restrict access to users that are logged in */
-//    public function __construct() {
-//        $this->middleware('auth');
-//    }
-
-    
     /**
      * show all customers, excluding all customers flagged as deleted
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -136,7 +131,8 @@ class CustomerController extends Controller
         ];
 
         // validation of user input in the form
-        // regarding "UPDATE Customer" accept if user doesn't change email and licence no (so use: fldEmail,'.$request->specific_customer_id)
+        // regarding "UPDATE Customer", do accept if user doesn't change email and licence no
+        // (so use: fldEmail,'.$request->specific_customer_id)
         // accept space and dash in FIRST NAME only
         $this->validate($request, [
             'fldEmail' => 'required|between:3,254|email|unique:customers,fldEmail,'.$request->specific_customer_id,
@@ -199,5 +195,4 @@ class CustomerController extends Controller
         return $cust;
     }
 
-
-}
+}  // end class

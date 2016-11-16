@@ -16,24 +16,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
+
 /**
- * Class ListController
+ * Class ListController handles logic for the listing of bookings or damages by customer
  * @package App\Http\Controllers
  */
 class ListController extends Controller
 {
-    /** The constructor has code to restrict access to users that are logged in */
-//    public function __construct() {
-//        $this->middleware('auth');
-//    }
-
-
     /**
      * Fetch form for list by customer
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function listByCustomerForm(){
-
         // fetch ALL customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
@@ -58,7 +52,6 @@ class ListController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function listBookingsByCustomer(Request $request){
-
         // fetch ALL customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 
@@ -89,7 +82,6 @@ class ListController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function listDamagesByCustomer(Request $request){
-
         // fetch ALL customers that are not flagged deleted from db
         $cust = app('App\Http\Controllers\CustomerController')->getAllNotDeletedCustomers();
 

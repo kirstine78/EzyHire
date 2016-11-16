@@ -17,17 +17,11 @@ use Carbon\Carbon;
 use App\Http\Requests;
 
 /**
- * Class VehicleController
+ * Class VehicleController handles logic for vehicle related
  * @package App\Http\Controllers
  */
 class VehicleController extends Controller
 {
-    /** The constructor has code to restrict access to users that are logged in */
-//    public function __construct() {
-//        $this->middleware('auth');
-//    }
-
-
     /**
      * display all vehicles
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -142,7 +136,8 @@ class VehicleController extends Controller
         ];
 
         // validation of user input in the form
-        // regarding "UPDATE hire price Vehicle" accept rego no as it is (so use: fldRegoNo,'.$request->specific_vehicle_id)
+        // regarding "UPDATE hire price Vehicle" do accept rego no as it is
+        // (so use: fldRegoNo,'.$request->specific_vehicle_id)
         // accept space and dash in brand
         $this->validate($request, [
             'fldRegoNo' => 'required|alpha_num|size:6|unique:vehicles,fldRegoNo,'.$request->specific_vehicle_id,
@@ -185,4 +180,4 @@ class VehicleController extends Controller
 
         return $vehi;
     }
-}
+}  // end class
