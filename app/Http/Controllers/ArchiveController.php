@@ -171,14 +171,6 @@ class ArchiveController extends Controller
         // loop through table and delete all records in bookings table (and in damages table if relevant)
         foreach ($someTable as $record) {
 
-//            DB::table('bookings')->where('id', '=', $record->fldBookingId)->delete();
-//
-//            // check if damage is present, if present then delete records in damages table
-//            if ($record->fldDamageId != null)
-//            {
-//                DB::table('damages')->where('id', '=', $record->fldDamageId)->delete();
-//            }
-
             Booking::where('id', '=', $record->fldBookingId)->delete();
 
             // check if damage is present, if present then delete records in damages table
