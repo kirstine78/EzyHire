@@ -68,8 +68,6 @@
 					<li class="nav_buttons"><a href="{{ url('brands') }}"  style="color:black;">Brands</a></li>
 
 					@if ($isUserLoggedIn)
-
-
 						@if ($isUserAdmin == false)
 							<li class="nav_buttons"><a href="{{ url('customers') }}" style="color:black;">Customers</a></li>
 							<li class="nav_buttons"><a href="{{ url('vehicles') }}" style="color:black;">Vehicles</a></li>
