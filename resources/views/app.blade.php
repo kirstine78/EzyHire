@@ -29,18 +29,6 @@
 				<img id="logoCar" src="{{URL::asset('/img/logo.jpg')}}" alt="profile Pic"  >
 			</div>
 
-			@if ($isUserLoggedIn)
-				Logged in
-
-				@if ($isUserAdmin)
-					| is Admin (NOT Staff)
-				@else
-					| is Staff (NOT Admin)
-				@endif
-			@else
-				Not logged in
-			@endif
-
 			<div class="col-md-4">
 				<div class="heading_bar" id="titleBanner"><h1 class="title">EzyHire</h1></div>
 			</div>
